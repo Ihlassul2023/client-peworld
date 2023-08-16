@@ -1,7 +1,7 @@
 import React from "react";
 
-const EditProfilePekerja = () => {
+const EditProfileWorker = () => {
   return <div>editProfilePekerja</div>;
 };
 
-export default EditProfilePekerja;
+export default EditProfileWorker;
