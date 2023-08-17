@@ -1,0 +1,9 @@
+.mail:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
+}
+
+.bell:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
+}
