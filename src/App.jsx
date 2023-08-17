@@ -8,7 +8,6 @@ import {
   LoginRecruiter,
   LoginWorker,
 } from "./page";
-import Homepage from "./page/Homepage";
 
 function App() {
   return (
