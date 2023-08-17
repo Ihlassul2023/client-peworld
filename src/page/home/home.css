@@ -1,0 +1,21 @@
+:root {
+  --primary-color: #5E50A1;
+  --secondary-color: #FBB017;
+
+
+  /* text-color */
+  --text-primary: #1F2A36;
+  --text-secondary: #46505C;
+  --text-third: #9EA0A5;
+  --text-fourth: #E2E5ED;
+
+  /* background-color */
+  --bg-primary: #F6F7F8;
+  --bg-secondary: #FFFFFF;
+}
+
+/* Style for search */
+.custom-bg-nav {
+  background-color: var(--primary-color) !important;
+}
+
