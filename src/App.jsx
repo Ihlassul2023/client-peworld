@@ -1,7 +1,13 @@
 import "./assets/css/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { EditProfileWorker, RegisterRecruiter, RegisterWorker, LoginRecruiter, LoginWorker } from "./page";
+import {
+  EditProfileWorker,
+  RegisterRecruiter,
+  RegisterWorker,
+  LoginRecruiter,
+  LoginWorker,
+} from "./page";
 
 function App() {
   return (

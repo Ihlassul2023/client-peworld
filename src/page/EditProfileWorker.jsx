@@ -1,15 +1,16 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import edit from "../assets/image/edit.svg";
 import photo from "../assets/image/photo.png";
 import map from "../assets/image/map-pin.png";
 import tokopedia from "../assets/image/tokopedia.png";
+import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const EditProfileWorker = () => {
   return (
     <>
-      <nav>
-        <p>tes</p>
-      </nav>
+      <Navbar />
       <main>
         <div className="wrapProfile d-flex justify-content-center">
           <div className="background"></div>
@@ -119,9 +120,7 @@ const EditProfileWorker = () => {
           </div>
         </div>
       </main>
-      <footer>
-        <p>tes</p>
-      </footer>
+      <Footer />
     </>
   );
 };

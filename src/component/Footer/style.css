@@ -1,0 +1,13 @@
+/* ! footer start */
+
+.primaryContainer {
+  background-color: #5e50a1;
+  height: auto;
+  margin-top: 6rem;
+  width: 100vw;
+}
+.footerLine {
+  border: 1px solid #fff; /* Warna putih */
+}
+
+/* ! footer end */

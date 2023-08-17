@@ -1,4 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@500&display=swap");
+
+:root {
+  --primary-color: #5E50A1;
+  --secondary-color: #FBB017;
+
+
+  /* text-color */
+  --text-primary: #1F2A36;
+  --text-secondary: #46505C;
+  --text-third: #9EA0A5;
+  --text-fourth: #E2E5ED;
+
+  /* background-color */
+  --bg-primary: #F6F7F8;
+  --bg-secondary: #FFFFFF;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +28,25 @@ body {
   min-height: 100vh;
   flex-direction: column;
   position: relative;
+  background-color: var(--bg-primary) !important;
 }
+
+img {
+  width: 100%;
+}
+
+.text-title {
+  color: var(--text-primary);
+}
+
+.text-desc {
+  color: var(--text-secondary) !important;
+}
+
+.text-desc2 {
+  color: var(--text-third);
+}
+
 nav,
 footer {
   flex: 1;
