@@ -4,7 +4,7 @@
   padding: 0;
   outline: none;
   font-family: "Open Sans", sans-serif;
-  color: var(--input);
+  color: rgba(158, 160, 165, 1);
 }
 body {
   display: flex;
@@ -18,4 +18,50 @@ footer {
 }
 main {
   flex: 2;
+}
+main .wrapProfile {
+  width: 100vw;
+  position: relative;
+  background-color: rgba(246, 247, 248, 1);
+}
+main .background {
+  height: 300px;
+  width: 100%;
+  background-color: rgba(94, 80, 161, 1);
+  position: absolute;
+}
+main .wrapProfile .wrapCardEdit {
+  width: 30%;
+  padding: 4rem 1rem;
+  z-index: 1;
+}
+main .wrapProfile .wrapCardEdit .cardEditProfile {
+  background-color: rgba(255, 255, 255, 1);
+}
+main .wrapProfile .wrapMainEdit {
+  width: 45%;
+  z-index: 1;
+  padding: 4rem 1rem;
+}
+main .wrapProfile .wrapMainEdit .mainEditProfile .bio,
+.mainEditProfile .skill,
+.mainEditProfile .experience,
+.mainEditProfile .portofolio {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1rem;
+}
+main .wrapProfile .btnGrup .btnUserSave {
+  background-color: rgba(94, 80, 161, 1);
+  color: white;
+}
+main .wrapProfile .btnGrup .btnUserCancel {
+  background-color: white;
+  color: rgba(94, 80, 161, 1);
+  border: 2px solid rgba(94, 80, 161, 1);
+}
+main .wrapProfile .wrapMainEdit .mainEditProfile .bio .input input,
+textarea {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid rgba(158, 160, 165, 1);
 }
