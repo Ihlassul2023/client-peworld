@@ -5,11 +5,13 @@ import { Container, Navbar, NavbarBrand, Card } from "react-bootstrap";
 import NavigationBar from "../../component/Navbar";
 import Search from "../../component/Search";
 import Cards from "../../component/Card";
+import Footer from "../../component/Footer";
 
 const Home = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <NavigationBar />
+
       <Navbar className="custom-bg-nav">
         <Container>
           <NavbarBrand>
@@ -54,6 +56,9 @@ const Home = () => {
           </div>
         </div>
       </Container>
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 };
