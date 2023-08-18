@@ -9,8 +9,8 @@ import {
   LoginRecruiter,
   LoginWorker,
 } from "./page";
-
 import Home from "./page/home";
+import ProfilePortfolio from "./page/profilePortfolio";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path="/registerWorker" element={<RegisterWorker />} />
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
           <Route path="/editProfileWorker" element={<EditProfileWorker />} />
+          <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
         </Routes>
       </BrowserRouter>
     </>
