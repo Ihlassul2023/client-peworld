@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   EditProfileWorker,
+  EditProfileRecruiter,
   RegisterRecruiter,
   RegisterWorker,
   LoginRecruiter,
@@ -23,6 +24,10 @@ function App() {
           <Route path="/registerWorker" element={<RegisterWorker />} />
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
           <Route path="/editProfileWorker" element={<EditProfileWorker />} />
+          <Route
+            path="/editProfileRecruiter"
+            element={<EditProfileRecruiter />}
+          />
         </Routes>
       </BrowserRouter>
     </>
