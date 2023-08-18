@@ -1,19 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap');
 
 :root {
-  --primary-color: #5E50A1;
-  --secondary-color: #FBB017;
-
+  --primary-color: #5e50a1;
+  --secondary-color: #fbb017;
 
   /* text-color */
-  --text-primary: #1F2A36;
-  --text-secondary: #46505C;
-  --text-third: #9EA0A5;
-  --text-fourth: #E2E5ED;
+  --text-primary: #1f2a36;
+  --text-secondary: #46505c;
+  --text-third: #9ea0a5;
+  --text-fourth: #e2e5ed;
 
   /* background-color */
-  --bg-primary: #F6F7F8;
-  --bg-secondary: #FFFFFF;
+  --bg-primary: #f6f7f8;
+  --bg-secondary: #ffffff;
 }
 
 * {
@@ -74,7 +73,7 @@ main .wrapProfile .wrapCardEdit .cardEditProfile {
   background-color: rgba(255, 255, 255, 1);
 }
 main .wrapProfile .wrapMainEdit {
-  width: 45%;
+  width: 60%;
   z-index: 1;
   padding: 4rem 1rem;
 }
@@ -99,4 +98,21 @@ textarea {
   background-color: #fff;
   padding: 1rem;
   border: 1px solid rgba(158, 160, 165, 1);
+}
+@media (max-width: 768px) {
+  main .wrapProfile {
+    flex-direction: column !important;
+  }
+  main .wrapProfile .wrapCardEdit {
+    width: 90%;
+  }
+  main .wrapProfile .wrapMainEdit {
+    width: 90%;
+  }
+  main .background {
+    top: 0;
+  }
+  main .wrapProfile .wrapMainEdit .experience .workInformation {
+    flex-direction: column !important;
+  }
 }
