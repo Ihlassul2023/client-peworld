@@ -1,23 +1,23 @@
 import React from "react";
 
-import NavigationBar from "../../component/Navbar";
-import Footer from "../../component/Footer";
+import NavigationBar from "../component/Navbar";
+import Footer from "../component/Footer";
 
-import "./profileport.css";
+import "../assets/css/main.css";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
-import CardPortfolio from "../../component/CardPortfolio/CardPortfolio";
+import CardPortfolio from "../component/CardPortfolio/CardPortfolio";
 
-import fakePhotoProfile from "../../assets/image/photo.png";
+import fakePhotoProfile from "../assets/image/photo.png";
 
 // import image
-import fakePorto1 from "../../assets/image/fakePorto1.png";
-import fakePorto2 from "../../assets/image/fakePorto2.png";
-import fakePorto3 from "../../assets/image/fakePorto3.png";
-import fakePorto4 from "../../assets/image/fakePorto4.png";
-import fakePorto5 from "../../assets/image/fakePorto5.png";
-import fakePorto6 from "../../assets/image/fakePorto6.png";
+import fakePorto1 from "../assets/image/fakePorto1.png";
+import fakePorto2 from "../assets/image/fakePorto2.png";
+import fakePorto3 from "../assets/image/fakePorto3.png";
+import fakePorto4 from "../assets/image/fakePorto4.png";
+import fakePorto5 from "../assets/image/fakePorto5.png";
+import fakePorto6 from "../assets/image/fakePorto6.png";
 
-import tokoPediaImg from "../../assets/image/tokopedia.png";
+import tokoPediaImg from "../assets/image/tokopedia.png";
 
 const ProfilePortfolio = () => {
   const dataPhoto = [

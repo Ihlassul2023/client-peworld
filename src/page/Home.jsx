@@ -1,11 +1,12 @@
-import "./home.css";
 import React, { useState } from "react";
 import { Container, Navbar, NavbarBrand, Card } from "react-bootstrap";
 
-import NavigationBar from "../../component/Navbar";
-import Search from "../../component/Search";
-import Cards from "../../component/Card";
-import Footer from "../../component/Footer";
+import NavigationBar from "../component/Navbar";
+import Search from "../component/Search";
+import Cards from "../component/Card";
+import Footer from "../component/Footer";
+
+import "../assets/css/main.css";
 
 const Home = () => {
   return (

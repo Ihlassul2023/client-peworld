@@ -8,9 +8,9 @@ import {
   RegisterWorker,
   LoginRecruiter,
   LoginWorker,
+  ProfilePortfolio,
+  Home,
 } from "./page";
-import Home from "./page/home";
-import ProfilePortfolio from "./page/profilePortfolio";
 
 function App() {
   return (
