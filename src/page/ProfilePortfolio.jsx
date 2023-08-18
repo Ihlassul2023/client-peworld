@@ -63,11 +63,12 @@ const ProfilePortfolio = () => {
         <Container>
           <Row className="">
             <Col md="4">
-              <Card className="p-3 border-0">
+              <Card className="p-3 pt-5 border-0">
                 <div className="d-flex justify-content-center">
                   <img
                     src={fakePhotoProfile}
                     alt=""
+                    className="rounded-circle"
                     style={{ width: 100, height: 100 }}
                   />
                 </div>
@@ -113,7 +114,11 @@ const ProfilePortfolio = () => {
                   </div>
                   <div className="mt-5">
                     <div className="d-flex">
-                      <box-icon name="envelope" color="gray"></box-icon>
+                      <box-icon
+                        name="envelope"
+                        color="gray"
+                        animation="tada"
+                      ></box-icon>
                       <p className="ms-3">Louistommo@gmail.com</p>
                     </div>
                     <div className="d-flex">
@@ -121,6 +126,7 @@ const ProfilePortfolio = () => {
                         name="instagram"
                         type="logo"
                         color="gray"
+                        animation="tada"
                       ></box-icon>
                       <p className="ms-3">@Louist91</p>
                     </div>
@@ -129,6 +135,7 @@ const ProfilePortfolio = () => {
                         type="logo"
                         name="github"
                         color="gray"
+                        animation="tada"
                       ></box-icon>
                       <p className="ms-3">@Louistommo</p>
                     </div>
@@ -137,12 +144,13 @@ const ProfilePortfolio = () => {
                         name="gitlab"
                         type="logo"
                         color="gray"
+                        animation="tada"
                       ></box-icon>
                       <p className="ms-3">@Louistommo91</p>
                     </div>
                   </div>
                 </div>
-                <Button className="py-2 mt-3">Hire</Button>
+                <Button className="py-2 mt-3 custom-button">Hire</Button>
               </Card>
             </Col>
             <Col md="8">
