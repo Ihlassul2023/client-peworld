@@ -9,7 +9,7 @@ const Cards = () => {
   return (
     <Container>
       <Card className="border-0 rounded-0">
-        <div className="p-3 d-flex justify-content-between">
+        <div className="p-3 d-md-flex justify-content-between">
           <div className="d-flex">
             <img
               src={fakePhoto}
@@ -21,15 +21,15 @@ const Cards = () => {
               <h5 className="text-black">Louis Tomlinson</h5>
               <p className="mb-1">Web developer</p>
               <div className="d-flex">
-                <box-icon name="map"></box-icon>
+                <box-icon name="map" color="gray" animation="tada"></box-icon>
                 <p className="ps-1">London, UK</p>
               </div>
-              <div className="d-flex gap-2">
+              <div className="d-flex gap-2 flew-wrap flex-grow-1">
                 <Button variant="warning" className="btn-sm px-3 text-white">
-                  Next JS
+                  Next
                 </Button>
                 <Button variant="warning" className="btn-sm px-3 text-white">
-                  React JS
+                  React
                 </Button>
                 <Button variant="warning" className="btn-sm px-3 text-white">
                   Node
@@ -37,12 +37,13 @@ const Cards = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex align-items-center">
-            <Button className="btn-sm px-3 border-0 py-2 rounded-0 custom-button">
+          <div className="d-block d-md-flex align-items-md-center mt-3 mt-md-0">
+            <Button className="btn-sm px-3 border-0 py-2 rounded-0 custom-button d-block mx-auto">
               Lihat Profile
             </Button>
           </div>
         </div>
+        <hr className="mx-3" />
       </Card>
     </Container>
   );
