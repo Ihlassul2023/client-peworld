@@ -5,6 +5,7 @@ import RegisterWorker from "./authWorker/RegisterWorker";
 import RegisterRecruiter from "./authRecruiter/RegisterRecruiter";
 import ProfilePortfolio from "./ProfilePortfolio";
 import Home from "./Home";
+import Hire from "./Hire";
 
 export {
   EditProfileWorker,
@@ -14,4 +15,5 @@ export {
   RegisterWorker,
   ProfilePortfolio,
   Home,
+  Hire,
 };
