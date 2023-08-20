@@ -9,9 +9,10 @@ import {
   RegisterWorker,
   LoginRecruiter,
   LoginWorker,
+  ProfilePortfolio,
+  Home,
+  Hire,
 } from "./page";
-
-import Home from "./page/home";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
             path="/editProfileRecruiter"
             element={<EditProfileRecruiter />}
           />
+          <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
+          <Route path="/hire" element={<Hire />} />
         </Routes>
       </BrowserRouter>
     </>

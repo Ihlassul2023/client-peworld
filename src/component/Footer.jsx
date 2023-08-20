@@ -4,7 +4,11 @@ import "../assets/css/main.css";
 
 const Footer = () => {
   return (
+<<<<<<< HEAD:src/component/Footer.jsx
     <footer className="primaryContainer-footer px-5 py-5">
+=======
+    <footer className="primaryContainer px-5 py-5" style={{ width: "100%" }}>
+>>>>>>> d36b3133a321de702fffe2c489eddedc1c73a83a:src/component/Footer/index.jsx
       <Container className="content">
         <Row>
           <Col>
