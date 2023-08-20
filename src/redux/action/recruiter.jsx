@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { instance } from "../../utils/serviceApi";
 let url = import.meta.env.VITE_BASE_URL;
 
@@ -7,12 +8,14 @@ export const register = (data) => async (dispatch) => {
   try {
     dispatch({ type: "RECRUITER_REGISTER_PENDING" });
     const result = await axios.post(url + `/register-company`, data);
-    console.log(result);
-    dispatch({ payload: result.data.message, type: "RECRUITER_REGISTER_SUCCESS" });
+    console.log(result.data.data);
+    dispatch({ payload: result.data.data, type: "RECRUITER_REGISTER_SUCCESS" });
+    toast.success('Register success!')
   } catch (err) {
     console.log("error");
-    dispatch({ payload: err.response.data.message, type: "RECRUITER_REGISTER_FAILED" });
-    console.log(err.response.data.message);
+    console.log(err);
+    dispatch({ payload: err.response.data, type: "RECRUITER_REGISTER_FAILED" });
+    toast.error(err.response.data.message)
   }
 };
 export const login = (data, navigate) => async (dispatch) => {
