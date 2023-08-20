@@ -1,13 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/action/recruiter";
+import { ToastContainer } from 'react-toastify';
 
 import bannerPhoto from "../../assets/image/bannerPhoto.png";
 import Logo1 from "../../assets/image/logo1.png";
 import "../../assets/css/main.css";
 
 const LoginRecruiter = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [inputData, setInputData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const postDataLogin = async (e) => {
+    e.preventDefault();
+    dispatch(login(inputData, navigate))
+  }
+
+  const onChangeLogin = (e) => {
+    setInputData({...inputData, [e.target.name]: e.target.value})
+    console.log('Login Recruiter', inputData)
+  }
+
+
+
   return (
     <div>
       <Container className="py-3">
@@ -15,7 +37,7 @@ const LoginRecruiter = () => {
           <Col md="6" className="">
             <Card className="border-0">
               <div className="bannerPhoto">
-                <img src={bannerPhoto} alt="" srcset="" />
+                <img src={bannerPhoto} alt="" srcSet="" />
               </div>
               <div className="card-img-overlay">
                 <div className="ps-4 mt-3">
@@ -34,14 +56,14 @@ const LoginRecruiter = () => {
               <h3>Halo, Pewpeople</h3>
               <p className="text-desc fw-lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
 
-              <Form>
+              <Form onSubmit={postDataLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" className="py-3" placeholder="Masukan alamat email" />
+                  <Form.Control type="email" name="email" onChange={onChangeLogin} value={inputData.email} className="py-3" placeholder="Masukan alamat email" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Kata Sandi</Form.Label>
-                  <Form.Control type="password" className="py-3" placeholder="Masukan kata sandi" />
+                  <Form.Control type="password" name="password" onChange={onChangeLogin} value={inputData.password} className="py-3" placeholder="Masukan kata sandi" />
                 </Form.Group>
                 <div className="text-end">
                   <Link to="" className="text-black" style={{ textDecoration: "none" }}>
@@ -66,6 +88,7 @@ const LoginRecruiter = () => {
           </Col>
         </Row>
       </Container>
+      <ToastContainer/>
     </div>
   );
 };

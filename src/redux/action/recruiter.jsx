@@ -33,11 +33,11 @@ export const login = (data, navigate) => async (dispatch) => {
       navigate("/editProfileRecruiter");
       window.location.reload();
     }, 1000);
-    dispatch({ payload: result.data.user, type: "RECRUITER_LOGIN_SUCCESS" });
+    dispatch({ payload: result.data, type: "RECRUITER_LOGIN_SUCCESS" });
   } catch (err) {
     console.log("error");
-    toast.error(err.response.data.msg);
-    dispatch({ payload: err.response.data.msg, type: "RECRUITER_LOGIN_FAILED" });
+    toast.error(err.response.data.message);
+    dispatch({ payload: err.response.data, type: "RECRUITER_LOGIN_FAILED" });
     console.log(err);
   }
 };
