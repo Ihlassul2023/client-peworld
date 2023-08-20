@@ -138,3 +138,30 @@ textarea {
   background-color: var(--primary-color) !important;
 }
 
+
+/* Styling for Landing page */
+.custom-btn-outline {
+  background-color: transparent !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: bold !important;
+}
+
+.custom-btn {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+}
+
+/*  */
+
+.custom-startnow-card {
+  border-radius: 30px 4px !important;
+  background-color: var(--primary-color) !important;
+}
+
+.button-startnow-button {
+  background-color: var(--bg-primary) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--primary-color) !important;
+}

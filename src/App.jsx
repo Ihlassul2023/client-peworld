@@ -11,6 +11,7 @@ import {
   ProfilePortfolio,
   Home,
   Hire,
+  LandingPage,
 } from "./page";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/editProfileWorker" element={<EditProfileWorker />} />
           <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
           <Route path="/hire" element={<Hire />} />
+          <Route path="/" element={<LandingPage />} />
         </Routes>
       </BrowserRouter>
     </>

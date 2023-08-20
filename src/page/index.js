@@ -6,6 +6,7 @@ import RegisterRecruiter from "./authRecruiter/RegisterRecruiter";
 import ProfilePortfolio from "./ProfilePortfolio";
 import Home from "./Home";
 import Hire from "./Hire";
+import LandingPage from "./LandingPage";
 
 export {
   EditProfileWorker,
@@ -16,4 +17,5 @@ export {
   ProfilePortfolio,
   Home,
   Hire,
+  LandingPage,
 };
