@@ -58,7 +58,7 @@ export const updateProfileWorker = (data) => async (dispatch) => {
 export const deleteProfilUser = () => async (dispatch) => {
   try {
     dispatch({ type: "WORKER_DELETE_PENDING" });
-    const result = await instance.put(url + `/delete-worker`);
+    const result = await instance.delete(url + `/delete-worker`);
     toast.success(result.data.message);
     dispatch({ payload: result.data.message, type: "WORKER_DELETE_SUCCESS" });
   } catch (err) {
@@ -71,7 +71,7 @@ export const deleteProfilUser = () => async (dispatch) => {
 export const getAllWorker = () => async (dispatch) => {
   try {
     dispatch({ type: "GET_WORKER_PENDING" });
-    const result = await instance.put(url + `/list-worker`);
+    const result = await instance.get(url + `/list-worker`);
     toast.success(result.data.message);
     dispatch({ payload: result.data, type: "GET_WORKER_SUCCESS" });
   } catch (err) {
@@ -84,7 +84,7 @@ export const getAllWorker = () => async (dispatch) => {
 export const getMyProfile = () => async (dispatch) => {
   try {
     dispatch({ type: "GETMY_PROFILE_PENDING" });
-    const result = await instance.put(url + `/profileWorker`);
+    const result = await instance.get(url + `/profileWorker`);
     toast.success(result.data.message);
     dispatch({ payload: result.data.data, type: "GETMY_PROFILE_SUCCESS" });
   } catch (err) {

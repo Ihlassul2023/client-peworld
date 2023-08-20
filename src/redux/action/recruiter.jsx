@@ -41,7 +41,7 @@ export const login = (data, navigate) => async (dispatch) => {
 export const getMyProfile = () => async (dispatch) => {
   try {
     dispatch({ type: "GETMYRECRUITER_PROFILE_PENDING" });
-    const result = await instance.put(url + `/my-company`);
+    const result = await instance.get(url + `/my-company`);
     toast.success(result.data.message);
     dispatch({ payload: result.data.data, type: "GETMYRECRUITER_PROFILE_SUCCESS" });
   } catch (err) {
@@ -70,7 +70,7 @@ export const updateProfileRecruiter = (data) => async (dispatch) => {
 export const deleteProfilUser = () => async (dispatch) => {
   try {
     dispatch({ type: "RECRUITER_DELETE_PENDING" });
-    const result = await instance.put(url + `/delete-company`);
+    const result = await instance.delete(url + `/delete-company`);
     toast.success(result.data.message);
     dispatch({ payload: result.data.message, type: "RECRUITER_DELETE_SUCCESS" });
   } catch (err) {
