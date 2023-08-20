@@ -22,6 +22,17 @@ import map from "../assets/image/map-pin.png";
 export default function EditProfileCompany() {
   const [showModal, setShowModal] = useState(false);
   const [newPhoto, setNewPhoto] = useState(photo);
+  const [editedData, setEditedData] = useState({
+    companyName: "",
+    field: "",
+    province: "",
+    city: "",
+    shortDescription: "",
+    email: "",
+    companyEmail: "",
+    phoneNumber: "",
+    linkedIn: "",
+  });
 
   const handleEditPhoto = () => {
     setShowModal(true);
@@ -38,6 +49,18 @@ export default function EditProfileCompany() {
       setNewPhoto(newPhotoUrl);
     }
     setShowModal(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    console.log("Edited Data:", editedData);
   };
   return (
     <>
@@ -100,7 +123,7 @@ export default function EditProfileCompany() {
                 <hr />
                 <Form>
                   <Form.Group className="mb-3" controlId="nama-perusahaan">
-                    <Form.Label className="ms-2">Nama Perusahaan</Form.Label>
+                    <Form.Label className="ms-2">Company Name</Form.Label>
                     <FloatingLabel
                       controlId="floatingNamaPerusahaan"
                       label="Masukkan Nama Perusahaan"
