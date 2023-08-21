@@ -2,38 +2,34 @@ import React from "react";
 
 import { Card, Container, Button } from "react-bootstrap";
 
-import fakePhoto from "../../assets/image/photo.png";
 import "./card.css";
 
-const Cards = () => {
+const Cards = (props) => {
   return (
+    <>
     <Container>
       <Card className="border-0 rounded-0">
-        <div className="p-3 d-md-flex justify-content-between">
+        <div className="p-3 d-md-flex justify-content-between" key={props.key}>
           <div className="d-flex">
             <img
-              src={fakePhoto}
+              src={props.image}
               alt="photo profile"
               className="rounded-circle"
               style={{ width: 80, height: 80 }}
             />
             <div className="ms-3">
-              <h5 className="text-black">Louis Tomlinson</h5>
-              <p className="mb-1">Web developer</p>
+              <h5 className="text-black">{props.name}</h5>
+              <p className="mb-1">{props.jobdesk}</p>
               <div className="d-flex">
                 <box-icon name="map" color="gray" animation="tada"></box-icon>
-                <p className="ps-1">London, UK</p>
+                <p className="ps-1">{props.address}</p>
               </div>
               <div className="d-flex gap-2 flew-wrap flex-grow-1">
+              {props.skill.map((skill, index) => (
                 <Button variant="warning" className="btn-sm px-3 text-white">
-                  Next
+                  {skill}
                 </Button>
-                <Button variant="warning" className="btn-sm px-3 text-white">
-                  React
-                </Button>
-                <Button variant="warning" className="btn-sm px-3 text-white">
-                  Node
-                </Button>
+                ))}
               </div>
             </div>
           </div>
@@ -46,6 +42,7 @@ const Cards = () => {
         <hr className="mx-3" />
       </Card>
     </Container>
+    </>
   );
 };
 

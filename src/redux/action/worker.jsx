@@ -1,42 +1,48 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { instance } from "../../utils/serviceApi";
 let url = import.meta.env.VITE_BASE_URL;
 
-export const register = (data) => async (dispatch) => {
+export const register = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "WORKER_REGISTER_PENDING" });
     const result = await axios.post(url + `/register-worker`, data);
     console.log(result);
     dispatch({ payload: result.data.message, type: "WORKER_REGISTER_SUCCESS" });
+    toast.success(result.data.message)
+    setTimeout(()=>{
+      navigate('/loginWorker')
+    }, 1000)
   } catch (err) {
     console.log("error");
     dispatch({ payload: err.response.data.message, type: "WORKER_REGISTER_FAILED" });
     console.log(err.response.data.message);
+    toast.error(err.response.data.message)
   }
 };
 export const login = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "WORKER_LOGIN_PENDING" });
     const result = await axios.post(url + `/login-worker`, data);
-    localStorage.setItem("token_worker", result.data.token);
+    localStorage.setItem("token_worker", result.data.data.token);
     localStorage.setItem("name_worker", result.data.data.name);
     localStorage.setItem("photo_worker", result.data.data.photo);
     localStorage.removeItem("token_recruiter");
     localStorage.removeItem("name_recruiter");
     localStorage.removeItem("photo_recruiter");
     // localStorage.setItem("email", result.data.user.email);
+    dispatch({ payload: result.data.data, type: "WORKER_LOGIN_SUCCESS" });
     toast.success(result.data.message);
     setTimeout(() => {
-      navigate("/editProfileWorker");
-      window.location.reload();
+        navigate("/editProfileWorker");
+        window.location.reload();
     }, 1000);
-    dispatch({ payload: result.data.user, type: "WORKER_LOGIN_SUCCESS" });
   } catch (err) {
     console.log("error");
-    toast.error(err.response.data.msg);
-    dispatch({ payload: err.response.data.msg, type: "WORKER_LOGIN_FAILED" });
+    dispatch({ payload: err.response.data, type: "WORKER_LOGIN_FAILED" });
     console.log(err);
+    toast.error(err.response.data.message);
   }
 };
 export const updateProfileWorker = (data) => async (dispatch) => {
