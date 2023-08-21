@@ -53,6 +53,7 @@ export const updateProfileWorker = (data) => async (dispatch) => {
     localStorage.setItem("name_worker", result.data.data.name);
     localStorage.setItem("email_worker", result.data.data.email);
     toast.success(result.data.message);
+    getMyProfile();
     dispatch({ payload: result.data.message, type: "WORKER_UPDATE_SUCCESS" });
   } catch (err) {
     console.log("error");
@@ -92,6 +93,7 @@ export const getMyProfile = () => async (dispatch) => {
     dispatch({ type: "GETMY_PROFILE_PENDING" });
     const result = await instance.get(url + `/profileWorker`);
     toast.success(result.data.message);
+    console.log(result.data.message);
     dispatch({ payload: result.data.data, type: "GETMY_PROFILE_SUCCESS" });
   } catch (err) {
     console.log("error");

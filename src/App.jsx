@@ -2,30 +2,51 @@ import "./assets/css/main.css";
 import "boxicons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  EditProfileWorker,
-  RegisterRecruiter,
-  RegisterWorker,
-  LoginRecruiter,
-  LoginWorker,
-  ProfilePortfolio,
-  Home,
-  Hire,
-} from "./page";
+import { EditProfileWorker, RegisterRecruiter, RegisterWorker, LoginRecruiter, LoginWorker, ProfilePortfolio, Home, Hire } from "./page";
+import AuthRecruiter from "./utils/AuthRecruiter";
+import AuthWorker from "./utils/AuthWorker";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+              <AuthRecruiter>
+                <Home />
+              </AuthRecruiter>
+            }
+          />
           <Route path="/loginWorker" element={<LoginWorker />} />
           <Route path="/loginRecruiter" element={<LoginRecruiter />} />
           <Route path="/registerWorker" element={<RegisterWorker />} />
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
-          <Route path="/editProfileWorker" element={<EditProfileWorker />} />
-          <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
-          <Route path="/hire" element={<Hire />} />
+          <Route
+            path="/editProfileWorker"
+            element={
+              <AuthWorker>
+                <EditProfileWorker />
+              </AuthWorker>
+            }
+          />
+          <Route
+            path="/profilePortfolio"
+            element={
+              <AuthRecruiter>
+                <ProfilePortfolio />
+              </AuthRecruiter>
+            }
+          />
+          <Route
+            path="/hire"
+            element={
+              <AuthRecruiter>
+                <Hire />
+              </AuthRecruiter>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
