@@ -22,53 +22,54 @@ import fakePorto5 from "../assets/image/fakePorto5.png";
 import fakePorto6 from "../assets/image/fakePorto6.png";
 
 import tokoPediaImg from "../assets/image/tokopedia.png";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProfilePortfolio = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [profileWorker, setProfileWorker] = useState({});
   const { detail_worker, getExperienceForRecruit, getPortofolioForRecruit, getSkillForRecruit } = useSelector((state) => state);
-  const dataPhoto = [
-    {
-      id: 1,
-      image: fakePorto1,
-      title: "Remainder app",
-    },
-    {
-      id: 2,
-      image: fakePorto2,
-      title: "Social media app",
-    },
-    {
-      id: 3,
-      image: fakePorto3,
-      title: "Project management web",
-    },
-    {
-      id: 4,
-      image: fakePorto4,
-      title: "Remainder app",
-    },
-    {
-      id: 5,
-      image: fakePorto5,
-      title: "Social media app",
-    },
-    {
-      id: 6,
-      image: fakePorto6,
-      title: "Project management web",
-    },
-  ];
+  // const dataPhoto = [
+  //   {
+  //     id: 1,
+  //     image: fakePorto1,
+  //     title: "Remainder app",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: fakePorto2,
+  //     title: "Social media app",
+  //   },
+  //   {
+  //     id: 3,
+  //     image: fakePorto3,
+  //     title: "Project management web",
+  //   },
+  //   {
+  //     id: 4,
+  //     image: fakePorto4,
+  //     title: "Remainder app",
+  //   },
+  //   {
+  //     id: 5,
+  //     image: fakePorto5,
+  //     title: "Social media app",
+  //   },
+  //   {
+  //     id: 6,
+  //     image: fakePorto6,
+  //     title: "Project management web",
+  //   },
+  // ];
   useEffect(() => {
     workerDetail();
     experienceWorker();
     portofolioWorker();
     skillWorker();
   }, []);
-  console.log(getSkillForRecruit.data);
+  console.log(getPortofolioForRecruit?.data);
   useEffect(() => {
     !detail_worker.isLoading && detail_worker.data && setProfileWorker({ ...profileWorker, ...detail_worker?.data });
   }, [detail_worker.isLoading]);
@@ -118,11 +119,17 @@ const ProfilePortfolio = () => {
                   <div className="mt-5">
                     <h5>Skill</h5>
                     <div className="d-flex flex-wrap gap-3">
-                      <button className="btn btn-sm btn-warning text-white px-3">Phyton</button>
-                      <button className="btn btn-sm btn-warning text-white px-3">Laravel</button>
-                      <button className="btn btn-sm btn-warning text-white px-3">Golang</button>
-                      <button className="btn btn-sm btn-warning text-white px-3">Javascript</button>
-                      <button className="btn btn-sm btn-warning text-white px-3">PHP</button>
+                      {getSkillForRecruit.isLoading ? (
+                        <Spinner animation="border" role="status" size="lg" variant="light">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      ) : (
+                        getSkillForRecruit.data?.skill_name.split(",").map((skill, id) => (
+                          <button key={id} className="btn btn-sm btn-warning text-white px-3">
+                            {skill}
+                          </button>
+                        ))
+                      )}
                     </div>
                     <div className="mt-5">
                       <div className="d-flex">
@@ -143,7 +150,9 @@ const ProfilePortfolio = () => {
                       </div>
                     </div>
                   </div>
-                  <Button className="py-2 mt-3 custom-button">Hire</Button>
+                  <Button onClick={() => navigate(`hire/${id}`)} className="py-2 mt-3 custom-button">
+                    Hire
+                  </Button>
                 </Card>
               )}
             </Col>
@@ -152,34 +161,46 @@ const ProfilePortfolio = () => {
                 <div>
                   <h4 className="text-black fw-semibold custom-line">Portofolio</h4>
                 </div>
-
-                <div className="mt-4">
-                  <Row className="row row-cols-1 row-cols-md-3 row-cols-lg-3">
-                    {dataPhoto.map((item, index) => (
-                      <CardPortfolio image={item.image} title={item.title} key={item.id} />
-                    ))}
-                  </Row>
-                </div>
+                {getPortofolioForRecruit.isLoading ? (
+                  <Spinner animation="border" role="status" size="lg" variant="light">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  <div className="mt-4">
+                    <Row className="row row-cols-1 row-cols-md-3 row-cols-lg-3">
+                      {getPortofolioForRecruit?.data?.map((item, index) => (
+                        <CardPortfolio image={item.photo} title={item.name} key={item.id} />
+                      ))}
+                    </Row>
+                  </div>
+                )}
 
                 <div>
                   <h4 className="text-black fw-semibold custom-line">Pengalaman Kerja</h4>
-
-                  <div className="mt-4">
-                    <div className="d-flex flex-row pe-0 pe-md-5">
-                      <div>
-                        <img src={tokoPediaImg} alt="image" style={{ width: 80, height: 80 }} />
+                  {getExperienceForRecruit.isLoading ? (
+                    <Spinner animation="border" role="status" size="lg" variant="light">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  ) : (
+                    getExperienceForRecruit?.data?.map((experience) => (
+                      <div key={experience.id} className="mt-4 mb-3">
+                        <div className="d-flex flex-row pe-0 pe-md-5">
+                          <div>
+                            <img src={tokoPediaImg} alt="image" style={{ width: 80, height: 80 }} />
+                          </div>
+                          <div className="ms-3 mt-2">
+                            <h5 className="text-black mb-0">{experience.position}</h5>
+                            <p className="fw-light mb-0 text-black">{experience.company_name}</p>
+                            <p className="fw-lighter">
+                              {experience.frommonth} - {experience.tomonth} <span className="ms-2">6 months</span>
+                            </p>
+                            <p className="fw-normal text-black ">{experience.description}</p>
+                            <hr />
+                          </div>
+                        </div>
                       </div>
-                      <div className="ms-3 mt-2">
-                        <h5 className="text-black mb-0">Enginner</h5>
-                        <p className="fw-light mb-0 text-black">Tokopedia</p>
-                        <p className="fw-lighter">
-                          July 2019 - January 2020 <span className="ms-2">6 months</span>
-                        </p>
-                        <p className="fw-normal text-black ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
-                        <hr />
-                      </div>
-                    </div>
-                  </div>
+                    ))
+                  )}
                 </div>
               </Card>
             </Col>
