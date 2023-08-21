@@ -15,8 +15,11 @@ import { updateProfileWorker, getMyProfile } from "../redux/action/worker";
 import { postSkillAction, getSkillAction } from "../redux/action/skill";
 import { getExperienceAction, getExperienceById, postExperience, updateExperience, deleteExperience } from "../redux/action/experience";
 import { getPortofolioAction, getPortofolioById, postPortofolio, updatePortofolio, deletePortofolio } from "../redux/action/portofolio";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const EditProfileWorker = () => {
   const dispatch = useDispatch();
+  // ,
   const { myProfileWorker, getSkill, getExperience, getDetailExperience, getPortofolio, getDetailPortofolio } = useSelector((state) => state);
   const [dataWorker, setDataWorker] = useState({
     name: "",
@@ -27,7 +30,7 @@ const EditProfileWorker = () => {
     photo_url: "",
   });
   const [skillWorker, setSkillWorker] = useState({
-    name_skill: "",
+    skill_name: "",
   });
 
   const [experienceWorker, setExperienceWorker] = useState({
@@ -49,8 +52,9 @@ const EditProfileWorker = () => {
     getMyExperience();
     getMyPortofolio();
   }, []);
+  console.log(getExperience.data?.data);
   useEffect(() => {
-    !myProfileWorker.isLoading && setDataWorker({ ...dataWorker, ...myProfileWorker.data });
+    myProfileWorker.data && !myProfileWorker.isLoading && setDataWorker({ ...dataWorker, ...myProfileWorker?.data[0] });
     !getSkill.isLoading && setSkillWorker({ ...skillWorker, ...getSkill.data });
     !getDetailExperience.isLoading && setExperienceWorker({ ...experienceWorker, ...getDetailExperience.data });
     !getDetailPortofolio.isLoading && setPortofolioWorker({ ...portofolioWorker, ...getDetailPortofolio.data });
@@ -86,7 +90,7 @@ const EditProfileWorker = () => {
   };
   const handleSubmitSkill = (e) => {
     e.preventDefault();
-    dispatch(postSkillAction(dataWorker));
+    dispatch(postSkillAction(skillWorker));
   };
   const handleInputSkill = (e) => {
     const { name, value } = e.target;
@@ -220,7 +224,7 @@ const EditProfileWorker = () => {
                 <h3 className="text-dark">Skill</h3>
                 <hr />
                 <form onSubmit={handleSubmitSkill} className="d-flex gap-2 mt-3">
-                  <input value={skillWorker.name_skill} onChange={(e) => handleInputSkill(e)} className="bg-light w-100 border-1 p-2" placeholder="Javascript, Html, css" type="text" />
+                  <input value={skillWorker.skill_name} name="skill_name" onChange={(e) => handleInputSkill(e)} className="bg-light w-100 border-1 p-2" placeholder="Javascript, Html, css" type="text" />
                   <button className="bg-warning border-0 text-light p-2">Simpan</button>
                 </form>
               </div>
@@ -232,7 +236,7 @@ const EditProfileWorker = () => {
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>
                 ) : (
-                  getExperience?.data?.map((experience, index) => {
+                  getExperience.data?.data.map((experience, index) => (
                     <div key={index} className="workExperience mb-3">
                       <div>
                         <div className="d-flex justify-content-end gap-2">
@@ -249,37 +253,37 @@ const EditProfileWorker = () => {
                             <p className="text-dark">{experience.position}</p>
                             <p>{experience.company_name}</p>
                             <p>
-                              {experience.fromMonth} - {experience.toMonth} 6 months
+                              {experience.frommonth} - {experience.tomonth} 6 months
                             </p>
                             <p className="text-dark">{experience.description}</p>
                           </div>
                         </div>
                       </div>
-                    </div>;
-                  })
+                    </div>
+                  ))
                 )}
                 <form onSubmit={handleSubmitExperience} className="d-flex flex-column gap-2 mt-3">
                   <div className="input d-flex flex-column w-100">
                     <label htmlFor="position">Posisi</label>
-                    <input type="text" name="position" value={experienceWorker.position} onChange={() => handleInputExperience(e)} id="position" className="bg-light border-1 p-2" placeholder="web developer" />
+                    <input type="text" name="position" value={experienceWorker.position} onChange={(e) => handleInputExperience(e)} id="position" className="bg-light border-1 p-2" placeholder="web developer" />
                   </div>
                   <div className="workInformation d-flex gap-3">
                     <div className="input  d-flex flex-column">
                       <label htmlFor="office">Nama perusahaan</label>
-                      <input type="text" name="company_name" value={experienceWorker.company_name} onChange={() => handleInputExperience(e)} id="office" className="bg-light border-1 p-2" placeholder="PT.Harus bisa" />
+                      <input type="text" name="company_name" value={experienceWorker.company_name} onChange={(e) => handleInputExperience(e)} id="office" className="bg-light border-1 p-2" placeholder="PT.Harus bisa" />
                     </div>
                     <div className="input  d-flex flex-column">
                       <label htmlFor="from">Dari Bulan/Tahun</label>
-                      <input type="text" name="fromMonth" value={experienceWorker.fromMonth} onChange={() => handleInputExperience(e)} id="from" className="bg-light border-1 p-2" placeholder="Januari 2018" />
+                      <input type="text" name="fromMonth" value={experienceWorker.fromMonth} onChange={(e) => handleInputExperience(e)} id="from" className="bg-light border-1 p-2" placeholder="Januari 2018" />
                     </div>
                     <div className="input  d-flex flex-column">
                       <label htmlFor="to">Sampai Bulan/Tahun</label>
-                      <input type="text" name="toMonth" value={experienceWorker.toMonth} onChange={() => handleInputExperience(e)} id="to" className="bg-light border-1 p-2" placeholder="Januari 2019" />
+                      <input type="text" name="toMonth" value={experienceWorker.toMonth} onChange={(e) => handleInputExperience(e)} id="to" className="bg-light border-1 p-2" placeholder="Januari 2019" />
                     </div>
                   </div>
                   <div className="input d-flex flex-column w-100">
                     <label htmlFor="description">Deskripsi singkat</label>
-                    <textarea type="text" name="description" value={experienceWorker.description} onChange={() => handleInputExperience(e)} id="description" cols="30" rows="10" placeholder="Deskripsikan pekerjaan anda" />
+                    <textarea type="text" name="description" value={experienceWorker.description} onChange={(e) => handleInputExperience(e)} id="description" cols="30" rows="10" placeholder="Deskripsikan pekerjaan anda" />
                   </div>
                   <button className="text-warning bg-light border p-2 border-warning">Tambah pengalaman kerja</button>
                 </form>
@@ -291,7 +295,7 @@ const EditProfileWorker = () => {
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>
                 ) : (
-                  getPortofolio.data?.map((portofolio, index) => {
+                  getPortofolio.data?.data.map((portofolio, index) => (
                     <div key={index} className="portofolioWorker d-flex justify-content-between mb-3">
                       <div className="informationPortfolio d-flex gap-2">
                         <img style={{ height: "100px", width: "150px" }} src={portofolio.photo} alt="porto" />
@@ -308,8 +312,8 @@ const EditProfileWorker = () => {
                           X
                         </button>
                       </div>
-                    </div>;
-                  })
+                    </div>
+                  ))
                 )}
                 <hr />
                 <form onSubmit={handleSubmitPortofolio} className="d-flex flex-column gap-2 mt-3">
@@ -369,6 +373,7 @@ const EditProfileWorker = () => {
         </div>
       </main>
       <Footer />
+      <ToastContainer />
     </>
   );
 };

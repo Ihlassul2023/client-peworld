@@ -87,6 +87,7 @@ export const getMyProfile = () => async (dispatch) => {
     dispatch({ type: "GETMY_PROFILE_PENDING" });
     const result = await instance.get(url + `/profileWorker`);
     toast.success(result.data.message);
+    console.log(result.data.message);
     dispatch({ payload: result.data.data, type: "GETMY_PROFILE_SUCCESS" });
   } catch (err) {
     console.log("error");
