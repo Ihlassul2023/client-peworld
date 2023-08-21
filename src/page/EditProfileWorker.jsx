@@ -52,7 +52,6 @@ const EditProfileWorker = () => {
     getMyExperience();
     getMyPortofolio();
   }, []);
-  console.log(getPortofolio.data);
   useEffect(() => {
     myProfileWorker.data && !myProfileWorker.isLoading && setDataWorker({ ...dataWorker, ...myProfileWorker?.data[0] });
     !getSkill.isLoading && setSkillWorker({ ...skillWorker, ...getSkill.data });
@@ -80,6 +79,7 @@ const EditProfileWorker = () => {
     bodyFormData.append("jobdesk", dataWorker.jobdesk);
     bodyFormData.append("office", dataWorker.office);
     bodyFormData.append("description", dataWorker.description);
+    bodyFormData.append("address", dataWorker.addres);
     bodyFormData.append("photo", photoProfile);
     dispatch(updateProfileWorker(bodyFormData));
   };
@@ -163,7 +163,7 @@ const EditProfileWorker = () => {
               <div className="cardEditProfile  rounded  mb-2  p-2">
                 <div className="photo mb-4 d-flex flex-column align-items-center gap-2">
                   <div className="photoUser">
-                    <img src={dataWorker.photo_url || dataWorker.photo} alt="photo" />
+                    <img src={dataWorker.photo_url || dataWorker.photo} alt="photo" className="rounded-circle" style={{ width: 100, height: 100 }} />
                   </div>
                   <div className="edit d-flex align-items-center justify-content-center gap-2">
                     <img src={edit} alt="edit" width="10px" height="10px" />

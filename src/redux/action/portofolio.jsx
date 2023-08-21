@@ -8,8 +8,9 @@ export const postPortofolio = (data) => async (dispatch) => {
     const result = await instance.post(url + `/portfolio`, data);
     console.log(result);
     toast.success(result.data.msg);
-    window.location.reload();
-    getPortofolioAction();
+    setTimeout(() => {
+      dispatch(getPortofolioAction());
+    }, 1000);
     dispatch({ payload: result.data.msg, type: "POST_PORTOFOLIO_SUCCESS" });
   } catch (err) {
     console.log("error");
@@ -43,7 +44,7 @@ export const getPortofolioById = (id) => async (dispatch) => {
     console.log(err.response.data.message);
   }
 };
-export const getPortofolioForRecruit = (id) => async (dispatch) => {
+export const getPortofolioForRecruitAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DETAIL_PORTOFOLIORECRUITER_PENDING" });
     const result = await instance.get(url + `/portfolio-hiring/${id}`);
@@ -61,9 +62,10 @@ export const updatePortofolio = (id, data) => async (dispatch) => {
     const result = await instance.put(url + `/portfolio/${id}`, data);
     console.log(result);
     toast.success(result.data.msg);
-    window.location.reload();
     localStorage.removeItem("idPortofolio");
-    getPortofolioAction();
+    setTimeout(() => {
+      dispatch(getPortofolioAction());
+    }, 1000);
     dispatch({ payload: result.data.message, type: "UPDATE_PORTOFOLIO_SUCCESS" });
   } catch (err) {
     console.log("error");
@@ -78,9 +80,10 @@ export const deletePortofolio = (id) => async (dispatch) => {
     const result = await instance.delete(url + `/portfolio/${id}`);
     console.log(result);
     toast.success(result.data.msg);
-    window.location.reload();
     localStorage.removeItem("idPortofolio");
-    getPortofolioAction();
+    setTimeout(() => {
+      dispatch(getPortofolioAction());
+    }, 1000);
     dispatch({ payload: result.data.message, type: "DELETE_PORTOFOLIO_SUCCESS" });
   } catch (err) {
     console.log("error");

@@ -9,7 +9,9 @@ export const postExperience = (data) => async (dispatch) => {
     const result = await instance.post(url + `/experience`, data);
     console.log(result);
     toast.success(result.data.msg);
-    window.location.reload();
+    setTimeout(() => {
+      dispatch(getExperienceAction());
+    }, 1000);
     dispatch({ payload: result.data.msg, type: "POST_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
@@ -41,7 +43,7 @@ export const getExperienceById = (id) => async (dispatch) => {
     console.log(err.response.data.message);
   }
 };
-export const getExperienceForRecruit = (id) => async (dispatch) => {
+export const getExperienceForRecruitAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DETAIL_EXPERIENCERECRUITER_PENDING" });
     const result = await instance.get(url + `/experience-hiring/${id}`);
@@ -58,7 +60,9 @@ export const updateExperience = (id, data) => async (dispatch) => {
     const result = await instance.put(url + `/experience/${id}`, data);
     toast.success(result.data.msg);
     localStorage.removeItem("idExperience");
-    window.location.reload();
+    setTimeout(() => {
+      dispatch(getExperienceAction());
+    }, 1000);
     dispatch({ payload: result.data.msg, type: "UPDATE_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
@@ -73,7 +77,9 @@ export const deleteExperience = (id) => async (dispatch) => {
     const result = await instance.delete(url + `/experience/${id}`);
     console.log(result);
     toast.success(result.data.msg);
-    window.location.reload();
+    setTimeout(() => {
+      dispatch(getExperienceAction());
+    }, 1000);
     dispatch({ payload: result.data.msg, type: "DELETE_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
