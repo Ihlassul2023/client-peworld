@@ -5,13 +5,13 @@ const initialState = {
   isError: false,
 };
 
-const getExperience = (state = initialState, action) => {
-  if (action.type === "GET_EXPERIENCE_PENDING") {
+const getPortofolio = (state = initialState, action) => {
+  if (action.type === "GET_PORTOFOLIO_PENDING") {
     return {
       ...state,
       isLoading: true,
     };
-  } else if (action.type === "GET_EXPERIENCE_SUCCESS") {
+  } else if (action.type === "GET_PORTOFOLIO_SUCCESS") {
     return {
       ...state,
       data: action.payload,
@@ -19,7 +19,7 @@ const getExperience = (state = initialState, action) => {
       errorMessage: "",
       isError: false,
     };
-  } else if (action.type === "GET_EXPERIENCE_FAILED") {
+  } else if (action.type === "GET_PORTOFOLIO_FAILED") {
     return {
       ...state,
       data: null,
@@ -32,4 +32,4 @@ const getExperience = (state = initialState, action) => {
   }
 };
 
-export default getExperience;
+export default getPortofolio;

@@ -8,14 +8,14 @@ export const postExperience = (data) => async (dispatch) => {
     dispatch({ type: "POST_EXPERIENCE_PENDING" });
     const result = await instance.post(url + `/experience`, data);
     console.log(result);
-    toast.success(result.data.message);
+    toast.success(result.data.msg);
     window.location.reload();
-    dispatch({ payload: result.data.message, type: "POST_EXPERIENCE_SUCCESS" });
+    dispatch({ payload: result.data.msg, type: "POST_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
-    toast.error(err.response.data.message);
-    dispatch({ payload: err.response.data.message, type: "POST_EXPERIENCE_FAILED" });
-    console.log(err.response.data.message);
+    toast.error(err.response.data.msg);
+    dispatch({ payload: err.response.data.msg, type: "POST_EXPERIENCE_FAILED" });
+    console.log(err.response.data.msg);
   }
 };
 export const getExperienceAction = () => async (dispatch) => {
@@ -25,8 +25,8 @@ export const getExperienceAction = () => async (dispatch) => {
     dispatch({ payload: result.data, type: "GET_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
-    dispatch({ payload: err.response.data.message, type: "GET_EXPERIENCE_FAILED" });
-    console.log(err.response.data.message);
+    dispatch({ payload: err.response.data.msg, type: "GET_EXPERIENCE_FAILED" });
+    console.log(err.response.data.msg);
   }
 };
 export const getExperienceById = (id) => async (dispatch) => {
@@ -37,7 +37,7 @@ export const getExperienceById = (id) => async (dispatch) => {
     dispatch({ payload: result.data.data, type: "DETAIL_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
-    dispatch({ payload: err.response.data.message, type: "DETAIL_EXPERIENCE_FAILED" });
+    dispatch({ payload: err.response.data.msg, type: "DETAIL_EXPERIENCE_FAILED" });
     console.log(err.response.data.message);
   }
 };
@@ -48,7 +48,7 @@ export const getExperienceForRecruit = (id) => async (dispatch) => {
     dispatch({ payload: result.data.data, type: "DETAIL_EXPERIENCERECRUITER_SUCCESS" });
   } catch (err) {
     console.log("error");
-    dispatch({ payload: err.response.data.message, type: "DETAIL_EXPERIENCERECRUITER_FAILED" });
+    dispatch({ payload: err.response.data.msg, type: "DETAIL_EXPERIENCERECRUITER_FAILED" });
     console.log(err.response.data.message);
   }
 };
@@ -56,14 +56,13 @@ export const updateExperience = (id, data) => async (dispatch) => {
   try {
     dispatch({ type: "UPDATE_EXPERIENCE_PENDING" });
     const result = await instance.put(url + `/experience/${id}`, data);
-    console.log(result);
-    toast.success(result.data.message);
+    toast.success(result.data.msg);
     localStorage.removeItem("idExperience");
     window.location.reload();
-    dispatch({ payload: result.data.message, type: "UPDATE_EXPERIENCE_SUCCESS" });
+    dispatch({ payload: result.data.msg, type: "UPDATE_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
-    toast.error(err.response.data.message);
+    toast.error(err.response.data.msg);
     dispatch({ payload: err.response.data.message, type: "UPDATE_EXPERIENCE_FAILED" });
     console.log(err.response.data.message);
   }
@@ -73,13 +72,13 @@ export const deleteExperience = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_EXPERIENCE_PENDING" });
     const result = await instance.delete(url + `/experience/${id}`);
     console.log(result);
-    toast.success(result.data.message);
+    toast.success(result.data.msg);
     window.location.reload();
-    dispatch({ payload: result.data.message, type: "DELETE_EXPERIENCE_SUCCESS" });
+    dispatch({ payload: result.data.msg, type: "DELETE_EXPERIENCE_SUCCESS" });
   } catch (err) {
     console.log("error");
-    toast.error(err.response.data.message);
-    dispatch({ payload: err.response.data.message, type: "DELETE_EXPERIENCE_FAILED" });
-    console.log(err.response.data.message);
+    toast.error(err.response.data.msg);
+    dispatch({ payload: err.response.data.msg, type: "DELETE_EXPERIENCE_FAILED" });
+    console.log(err.response.data.msg);
   }
 };
