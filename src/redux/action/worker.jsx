@@ -47,6 +47,7 @@ export const updateProfileWorker = (data) => async (dispatch) => {
     localStorage.setItem("name_worker", result.data.data.name);
     localStorage.setItem("email_worker", result.data.data.email);
     toast.success(result.data.message);
+    getMyProfile();
     dispatch({ payload: result.data.message, type: "WORKER_UPDATE_SUCCESS" });
   } catch (err) {
     console.log("error");
