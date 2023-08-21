@@ -26,7 +26,7 @@ export const login = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "RECRUITER_LOGIN_PENDING" });
     const result = await axios.post(url + `/login-company`, data);
-    localStorage.setItem("token_recruiter", result.data.token);
+    localStorage.setItem("token_recruiter", result.data.data.token);
     localStorage.setItem("name_recruiter", result.data.data.name);
     localStorage.setItem("photo_recruiter", result.data.data.photo);
     localStorage.removeItem("token_worker");
