@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom'
+import ReactPaginate from "react-paginate";
 import { Container, Navbar, NavbarBrand, Card } from "react-bootstrap";
 
 import NavigationBar from "../component/Navbar";
