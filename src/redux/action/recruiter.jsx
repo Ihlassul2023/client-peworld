@@ -4,13 +4,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { instance } from "../../utils/serviceApi";
 let url = import.meta.env.VITE_BASE_URL;
 
-export const register = (data) => async (dispatch) => {
+export const register = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "RECRUITER_REGISTER_PENDING" });
     const result = await axios.post(url + `/register-company`, data);
     console.log(result.data.data);
     dispatch({ payload: result.data.data, type: "RECRUITER_REGISTER_SUCCESS" });
     toast.success('Register success!')
+    setTimeout(() => {
+      navigate("/loginRecruiter");
+      window.location.reload();
+    }, 1000);
   } catch (err) {
     console.log("error");
     console.log(err);

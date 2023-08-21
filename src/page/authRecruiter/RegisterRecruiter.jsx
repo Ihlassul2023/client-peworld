@@ -12,6 +12,7 @@ import Logo1 from "../../assets/image/logo1.png";
 import "../../assets/css/main.css";
 
 const RegisterRecruiter = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [inputData, setInputData] = useState({
     name: '',
@@ -25,7 +26,7 @@ const RegisterRecruiter = () => {
 
   const postDataRegister = async (e) => {
     e.preventDefault();
-    dispatch(register(inputData))
+    dispatch(register(inputData, navigate))
   }
 
   const onChangeRegister = (e) => {
