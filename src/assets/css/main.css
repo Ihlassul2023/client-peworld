@@ -165,3 +165,7 @@ textarea {
   border-radius: 0 !important;
   color: var(--primary-color) !important;
 }
+
+.text-nodecoration {
+  text-decoration: 'none' !important;
+}

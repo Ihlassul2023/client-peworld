@@ -7,6 +7,7 @@ import ProfilePortfolio from "./ProfilePortfolio";
 import Home from "./Home";
 import Hire from "./Hire";
 import LandingPage from "./LandingPage";
+import Chat from "./Chat";
 
 export {
   EditProfileWorker,
@@ -18,4 +19,5 @@ export {
   Home,
   Hire,
   LandingPage,
+  Chat,
 };

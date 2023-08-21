@@ -12,6 +12,7 @@ import {
   Home,
   Hire,
   LandingPage,
+  Chat,
 } from "./page";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
           <Route path="/hire" element={<Hire />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </>
