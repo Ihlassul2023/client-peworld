@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom'
-import ReactPaginate from "react-paginate";
 import { Container, Navbar, NavbarBrand, Card } from "react-bootstrap";
 
 import NavigationBar from "../component/Navbar";
@@ -24,12 +22,12 @@ const Home = () => {
       </Navbar>
 
       {/* search */}
-      <Search />
+      {/* <Search /> */}
 
       {/* Card */}
       <Cards />
 
-      <Container>
+      {/* <Container>
         <div className="d-flex justify-content-center mt-4">
           <div>
             <nav aria-label="Page navigation example">
@@ -58,8 +56,7 @@ const Home = () => {
             </nav>
           </div>
         </div>
-      </Container>
-
+      </Container> */}
       {/* Footer */}
       <Footer />
     </>

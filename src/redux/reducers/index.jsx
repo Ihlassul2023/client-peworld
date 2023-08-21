@@ -4,6 +4,7 @@ import { registerWorker, loginWorker, updateWorker, myProfileWorker, detail_work
 import { postSkill, getSkill, getSkillForRecruit } from "./skill";
 import { postExperience, getDetailExperience, getExperience, getExperienceForRecruit, updateExperience, deleteExperience } from "./experience";
 import { postPortofolio, getDetailPortofolio, getPortofolio, getPortofolioForRecruit, updatePortofolio, deletePortofolio } from "./portofolio";
+import { getSearchSort } from "./home";
 const rootReducers = combineReducers({
   postPortofolio,
   getDetailPortofolio,
@@ -32,6 +33,7 @@ const rootReducers = combineReducers({
   getExperienceForRecruit,
   updateExperience,
   deleteExperience,
+  getSearchSort,
 });
 
 export default rootReducers;

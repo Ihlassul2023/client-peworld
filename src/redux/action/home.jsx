@@ -1,4 +1,3 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { instance } from "../../utils/serviceApi";
@@ -8,8 +7,9 @@ export const getSearchSort = (search, searchby, limit, page, sort, sortby) => as
     try {
       dispatch({ type: "GET_HOME_PENDING" });
       const result = await instance.get(url + `/search?search=${search}&searchby=${searchby}&limit=${limit}&page=${page}&sort=${sort}&sortby=${sortby}`);
-      toast.success(result.data.message);
-      dispatch({ payload: result.data.data, type: "GET_HOME_SUCCESS" });
+      dispatch({ payload: result.data, type: "GET_HOME_SUCCESS" });
+      console.log('ini search', result)
+      toast.success("Data is found!");
     } catch (err) {
       console.log("error");
       toast.error(err.response.data.message);
