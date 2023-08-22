@@ -76,10 +76,10 @@ const Home = () => {
 
       {/* Card */}
       <div>
-      {data?.data?.map((item) => {
+      {data?.data?.map((item, index) => {
       return(
         <Cards 
-      key={item.id}
+      id={item.id}
       image={item.photo || fakePhoto}
       name={item.name}
       jobdesk={item.jobdesk || 'Jobdesk not found'}

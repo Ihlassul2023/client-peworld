@@ -9,7 +9,7 @@ const Cards = (props) => {
     <>
     <Container>
       <Card className="border-0 rounded-0">
-        <div className="p-3 d-md-flex justify-content-between" key={props.key}>
+        <div className="p-3 d-md-flex justify-content-between" key={props.id}>
           <div className="d-flex">
             <img
               src={props.image}
