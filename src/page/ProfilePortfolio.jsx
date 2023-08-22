@@ -69,7 +69,7 @@ const ProfilePortfolio = () => {
     portofolioWorker();
     skillWorker();
   }, []);
-  console.log(getPortofolioForRecruit?.data);
+  console.log(detail_worker?.data);
   useEffect(() => {
     !detail_worker.isLoading && detail_worker.data && setProfileWorker({ ...profileWorker, ...detail_worker?.data });
   }, [detail_worker.isLoading]);
@@ -107,7 +107,7 @@ const ProfilePortfolio = () => {
                   </div>
                   <div className="mt-4">
                     <h5 className="text-black">{profileWorker.name}</h5>
-                    <p className="fw-medium fs-6 mb-2 text-black">{profileWorker.position}</p>
+                    <p className="fw-medium fs-6 mb-2 text-black">{profileWorker.jobdesk}</p>
                     <div className="d-flex">
                       <box-icon name="map" animation="tada" color="gray"></box-icon>
                       <p className="ms-2">{profileWorker.address}</p>

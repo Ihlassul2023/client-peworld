@@ -24,7 +24,7 @@ const EditProfileWorker = () => {
   const [dataWorker, setDataWorker] = useState({
     name: "",
     jobdesk: "",
-    addres: "",
+    address: "",
     office: "",
     description: "",
     photo_url: "",
@@ -79,7 +79,7 @@ const EditProfileWorker = () => {
     bodyFormData.append("jobdesk", dataWorker.jobdesk);
     bodyFormData.append("office", dataWorker.office);
     bodyFormData.append("description", dataWorker.description);
-    bodyFormData.append("address", dataWorker.addres);
+    bodyFormData.append("address", dataWorker.address);
     bodyFormData.append("photo", photoProfile);
     dispatch(updateProfileWorker(bodyFormData));
   };
@@ -178,7 +178,7 @@ const EditProfileWorker = () => {
                   <p className="text-dark">{dataWorker.jobdesk}</p>
                   <div className="location d-flex align-items-center gap-2">
                     <img style={{ height: "15px", width: "15px" }} src={map} alt="map" />
-                    <p className="mb-0">{dataWorker.addres}</p>
+                    <p className="mb-0">{dataWorker.address}</p>
                   </div>
                   <p className="text-dark">{dataWorker.office}</p>
                 </div>
@@ -209,7 +209,7 @@ const EditProfileWorker = () => {
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="domisili">Domisili</label>
-                    <input type="text" name="addres" value={dataWorker.addres} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
+                    <input type="text" name="addres" value={dataWorker.address} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="workPlace">Tempat kerja</label>

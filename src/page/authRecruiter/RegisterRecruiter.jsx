@@ -1,42 +1,41 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/action/recruiter";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import bannerPhoto from "../../assets/image/bannerPhoto.png";
 import Logo1 from "../../assets/image/logo1.png";
 import "../../assets/css/main.css";
 
 const RegisterRecruiter = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
-    name: '',
-    email: '',
-    company_name: '',
-    position: '',
-    phone: '',
-    password: '',
-    confirm_password: ''
-  })
+    name: "",
+    email: "",
+    company_name: "",
+    position: "",
+    phone: "",
+    password: "",
+    confirm_password: "",
+  });
 
   const postDataRegister = async (e) => {
     e.preventDefault();
-    dispatch(register(inputData, navigate))
-  }
+    dispatch(register(inputData, navigate));
+  };
 
   const onChangeRegister = (e) => {
-    setInputData({...inputData, [e.target.name]: e.target.value})
-    console.log('Register Recruiter', inputData)
-  }
-
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+    console.log("Register Recruiter", inputData);
+  };
 
   return (
-    <div>  
+    <div>
       <Container className="py-3">
         <Row className="">
           <Col md="6" className="">
@@ -100,7 +99,7 @@ const RegisterRecruiter = () => {
               <div className="d-flex justify-content-center mt-3">
                 <p>
                   Anda sudah punya akun?{" "}
-                  <Link to="" className="text-warning" style={{ textDecoration: "none" }}>
+                  <Link to="/loginRecruiter" className="text-warning" style={{ textDecoration: "none" }}>
                     Masuk disini
                   </Link>
                 </p>

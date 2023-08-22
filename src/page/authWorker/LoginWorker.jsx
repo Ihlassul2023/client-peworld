@@ -3,29 +3,29 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/action/worker";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
 import bannerPhoto from "../../assets/image/bannerPhoto.png";
 import Logo1 from "../../assets/image/logo1.png";
 import "../../assets/css/main.css";
 
 const LoginWorker = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
   const postDataLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(inputData, navigate))
-  }
+    dispatch(login(inputData, navigate));
+  };
 
   const onChangeLogin = (e) => {
-    setInputData({...inputData, [e.target.name]: e.target.value})
-    console.log('Login Worker', inputData)
-  }
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+    console.log("Login Worker", inputData);
+  };
 
   return (
     <div>
@@ -76,7 +76,7 @@ const LoginWorker = () => {
               <div className="d-flex justify-content-center mt-3">
                 <p>
                   Anda belum punya akun?{" "}
-                  <Link to="" className="text-warning" style={{ textDecoration: "none" }}>
+                  <Link to="/registerWorker" className="text-warning" style={{ textDecoration: "none" }}>
                     Daftar disini
                   </Link>
                 </p>
@@ -85,7 +85,7 @@ const LoginWorker = () => {
           </Col>
         </Row>
       </Container>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
