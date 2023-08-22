@@ -245,7 +245,6 @@ textarea {
   /* ! edit-profile-company end */
 }
 
-
 /* Styling for Home page */
 .back-background {
   position: absolute;
@@ -265,4 +264,3 @@ textarea {
 .custom-bg-nav {
   background-color: var(--primary-color) !important;
 }
-
