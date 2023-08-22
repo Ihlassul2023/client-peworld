@@ -52,7 +52,7 @@ const EditProfileWorker = () => {
     getMyExperience();
     getMyPortofolio();
   }, []);
-  console.log(getExperience.data?.data);
+  console.log(getPortofolio.data);
   useEffect(() => {
     myProfileWorker.data && !myProfileWorker.isLoading && setDataWorker({ ...dataWorker, ...myProfileWorker?.data[0] });
     !getSkill.isLoading && setSkillWorker({ ...skillWorker, ...getSkill.data });
@@ -138,13 +138,14 @@ const EditProfileWorker = () => {
   };
   const handleSubmitPortofolio = (e) => {
     e.preventDefault();
+    console.log(portofolioWorker);
     let bodyFormData = new FormData();
     bodyFormData.append("name", portofolioWorker.name);
     bodyFormData.append("link_repo", portofolioWorker.link_repo);
     bodyFormData.append("type", portofolioWorker.type);
     bodyFormData.append("photo", photoPortofolio);
     let id = localStorage.getItem("idPortofolio");
-    id ? dispatch(updatePortofolio(id, portofolioWorker)) : dispatch(postPortofolio(portofolioWorker));
+    id ? dispatch(updatePortofolio(id, bodyFormData)) : dispatch(postPortofolio(bodyFormData));
   };
 
   return (
@@ -349,7 +350,7 @@ const EditProfileWorker = () => {
                       style={{ height: "300px", borderStyle: "dashed", backgroundImage: `${portofolioWorker.photo_url}` }}
                       className="d-flex flex-column rounded w-100 justify-content-center border-dash align-items-center "
                     >
-                      <img style={{ height: "100px", width: "100px" }} src={cloud} alt="cloud" />
+                      <img style={{ height: "100px", width: "100px" }} src={portofolioWorker.photo_url || cloud} alt="cloud" />
                       <p>Drag & Drop untuk Upload Gambar Aplikasi Mobile</p>
                       <p>Atau cari untuk mengupload file dari direktorimu.</p>
                       <div className="d-flex gap-3">
