@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import ImgVerify from "../assets/image/email-verify.svg";
-import { Container, Modal } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Container, Modal, Button } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
 import "../assets/css/main.css";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ const EmailVerify = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     verify();
   }, []);
@@ -44,7 +45,7 @@ const EmailVerify = () => {
                       <box-icon type="solid" name="message-rounded-check" size="lg" color="#5e50a1"></box-icon>
                       <h4 className="text-black">Account Activated</h4>
                       <p className="fw-light text-black">Thank you, your email has been verified. Please click the button bellow to login to your account</p>
-                      <Button onClick={() => navigate("/loginWorker")} className="custom-btn btn-sm py-2 px-3">
+                      <Button onClick={() => navigate("/loginRecruiter")} className="custom-btn btn-sm py-2 px-3">
                         Please Login
                       </Button>
                     </div>

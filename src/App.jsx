@@ -2,7 +2,7 @@ import "./assets/css/main.css";
 import "boxicons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { EditProfileWorker, RegisterRecruiter, RegisterWorker, LoginRecruiter, LoginWorker, ProfilePortfolio, Home, Hire, LandingPage, Chat, EmailVerifyRecruiter, EmailVerifyWorker } from "./page";
+import { EditProfileRecruiter, EditProfileWorker, RegisterRecruiter, RegisterWorker, LoginRecruiter, LoginWorker, ProfilePortfolio, Home, Hire, LandingPage, Chat, EmailVerifyRecruiter, EmailVerifyWorker } from "./page";
 import AuthRecruiter from "./utils/AuthRecruiter";
 import AuthWorker from "./utils/AuthWorker";
 
@@ -32,6 +32,7 @@ function App() {
               </AuthWorker>
             }
           />
+          <Route path="/editProfileRecruiter" element={<EditProfileRecruiter />} />
           <Route
             path="/profilePortfolio/:id"
             element={

@@ -19,7 +19,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const EditProfileWorker = () => {
   const dispatch = useDispatch();
-  // ,
   const { myProfileWorker, getSkill, getExperience, getDetailExperience, getPortofolio, getDetailPortofolio } = useSelector((state) => state);
   const [dataWorker, setDataWorker] = useState({
     name: "",

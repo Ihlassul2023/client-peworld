@@ -1,4 +1,5 @@
 import EditProfileWorker from "./EditProfileWorker";
+import EditProfileRecruiter from "./EditProfileRecruiter";
 import LoginRecruiter from "./authRecruiter/LoginRecruiter";
 import LoginWorker from "./authWorker/LoginWorker";
 import RegisterWorker from "./authWorker/RegisterWorker";
@@ -11,4 +12,4 @@ import Chat from "./Chat";
 import EmailVerifyRecruiter from "./EmailVerifyRecruiter";
 import EmailVerifyWorker from "./EmailVerifyWorker";
 
-export { EditProfileWorker, LoginRecruiter, RegisterRecruiter, LoginWorker, RegisterWorker, ProfilePortfolio, Home, Hire, LandingPage, Chat, EmailVerifyRecruiter, EmailVerifyWorker };
+export { EditProfileRecruiter, EditProfileWorker, LoginRecruiter, RegisterRecruiter, LoginWorker, RegisterWorker, ProfilePortfolio, Home, Hire, LandingPage, Chat, EmailVerifyRecruiter, EmailVerifyWorker };

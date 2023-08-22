@@ -46,28 +46,46 @@ export const getMyProfile = () => async (dispatch) => {
     dispatch({ type: "GETMYRECRUITER_PROFILE_PENDING" });
     const result = await instance.get(url + `/my-company`);
     toast.success(result.data.message);
-    dispatch({ payload: result.data.data, type: "GETMYRECRUITER_PROFILE_SUCCESS" });
+    dispatch({
+      payload: result.data.data,
+      type: "GETMYRECRUITER_PROFILE_SUCCESS",
+    });
   } catch (err) {
     console.log("error");
     toast.error(err.response.data.message);
-    dispatch({ payload: err.response.data.message, type: "GETMYRECRUITER_PROFILE_FAILED" });
+    dispatch({
+      payload: err.response.data.message,
+      type: "GETMYRECRUITER_PROFILE_FAILED",
+    });
     console.log(err);
   }
 };
 export const updateProfileRecruiter = (data) => async (dispatch) => {
   try {
     dispatch({ type: "RECRUITER_UPDATE_PENDING" });
-    const result = await instance.put(url + `/update-company`, data);
-    localStorage.setItem("photo", result.data.data.photo);
-    localStorage.setItem("name", result.data.data.name);
-    localStorage.setItem("email", result.data.data.email);
-    toast.success(result.data.message);
-    dispatch({ payload: result.data.message, type: "RECRUITER_UPDATE_SUCCESS" });
+    const response = await instance.put("/update-company", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    // Dapatkan data yang diperbarui dari respons
+    const updatedData = response.data.data;
+
+    // Simpan data terkini di local storage
+    localStorage.setItem("photo_recruiter", updatedData.photo);
+    localStorage.setItem("name_recruiter", updatedData.name);
+    localStorage.setItem("email_recruiter", updatedData.email);
+
+    toast.success(response.data.message);
+    dispatch({ payload: updatedData, type: "RECRUITER_UPDATE_SUCCESS" });
   } catch (err) {
-    console.log("error");
+    console.error(err);
     toast.error(err.response.data.message);
-    dispatch({ payload: err.response.data.message, type: "RECRUITER_UPDATE_FAILED" });
-    console.log(err);
+    dispatch({
+      payload: err.response.data.message,
+      type: "RECRUITER_UPDATE_FAILED",
+    });
   }
 };
 export const deleteProfilUser = () => async (dispatch) => {
@@ -75,11 +93,17 @@ export const deleteProfilUser = () => async (dispatch) => {
     dispatch({ type: "RECRUITER_DELETE_PENDING" });
     const result = await instance.delete(url + `/delete-company`);
     toast.success(result.data.message);
-    dispatch({ payload: result.data.message, type: "RECRUITER_DELETE_SUCCESS" });
+    dispatch({
+      payload: result.data.message,
+      type: "RECRUITER_DELETE_SUCCESS",
+    });
   } catch (err) {
     console.log("error");
     toast.error(err.response.data.message);
-    dispatch({ payload: err.response.data.message, type: "RECRUITER_DELETE_FAILED" });
+    dispatch({
+      payload: err.response.data.message,
+      type: "RECRUITER_DELETE_FAILED",
+    });
     console.log(err);
   }
 };
