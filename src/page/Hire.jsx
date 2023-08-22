@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router'
 import "../assets/css/main.css";
 import {
   Container,
@@ -15,7 +17,51 @@ import Footer from "../component/Footer";
 
 import fakePhotoProfile from "../assets/image/photo.png";
 
+
+
 const Hire = () => {
+
+  const { id } = useParams()
+  console.log(id)
+  const [data1, setData1] = useState([])
+  const [data2, setData2] = useState([])
+  const getData = () => {
+    axios.get(`http://localhost:4000/list-worker/${id}`, {
+        headers: {
+            Authorization : `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+        .then((res) => {
+          console.log(res.data.data)
+          setData1(res.data.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+  }
+
+  const getSkill = () => {
+    axios.get(`http://localhost:4000/skill-hiring/${id}`, {
+        headers: {
+            Authorization : `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+        .then((res) => {
+          console.log(res.data.data)
+          setData2(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+  }
+
+  
+  useEffect(() => {
+    getSkill()
+    getData()
+  }, [])
+
+
   return (
     <>
       <NavigationBar />
@@ -23,6 +69,8 @@ const Hire = () => {
         <Container>
           <Row className="gap-5">
             <Col md="4">
+                  {data1?.map((item, index) => {
+                return (
               <Card className="px-3 py-4 border-0">
                 <div className="d-flex justify-content-center">
                   <img
@@ -33,10 +81,9 @@ const Hire = () => {
                   />
                 </div>
                 <div className="mt-4">
-                  <h5 className="text-black fw-bold">Louis Tomlinson</h5>
+                  <h5 className="text-black fw-bold">{item.name}</h5>
                   <p className="fw-medium fs-6 text-black">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci.
+                    {item.jobdesk}
                   </p>
                   <div className="d-flex">
                     <box-icon
@@ -44,42 +91,29 @@ const Hire = () => {
                       animation="tada"
                       color="gray"
                     ></box-icon>
-                    <p className="ms-2">London, UK</p>
+                    <p className="ms-2">{item.addres}</p>
                   </div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
+                    {item.description}
                   </p>
                 </div>
 
+                {data2?.map((item, index) => {
+                return (
                 <div className="mt-5">
                   <h5 className="text-black mb-3">Skill</h5>
-                  <div className="d-flex flex-wrap gap-3">
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      Phyton
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      Laravel
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      Golang
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      Javascript
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      PHP
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      HTML
-                    </button>
-                    <button className="btn btn-sm btn-warning text-white px-3">
-                      Kotlin
+                  {item.skill_name.split(",").map((skill_name, index) => {
+                  return (
+                  <div className="d-flex flex-wrap gap-3 mb-3">
+                    <button className="btn btn-sm btn-warning text-white px-3" key={index}>
+                    {skill_name.trim()}
                     </button>
                   </div>
+                    )})}
                 </div>
+                )})}
               </Card>
+               )})}
             </Col>
             <Col md="7">
               <div className="border-0 p-3">

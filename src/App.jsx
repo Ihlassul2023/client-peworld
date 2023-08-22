@@ -25,7 +25,7 @@ function App() {
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
           <Route path="/editProfileWorker" element={<EditProfileWorker />} />
           <Route path="/profilePortfolio" element={<ProfilePortfolio />} />
-          <Route path="/hire" element={<Hire />} />
+          <Route path="/hire/:id" element={<Hire />} />
         </Routes>
       </BrowserRouter>
     </>
