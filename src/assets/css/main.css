@@ -71,7 +71,7 @@ main .wrapProfile .wrapCardEdit {
 }
 main .wrapProfile .wrapCardEdit .cardEditProfile {
   background-color: rgba(255, 255, 255, 1);
-  min-height: 00px;
+  min-height: 300px;
 }
 main .wrapProfile .wrapMainEdit {
   width: 60%;

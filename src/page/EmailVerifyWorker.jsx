@@ -7,13 +7,11 @@ import { useParams } from "react-router-dom";
 import ModalVerify from "../component/ModalVerify";
 import axios from "axios";
 
-const EmailVerify = () => {
+const EmailVerifyWorker = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
-  const query = useQuery();
   const { id } = useParams();
   useEffect(() => {
-    console.log(query.get("id"));
     verify();
   }, []);
   const verify = async () => {
@@ -46,4 +44,4 @@ const EmailVerify = () => {
   );
 };
 
-export default EmailVerify;
+export default EmailVerifyWorker;
