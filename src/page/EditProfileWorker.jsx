@@ -299,7 +299,7 @@ const EditProfileWorker = () => {
                   getPortofolio.data?.data.map((portofolio, index) => (
                     <div key={index} className="portofolioWorker d-flex justify-content-between mb-3">
                       <div className="informationPortfolio d-flex gap-2">
-                        <img style={{ height: "100px", width: "150px" }} src={portofolio.photo} alt="porto" />
+                        {portofolio.photo ? <img style={{ height: "100px", width: "150px" }} src={portofolio.photo} alt="porto" /> : <img style={{ height: "100px", width: "150px" }} src={porto} alt="porto" />}
                         <div className="text">
                           <p>{portofolio.name}</p>
                           <p>{portofolio.link_repo}</p>

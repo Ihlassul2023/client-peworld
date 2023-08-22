@@ -26,6 +26,11 @@ const NavBar = () => {
             <Nav.Link onClick={handleLogout}>
               <p>Logout</p>
             </Nav.Link>
+            {localStorage.getItem("token_recruiter") && (
+              <Nav.Link onClick={() => navigate("/home")}>
+                <p>Home</p>
+              </Nav.Link>
+            )}
             <Nav.Link href="#home">
               <img src={bell} alt="" className="bell" style={{ width: "23px" }} />
             </Nav.Link>
@@ -36,8 +41,8 @@ const NavBar = () => {
               <img
                 src={localStorage.getItem("photo_worker") || localStorage.getItem("photo_recruiter")}
                 alt="photo"
-                className="profile"
-                style={{ width: "25px" }}
+                className="profile rounded-circle"
+                style={{ width: "25px", height: "25px" }}
                 onClick={() => {
                   localStorage.getItem("token_worker") && navigate("/editProfileWorker");
                   localStorage.getItem("token_recruiter") && navigate("/editProfileRecruiter");
