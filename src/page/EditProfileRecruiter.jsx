@@ -49,7 +49,7 @@ export default function EditPorfileRecruiter() {
   });
 
   useEffect(() => {
-    dispatch(getMyProfile()); // Mengambil data dari Redux state
+    dispatch(getMyProfile());
   }, [dispatch]);
 
   useEffect(() => {
@@ -93,11 +93,11 @@ export default function EditPorfileRecruiter() {
 
   const handleUpdate = async () => {
     try {
-      setIsUpdating(true); // Set isUpdating to true when update starts
+      setIsUpdating(true);
       await dispatch(updateProfileRecruiter(editedData));
-      setIsUpdating(false); // Set isUpdating back to false when update is done
+      setIsUpdating(false);
     } catch (error) {
-      setIsUpdating(false); // Set isUpdating back to false on error
+      setIsUpdating(false);
       console.error("Error updating data:", error);
       toast.error("Error updating data. Please try again.");
     }
