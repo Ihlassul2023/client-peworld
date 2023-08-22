@@ -29,10 +29,10 @@ export const getSkillAction = () => async (dispatch) => {
     console.log(err.response.data.message);
   }
 };
-export const getSkillForRecruit = (id) => async (dispatch) => {
+export const getSkillForRecruitAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: "GET_SKILLRECRUITER_PENDING" });
-    const result = await instance.get(url + `skill-hiring/${id}`);
+    const result = await instance.get(url + `/skill-hiring/${id}`);
     console.log(result);
     dispatch({ payload: result.data.data, type: "GET_SKILLRECRUITER_SUCCESS" });
   } catch (err) {

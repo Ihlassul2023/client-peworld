@@ -32,7 +32,7 @@ function App() {
             }
           />
           <Route
-            path="/profilePortfolio"
+            path="/profilePortfolio/:id"
             element={
               <AuthRecruiter>
                 <ProfilePortfolio />

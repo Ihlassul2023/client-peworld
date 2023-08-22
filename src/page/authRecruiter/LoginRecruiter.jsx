@@ -1,34 +1,32 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/action/recruiter";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
 import bannerPhoto from "../../assets/image/bannerPhoto.png";
 import Logo1 from "../../assets/image/logo1.png";
 import "../../assets/css/main.css";
 
 const LoginRecruiter = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
   const postDataLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(inputData, navigate))
-  }
+    dispatch(login(inputData, navigate));
+  };
 
   const onChangeLogin = (e) => {
-    setInputData({...inputData, [e.target.name]: e.target.value})
-    console.log('Login Recruiter', inputData)
-  }
-
-
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+    console.log("Login Recruiter", inputData);
+  };
 
   return (
     <div>
@@ -79,7 +77,7 @@ const LoginRecruiter = () => {
               <div className="d-flex justify-content-center mt-3">
                 <p>
                   Anda belum punya akun?{" "}
-                  <Link to="" className="text-warning" style={{ textDecoration: "none" }}>
+                  <Link to="/registerRecruiter" className="text-warning" style={{ textDecoration: "none" }}>
                     Daftar disini
                   </Link>
                 </p>
@@ -88,7 +86,7 @@ const LoginRecruiter = () => {
           </Col>
         </Row>
       </Container>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

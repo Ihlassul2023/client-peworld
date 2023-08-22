@@ -24,7 +24,7 @@ const EditProfileWorker = () => {
   const [dataWorker, setDataWorker] = useState({
     name: "",
     jobdesk: "",
-    addres: "",
+    address: "",
     office: "",
     description: "",
     photo_url: "",
@@ -52,7 +52,6 @@ const EditProfileWorker = () => {
     getMyExperience();
     getMyPortofolio();
   }, []);
-  console.log(getPortofolio.data);
   useEffect(() => {
     myProfileWorker.data && !myProfileWorker.isLoading && setDataWorker({ ...dataWorker, ...myProfileWorker?.data[0] });
     !getSkill.isLoading && setSkillWorker({ ...skillWorker, ...getSkill.data });
@@ -80,6 +79,7 @@ const EditProfileWorker = () => {
     bodyFormData.append("jobdesk", dataWorker.jobdesk);
     bodyFormData.append("office", dataWorker.office);
     bodyFormData.append("description", dataWorker.description);
+    bodyFormData.append("address", dataWorker.address);
     bodyFormData.append("photo", photoProfile);
     dispatch(updateProfileWorker(bodyFormData));
   };
@@ -163,7 +163,7 @@ const EditProfileWorker = () => {
               <div className="cardEditProfile  rounded  mb-2  p-2">
                 <div className="photo mb-4 d-flex flex-column align-items-center gap-2">
                   <div className="photoUser">
-                    <img src={dataWorker.photo_url || dataWorker.photo} alt="photo" />
+                    <img src={dataWorker.photo_url || dataWorker.photo} alt="photo" className="rounded-circle" style={{ width: 100, height: 100 }} />
                   </div>
                   <div className="edit d-flex align-items-center justify-content-center gap-2">
                     <img src={edit} alt="edit" width="10px" height="10px" />
@@ -178,7 +178,7 @@ const EditProfileWorker = () => {
                   <p className="text-dark">{dataWorker.jobdesk}</p>
                   <div className="location d-flex align-items-center gap-2">
                     <img style={{ height: "15px", width: "15px" }} src={map} alt="map" />
-                    <p className="mb-0">{dataWorker.addres}</p>
+                    <p className="mb-0">{dataWorker.address}</p>
                   </div>
                   <p className="text-dark">{dataWorker.office}</p>
                 </div>
@@ -209,7 +209,7 @@ const EditProfileWorker = () => {
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="domisili">Domisili</label>
-                    <input type="text" name="addres" value={dataWorker.addres} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
+                    <input type="text" name="addres" value={dataWorker.address} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="workPlace">Tempat kerja</label>
