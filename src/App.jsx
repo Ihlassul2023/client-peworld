@@ -24,6 +24,7 @@ function App() {
           <Route path="/loginRecruiter" element={<LoginRecruiter />} />
           <Route path="/registerWorker" element={<RegisterWorker />} />
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
+
           <Route
             path="/editProfileWorker"
             element={
@@ -42,7 +43,7 @@ function App() {
             }
           />
           <Route
-            path="/hire"
+            path="/Hire/:id"
             element={
               <AuthRecruiter>
                 <Hire />
