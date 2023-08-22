@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { instance } from "../../utils/serviceApi";
 let url = import.meta.env.VITE_BASE_URL;
 
@@ -10,15 +10,12 @@ export const register = (data, navigate) => async (dispatch) => {
     const result = await axios.post(url + `/register-worker`, data);
     console.log(result);
     dispatch({ payload: result.data.message, type: "WORKER_REGISTER_SUCCESS" });
-    toast.success(result.data.message)
-    setTimeout(()=>{
-      navigate('/loginWorker')
-    }, 1000)
+    toast.success(result.data.message);
   } catch (err) {
     console.log("error");
     dispatch({ payload: err.response.data.message, type: "WORKER_REGISTER_FAILED" });
     console.log(err.response.data.message);
-    toast.error(err.response.data.message)
+    toast.error(err.response.data.message);
   }
 };
 export const login = (data, navigate) => async (dispatch) => {
@@ -35,8 +32,8 @@ export const login = (data, navigate) => async (dispatch) => {
     dispatch({ payload: result.data.data, type: "WORKER_LOGIN_SUCCESS" });
     toast.success(result.data.message);
     setTimeout(() => {
-        navigate("/editProfileWorker");
-        window.location.reload();
+      navigate("/editProfileWorker");
+      window.location.reload();
     }, 1000);
   } catch (err) {
     console.log("error");

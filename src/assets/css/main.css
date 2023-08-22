@@ -71,7 +71,7 @@ main .wrapProfile .wrapCardEdit {
 }
 main .wrapProfile .wrapCardEdit .cardEditProfile {
   background-color: rgba(255, 255, 255, 1);
-  min-height: 300px;
+  min-height: 00px;
 }
 main .wrapProfile .wrapMainEdit {
   width: 60%;
@@ -163,4 +163,7 @@ textarea {
   border: none !important;
   border-radius: 0 !important;
   color: var(--primary-color) !important;
+}
+.text-nodecoration {
+  text-decoration: "none" !important;
 }

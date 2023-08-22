@@ -7,15 +7,8 @@ import ProfilePortfolio from "./ProfilePortfolio";
 import Home from "./Home";
 import Hire from "./Hire";
 import LandingPage from "./LandingPage";
+import Chat from "./Chat";
+import EmailVerifyRecruiter from "./EmailVerifyRecruiter";
+import EmailVerifyWorker from "./EmailVerifyWorker";
 
-export {
-  EditProfileWorker,
-  LoginRecruiter,
-  RegisterRecruiter,
-  LoginWorker,
-  RegisterWorker,
-  ProfilePortfolio,
-  Home,
-  Hire,
-  LandingPage,
-};
+export { EditProfileWorker, LoginRecruiter, RegisterRecruiter, LoginWorker, RegisterWorker, ProfilePortfolio, Home, Hire, LandingPage, Chat, EmailVerifyRecruiter, EmailVerifyWorker };

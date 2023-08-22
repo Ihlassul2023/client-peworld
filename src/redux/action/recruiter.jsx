@@ -11,10 +11,6 @@ export const register = (data, navigate) => async (dispatch) => {
     console.log(result.data.data);
     dispatch({ payload: result.data.data, type: "RECRUITER_REGISTER_SUCCESS" });
     toast.success("Register success!");
-    setTimeout(() => {
-      navigate("/loginRecruiter");
-      window.location.reload();
-    }, 1000);
   } catch (err) {
     console.log("error");
     console.log(err);

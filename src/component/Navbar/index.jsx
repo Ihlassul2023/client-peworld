@@ -35,9 +35,9 @@ const NavBar = () => {
               <img src={bell} alt="" className="bell" style={{ width: "23px" }} />
             </Nav.Link>
             <Nav.Link href="#link">
-              <img src={mail} alt="" className="mail" style={{ width: "25px" }} />
+              <img onClick={() => navigate("/chat")} src={mail} alt="" className="mail" style={{ width: "25px" }} />
             </Nav.Link>
-            <Nav.Link href="#profile">
+            <Nav.Link>
               <img
                 src={localStorage.getItem("photo_worker") || localStorage.getItem("photo_recruiter")}
                 alt="photo"
