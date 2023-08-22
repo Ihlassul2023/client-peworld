@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import edit from "../assets/image/edit.svg";
 import photo from "../assets/image/photo.png";
 import map from "../assets/image/map-pin.png";
@@ -8,9 +8,26 @@ import Footer from "../component/Footer";
 import cloud from "../assets/image/cloud.png";
 import upload1 from "../assets/image/upload1.png";
 import upload2 from "../assets/image/upload2.png";
-
+import axios from "axios";
 const EditProfileWorker = () => {
-  const [dataUser, setDataUser] = useState({});
+  const [dataWorker, setDataWorker] = useState({
+    name: "",
+    jobdesk: "",
+    addres: "",
+    office: "",
+    description: "",
+  });
+  useEffect(() => {
+    getProfile();
+  }, []);
+  const getProfile = async () => {
+    try {
+      const data = await axios.get("http://localhost:4000/profileWorker");
+      setDataWorker({ ...dataWorker, ...data.data.data[0] });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -54,19 +71,19 @@ const EditProfileWorker = () => {
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="jobDesk">Job desk</label>
-                    <input type="text" name="jobDesk" id="jobDesk" placeholder="Masukan Job desk" />
+                    <input type="text" name="jobdesk" id="jobDesk" placeholder="Masukan Job desk" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="domisili">Domisili</label>
-                    <input type="text" id="domisili" placeholder="Masukan Domisili" />
+                    <input type="text" name="addres" id="domisili" placeholder="Masukan Domisili" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="workPlace">Tempat kerja</label>
-                    <input type="text" id="workPlace" placeholder="Masukan tempat kerja" />
+                    <input type="text" name="office" id="workPlace" placeholder="Masukan tempat kerja" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="description">Deskripsi singkat</label>
-                    <textarea type="text" id="description" cols="30" rows="10" placeholder="Tuliskan deskripsi singkat" />
+                    <textarea type="text" name="description" id="description" cols="30" rows="10" placeholder="Tuliskan deskripsi singkat" />
                   </div>
                 </form>
               </div>
