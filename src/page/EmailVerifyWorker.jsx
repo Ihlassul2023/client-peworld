@@ -11,12 +11,13 @@ const EmailVerifyWorker = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
   const { id } = useParams();
+  let url = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     verify();
   }, []);
   const verify = async () => {
     try {
-      await axios.get(`http://localhost:4000/verify-worker/${id}`);
+      await axios.get(`${url}/verify-worker/${id}`);
       setModalShow(true);
       setShow(true);
     } catch (error) {
