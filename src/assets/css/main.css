@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap");
 
 :root {
   --primary-color: #5e50a1;
@@ -71,6 +71,7 @@ main .wrapProfile .wrapCardEdit {
 }
 main .wrapProfile .wrapCardEdit .cardEditProfile {
   background-color: rgba(255, 255, 255, 1);
+  min-height: 300px;
 }
 main .wrapProfile .wrapMainEdit {
   width: 60%;
@@ -117,7 +118,6 @@ textarea {
   }
 }
 
-
 /* Styling for Home page */
 .back-background {
   position: absolute;
@@ -138,3 +138,29 @@ textarea {
   background-color: var(--primary-color) !important;
 }
 
+/* Styling for Landing page */
+.custom-btn-outline {
+  background-color: transparent !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: bold !important;
+}
+
+.custom-btn {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+}
+
+/*  */
+
+.custom-startnow-card {
+  border-radius: 30px 4px !important;
+  background-color: var(--primary-color) !important;
+}
+
+.button-startnow-button {
+  background-color: var(--bg-primary) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--primary-color) !important;
+}

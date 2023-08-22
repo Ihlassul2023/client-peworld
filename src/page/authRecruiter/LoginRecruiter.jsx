@@ -62,6 +62,7 @@ const LoginRecruiter = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Kata Sandi</Form.Label>
                   <Form.Control type="password" name="password" onChange={onChangeLogin} value={inputData.password} className="py-3" placeholder="Masukan kata sandi" />
+                  998662
                 </Form.Group>
                 <div className="text-end">
                   <Link to="" className="text-black" style={{ textDecoration: "none" }}>

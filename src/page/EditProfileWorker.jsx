@@ -36,8 +36,8 @@ const EditProfileWorker = () => {
   const [experienceWorker, setExperienceWorker] = useState({
     position: "",
     company_name: "",
-    fromMonth: "",
-    toMonth: "",
+    from_month: "",
+    to_month: "",
     description: "",
   });
   const [portofolioWorker, setPortofolioWorker] = useState({
@@ -113,6 +113,7 @@ const EditProfileWorker = () => {
   };
   const handleSubmitExperience = (e) => {
     e.preventDefault();
+    console.log(experienceWorker);
     let id = localStorage.getItem("idExperience");
     id ? dispatch(updateExperience(id, experienceWorker)) : dispatch(postExperience(experienceWorker));
   };
@@ -209,7 +210,7 @@ const EditProfileWorker = () => {
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="domisili">Domisili</label>
-                    <input type="text" name="addres" value={dataWorker.address} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
+                    <input type="text" name="address" value={dataWorker.address} onChange={(e) => handleInputProfile(e)} id="domisili" placeholder="Masukan Domisili" />
                   </div>
                   <div className="input mb-3 d-flex flex-column ">
                     <label htmlFor="workPlace">Tempat kerja</label>
@@ -249,12 +250,12 @@ const EditProfileWorker = () => {
                           </button>
                         </div>
                         <div className="detailExperience d-flex gap-3">
-                          <img style={{ height: "50px", width: "50px" }} src={tokopedia} alt="tokopedia" />
+                          {/* <img style={{ height: "50px", width: "50px" }} src={tokopedia} alt="tokopedia" /> */}
                           <div className="div">
-                            <p className="text-dark">{experience.position}</p>
+                            <h3 className="text-dark">{experience.position}</h3>
                             <p>{experience.company_name}</p>
                             <p>
-                              {experience.frommonth} - {experience.tomonth} 6 months
+                              {experience.from_month} - {experience.to_month}
                             </p>
                             <p className="text-dark">{experience.description}</p>
                           </div>
@@ -275,11 +276,11 @@ const EditProfileWorker = () => {
                     </div>
                     <div className="input  d-flex flex-column">
                       <label htmlFor="from">Dari Bulan/Tahun</label>
-                      <input type="text" name="fromMonth" value={experienceWorker.fromMonth} onChange={(e) => handleInputExperience(e)} id="from" className="bg-light border-1 p-2" placeholder="Januari 2018" />
+                      <input type="text" name="from_month" value={experienceWorker.from_month} onChange={(e) => handleInputExperience(e)} id="from" className="bg-light border-1 p-2" placeholder="Januari 2018" />
                     </div>
                     <div className="input  d-flex flex-column">
                       <label htmlFor="to">Sampai Bulan/Tahun</label>
-                      <input type="text" name="toMonth" value={experienceWorker.toMonth} onChange={(e) => handleInputExperience(e)} id="to" className="bg-light border-1 p-2" placeholder="Januari 2019" />
+                      <input type="text" name="to_month" value={experienceWorker.to_month} onChange={(e) => handleInputExperience(e)} id="to" className="bg-light border-1 p-2" placeholder="Januari 2019" />
                     </div>
                   </div>
                   <div className="input d-flex flex-column w-100">
