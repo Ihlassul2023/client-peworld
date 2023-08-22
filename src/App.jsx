@@ -13,6 +13,7 @@ import {
   Hire,
   LandingPage,
   Chat,
+  EmailVerify,
 } from "./page";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/hire" element={<Hire />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/email-verify" element={<EmailVerify />} />
         </Routes>
       </BrowserRouter>
     </>

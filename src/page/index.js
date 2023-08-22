@@ -8,6 +8,7 @@ import Home from "./Home";
 import Hire from "./Hire";
 import LandingPage from "./LandingPage";
 import Chat from "./Chat";
+import EmailVerify from "./EmailVerify";
 
 export {
   EditProfileWorker,
@@ -20,4 +21,5 @@ export {
   Hire,
   LandingPage,
   Chat,
+  EmailVerify,
 };
