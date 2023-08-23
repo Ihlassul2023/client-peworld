@@ -14,9 +14,10 @@ const Hire = () => {
   console.log(id);
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
+  let url = import.meta.env.VITE_BASE_URL;
   const getData = () => {
     axios
-      .get(`http://localhost:4000/list-worker/${id}`, {
+      .get(`${url}/list-worker/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -32,7 +33,7 @@ const Hire = () => {
 
   const getSkill = () => {
     axios
-      .get(`http://localhost:4000/skill-hiring/${id}`, {
+      .get(`${url}/skill-hiring/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
