@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@100;500;600;700&display=swap");
 
 :root {
   --primary-color: #5e50a1;
@@ -99,6 +99,81 @@ textarea {
   padding: 1rem;
   border: 1px solid rgba(158, 160, 165, 1);
 }
+
+/* ! navbar start */
+.mail:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
+}
+
+.bell:hover {
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
+}
+
+.ham-text {
+  display: none;
+}
+
+/* ! navbar end */
+/* ! footer start */
+
+.primaryContainer-footer {
+  background-color: #5e50a1;
+  height: auto;
+  margin-top: 6rem;
+}
+.custom-image-footer {
+  width: 150px;
+}
+.footerLine {
+  border: 1px solid #fff;
+}
+
+/* ! footer end */
+/* ! Edit Recruiter Profile start */
+.purple-block {
+  height: 300px;
+  width: 100%;
+  background-color: rgba(94, 80, 161, 1);
+  position: absolute;
+}
+.container-card-perusahaan {
+  margin-top: 6rem;
+}
+.edit-button-perusahaan {
+  background-color: #5e50a1;
+  color: red;
+}
+.image-container-perusahaan {
+  width: 8rem;
+  height: 8rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#button-simpan-perusahaan {
+  background-color: #5e50a1;
+  border: none;
+}
+#button-batal-perusahaan {
+  background-color: transparent;
+  color: #5e50a1;
+  border: 2px solid rgba(94, 80, 161, 1);
+}
+#button-simpan-perusahaan:hover {
+  background-color: transparent;
+  border: 2px solid #5e50a1;
+  color: #5e50a1;
+}
+#button-batal-perusahaan:hover {
+  background-color: #5e50a1;
+  color: #fff;
+  border: 2px solid rgba(94, 80, 161, 1);
+}
+
+/* ! Edit Recruiter Profile end */
 @media (max-width: 768px) {
   main .wrapProfile {
     flex-direction: column !important;
@@ -115,4 +190,57 @@ textarea {
   main .wrapProfile .wrapMainEdit .experience .workInformation {
     flex-direction: column !important;
   }
+
+  /* ! edit-profile-company start */
+  .card-edit-company {
+    margin-top: 2rem;
+  }
+  /* ! edit-profile-company end */
+}
+@media (max-width: 992px) {
+  /* ! edit-profile-company start */
+  .card-edit-company {
+    margin-top: 1rem;
+  }
+  /* ! edit-profile-company end */
+}
+
+@media (max-width: 576px) {
+  /* ! Footer start */
+  .footer-stack {
+    flex-direction: column;
+    gap: 2px !important;
+    padding-right: 100px;
+    text-align: left;
+  }
+  .footer-stack #footer-phone {
+    width: 100%;
+  }
+  .footer-stack #footer-email {
+    width: 100%;
+  }
+  /* ! Footer end */
+
+  /* ! navbar start */
+  .nav-left {
+    margin-left: 2rem;
+  }
+  .nav-right {
+    margin-right: 2rem;
+  }
+  .ham-text {
+    margin-left: 8px;
+    display: inline-block;
+  }
+  .ham-text:hover {
+    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+      brightness(95%) contrast(93%);
+  }
+  /* ! navbar end */
+
+  /* ! edit-profile-company start */
+  .card-edit-company {
+    margin-top: 1rem;
+  }
+  /* ! edit-profile-company end */
 }
