@@ -4,7 +4,10 @@ import "../assets/css/main.css";
 
 const Footer = () => {
   return (
-    <footer className="primaryContainer-footer px-5 py-5">
+    <footer
+      className="primaryContainer-footer px-5 py-5 mt-5"
+      style={{ width: "100%" }}
+    >
       <Container className="content">
         <Row>
           <Col>

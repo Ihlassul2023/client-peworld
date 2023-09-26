@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import edit from "../assets/image/edit.svg";
 import photo from "../assets/image/photo.png";
 import map from "../assets/image/map-pin.png";
@@ -8,48 +9,249 @@ import Footer from "../component/Footer";
 import cloud from "../assets/image/cloud.png";
 import upload1 from "../assets/image/upload1.png";
 import upload2 from "../assets/image/upload2.png";
-
+import porto from "../assets/image/fakePorto4.png";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfileWorker, getMyProfile } from "../redux/action/worker";
+import { postSkillAction, getSkillAction } from "../redux/action/skill";
+import {
+  getExperienceAction,
+  getExperienceById,
+  postExperience,
+  updateExperience,
+  deleteExperience,
+} from "../redux/action/experience";
+import {
+  getPortofolioAction,
+  getPortofolioById,
+  postPortofolio,
+  updatePortofolio,
+  deletePortofolio,
+} from "../redux/action/portofolio";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const EditProfileWorker = () => {
-  const [dataUser, setDataUser] = useState({});
+  const dispatch = useDispatch();
+  const {
+    myProfileWorker,
+    getSkill,
+    getExperience,
+    getDetailExperience,
+    getPortofolio,
+    getDetailPortofolio,
+  } = useSelector((state) => state);
+  const [dataWorker, setDataWorker] = useState({
+    name: "",
+    jobdesk: "",
+    address: "",
+    office: "",
+    description: "",
+    photo_url: "",
+  });
+  const [skillWorker, setSkillWorker] = useState({
+    skill_name: "",
+  });
+
+  const [experienceWorker, setExperienceWorker] = useState({
+    position: "",
+    company_name: "",
+    from_month: "",
+    to_month: "",
+    description: "",
+  });
+  const [portofolioWorker, setPortofolioWorker] = useState({
+    name: "",
+    link_repo: "",
+    type: "",
+    photo_url: "",
+  });
+  useEffect(() => {
+    getProfile();
+    getMySkill();
+    getMyExperience();
+    getMyPortofolio();
+  }, []);
+  useEffect(() => {
+    myProfileWorker.data &&
+      !myProfileWorker.isLoading &&
+      setDataWorker({ ...dataWorker, ...myProfileWorker?.data[0] });
+    !getSkill.isLoading && setSkillWorker({ ...skillWorker, ...getSkill.data });
+    !getDetailExperience.isLoading &&
+      setExperienceWorker({ ...experienceWorker, ...getDetailExperience.data });
+    !getDetailPortofolio.isLoading &&
+      setPortofolioWorker({ ...portofolioWorker, ...getDetailPortofolio.data });
+  }, [
+    myProfileWorker.isLoading,
+    getSkill.isLoading,
+    getDetailExperience.isLoading,
+    getDetailPortofolio.isLoading,
+  ]);
+
+  //profile worker
+  const [photoProfile, setPhotoProfile] = useState(null);
+  const getProfile = () => {
+    dispatch(getMyProfile());
+  };
+  const handleInputProfile = (e) => {
+    const { value, name } = e.target;
+    setDataWorker({ ...dataWorker, [name]: value });
+  };
+  const handleInputPhotoProfile = (e) => {
+    setPhotoProfile(e.target.files[0]);
+    setDataWorker({
+      ...dataWorker,
+      photo_url: URL.createObjectURL(e.target.files[0]),
+    });
+  };
+  const handleSubmitProfile = (e) => {
+    e.preventDefault();
+    let bodyFormData = new FormData();
+    bodyFormData.append("name", dataWorker.name);
+    bodyFormData.append("jobdesk", dataWorker.jobdesk);
+    bodyFormData.append("office", dataWorker.office);
+    bodyFormData.append("description", dataWorker.description);
+    bodyFormData.append("address", dataWorker.address);
+    bodyFormData.append("photo", photoProfile);
+    dispatch(updateProfileWorker(bodyFormData));
+  };
+
+  //skill worker
+  const getMySkill = () => {
+    dispatch(getSkillAction());
+  };
+  const handleSubmitSkill = (e) => {
+    e.preventDefault();
+    dispatch(postSkillAction(skillWorker));
+  };
+  const handleInputSkill = (e) => {
+    const { name, value } = e.target;
+    setSkillWorker({ ...skillWorker, [name]: value });
+  };
+
+  //experience worker
+  const getMyExperience = () => {
+    dispatch(getExperienceAction());
+  };
+  const getExperienceId = (id) => {
+    dispatch(getExperienceById(id));
+  };
+  const handleInputExperience = (e) => {
+    const { name, value } = e.target;
+    setExperienceWorker({ ...experienceWorker, [name]: value });
+  };
+  const deleteMyExperience = (id) => {
+    dispatch(deleteExperience(id));
+  };
+  const handleSubmitExperience = (e) => {
+    e.preventDefault();
+    console.log(experienceWorker);
+    let id = localStorage.getItem("idExperience");
+    id
+      ? dispatch(updateExperience(id, experienceWorker))
+      : dispatch(postExperience(experienceWorker));
+  };
+
+  //portofolio worker
+  const [photoPortofolio, setPhotoPortofolio] = useState(null);
+  const getMyPortofolio = () => {
+    dispatch(getPortofolioAction());
+  };
+  const getPortofolioId = (id) => {
+    dispatch(getPortofolioById(id));
+  };
+  const deleteMyPortofolio = (id) => {
+    dispatch(deletePortofolio(id));
+  };
+  const handleInputPortofolio = (e) => {
+    const { value, name } = e.target;
+    setPortofolioWorker({ ...portofolioWorker, [name]: value });
+  };
+  const handleInputPhotoPortofolio = (e) => {
+    setPhotoPortofolio(e.target.files[0]);
+    setPortofolioWorker({
+      ...portofolioWorker,
+      photo_url: URL.createObjectURL(e.target.files[0]),
+    });
+  };
+  const handleSubmitPortofolio = (e) => {
+    e.preventDefault();
+    console.log(portofolioWorker);
+    let bodyFormData = new FormData();
+    bodyFormData.append("name", portofolioWorker.name);
+    bodyFormData.append("link_repo", portofolioWorker.link_repo);
+    bodyFormData.append("type", portofolioWorker.type);
+    bodyFormData.append("photo", photoPortofolio);
+    let id = localStorage.getItem("idPortofolio");
+    id
+      ? dispatch(updatePortofolio(id, bodyFormData))
+      : dispatch(postPortofolio(bodyFormData));
+  };
+
   return (
     <>
       <Navbar />
       <main>
         <div className="wrapProfile d-flex justify-content-center">
           <div className="background"></div>
-          <div className="wrapCardEdit">
-            <div className="cardEditProfile  rounded  mb-2  p-2">
-              <div className="photo mb-4 d-flex flex-column align-items-center gap-2">
-                <div className="photoUser">
-                  <img src={photo} alt="photo" />
+          {myProfileWorker.isLoading ? (
+            <Spinner animation="border" role="status" size="lg" variant="light">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            <div className="wrapCardEdit">
+              <div className="cardEditProfile  rounded  mb-2  p-2">
+                <div className="photo mb-4 d-flex flex-column align-items-center gap-2">
+                  <div className="photoUser">
+                    <img
+                      src={dataWorker.photo_url || dataWorker.photo}
+                      alt="photo"
+                      className="rounded-circle"
+                      style={{ width: 100, height: 100 }}
+                    />
+                  </div>
+                  <div className="edit d-flex align-items-center justify-content-center gap-2">
+                    <img src={edit} alt="edit" width="10px" height="10px" />
+                    <label htmlFor="photo" className="mb-0 pointer-event">
+                      Edit
+                    </label>
+                    <input
+                      className="d-none"
+                      type="file"
+                      onChange={handleInputPhotoProfile}
+                      name="photo_user"
+                      id="photo"
+                    />
+                  </div>
                 </div>
-                <div className="edit d-flex align-items-center justify-content-center gap-2">
-                  <img src={edit} alt="edit" width="10px" height="10px" />
-                  <p className="mb-0">Edit</p>
+                <div className="nameUser">
+                  <h3 className="text-dark">{dataWorker.name}</h3>
+                  <p className="text-dark">{dataWorker.jobdesk}</p>
+                  <div className="location d-flex align-items-center gap-2">
+                    <img
+                      style={{ height: "15px", width: "15px" }}
+                      src={map}
+                      alt="map"
+                    />
+                    <p className="mb-0">{dataWorker.address}</p>
+                  </div>
+                  <p className="text-dark">{dataWorker.office}</p>
                 </div>
               </div>
-              <div className="nameUser">
-                <h3 className="text-dark">Louis Tomlinson</h3>
-                <p className="text-dark">Web developer</p>
-                <div className="location d-flex align-items-center gap-2">
-                  <img
-                    style={{ height: "15px", width: "15px" }}
-                    src={map}
-                    alt="map"
-                  />
-                  <p className="mb-0">Purwokerto,Jawa tengah</p>
-                </div>
+              <div className="btnGrup d-flex flex-column gap-2">
+                <button
+                  onClick={handleSubmitProfile}
+                  className="w-100 h-25 p-2 rounded border-0 btnUserSave"
+                >
+                  Simpan
+                </button>
+                <button
+                  onClick={() => getProfile()}
+                  className="w-100 h-25 p-2 rounded  btnUserCancel"
+                >
+                  Batal
+                </button>
               </div>
             </div>
-            <div className="btnGrup d-flex flex-column gap-2">
-              <button className="w-100 h-25 p-2 rounded border-0 btnUserSave">
-                Simpan
-              </button>
-              <button className="w-100 h-25 p-2 rounded  btnUserCancel">
-                Batal
-              </button>
-            </div>
-          </div>
+          )}
           <div className="wrapMainEdit">
             <div className="mainEditProfile d-flex flex-column gap-2  p-2">
               <div className="bio rounded">
@@ -61,6 +263,8 @@ const EditProfileWorker = () => {
                     <input
                       type="text"
                       name="name"
+                      value={dataWorker.name}
+                      onChange={(e) => handleInputProfile(e)}
                       id="name"
                       placeholder="Masukan nama lengkap"
                     />
@@ -69,7 +273,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="jobDesk">Job desk</label>
                     <input
                       type="text"
-                      name="jobDesk"
+                      name="jobdesk"
+                      value={dataWorker.jobdesk}
+                      onChange={(e) => handleInputProfile(e)}
                       id="jobDesk"
                       placeholder="Masukan Job desk"
                     />
@@ -78,6 +284,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="domisili">Domisili</label>
                     <input
                       type="text"
+                      name="address"
+                      value={dataWorker.address}
+                      onChange={(e) => handleInputProfile(e)}
                       id="domisili"
                       placeholder="Masukan Domisili"
                     />
@@ -86,6 +295,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="workPlace">Tempat kerja</label>
                     <input
                       type="text"
+                      name="office"
+                      value={dataWorker.office}
+                      onChange={(e) => handleInputProfile(e)}
                       id="workPlace"
                       placeholder="Masukan tempat kerja"
                     />
@@ -94,6 +306,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="description">Deskripsi singkat</label>
                     <textarea
                       type="text"
+                      value={dataWorker.description}
+                      onChange={(e) => handleInputProfile(e)}
+                      name="description"
                       id="description"
                       cols="30"
                       rows="10"
@@ -105,8 +320,14 @@ const EditProfileWorker = () => {
               <div className="skill rounded">
                 <h3 className="text-dark">Skill</h3>
                 <hr />
-                <form className="d-flex gap-2 mt-3">
+                <form
+                  onSubmit={handleSubmitSkill}
+                  className="d-flex gap-2 mt-3"
+                >
                   <input
+                    value={skillWorker.skill_name}
+                    name="skill_name"
+                    onChange={(e) => handleInputSkill(e)}
                     className="bg-light w-100 border-1 p-2"
                     placeholder="Javascript, Html, css"
                     type="text"
@@ -119,41 +340,61 @@ const EditProfileWorker = () => {
               <div className="experience">
                 <h3 className="text-dark">Pengalaman kerja</h3>
                 <hr />
-                <div className="workExperience">
-                  <div>
-                    <div className="d-flex justify-content-end gap-2">
-                      <button className="bg-warning rounded p-2 text-light border-0">
-                        Edit
-                      </button>
-                      <button className="bg-danger rounded p-2 text-light border-0">
-                        X
-                      </button>
-                    </div>
-                    <div className="detailExperience d-flex gap-3">
-                      <img
-                        style={{ height: "50px", width: "50px" }}
-                        src={tokopedia}
-                        alt="tokopedia"
-                      />
-                      <div className="div">
-                        <p className="text-dark">Web developer</p>
-                        <p>Tokopedia</p>
-                        <p>July 2019 - January 2020 6 months</p>
-                        <p className="text-dark">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Vestibulum erat orci, mollis nec gravida sed,
-                          ornare quis urna. Curabitur eu lacus fringilla,
-                          vestibulum risus at.
-                        </p>
+                {getExperience.isLoading ? (
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    size="lg"
+                    variant="light"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  getExperience.data?.data.map((experience, index) => (
+                    <div key={index} className="workExperience mb-3">
+                      <div>
+                        <div className="d-flex justify-content-end gap-2">
+                          <button
+                            onClick={() => getExperienceId(experience.id)}
+                            className="bg-warning rounded p-2 text-light border-0"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => deleteMyExperience(experience.id)}
+                            className="bg-danger rounded p-2 text-light border-0"
+                          >
+                            X
+                          </button>
+                        </div>
+                        <div className="detailExperience d-flex gap-3">
+                          {/* <img style={{ height: "50px", width: "50px" }} src={tokopedia} alt="tokopedia" /> */}
+                          <div className="div">
+                            <h3 className="text-dark">{experience.position}</h3>
+                            <p>{experience.company_name}</p>
+                            <p>
+                              {experience.from_month} - {experience.to_month}
+                            </p>
+                            <p className="text-dark">
+                              {experience.description}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <form className="d-flex flex-column gap-2 mt-3">
+                  ))
+                )}
+                <form
+                  onSubmit={handleSubmitExperience}
+                  className="d-flex flex-column gap-2 mt-3"
+                >
                   <div className="input d-flex flex-column w-100">
                     <label htmlFor="position">Posisi</label>
                     <input
                       type="text"
+                      name="position"
+                      value={experienceWorker.position}
+                      onChange={(e) => handleInputExperience(e)}
                       id="position"
                       className="bg-light border-1 p-2"
                       placeholder="web developer"
@@ -164,6 +405,9 @@ const EditProfileWorker = () => {
                       <label htmlFor="office">Nama perusahaan</label>
                       <input
                         type="text"
+                        name="company_name"
+                        value={experienceWorker.company_name}
+                        onChange={(e) => handleInputExperience(e)}
                         id="office"
                         className="bg-light border-1 p-2"
                         placeholder="PT.Harus bisa"
@@ -173,6 +417,9 @@ const EditProfileWorker = () => {
                       <label htmlFor="from">Dari Bulan/Tahun</label>
                       <input
                         type="text"
+                        name="from_month"
+                        value={experienceWorker.from_month}
+                        onChange={(e) => handleInputExperience(e)}
                         id="from"
                         className="bg-light border-1 p-2"
                         placeholder="Januari 2018"
@@ -182,6 +429,9 @@ const EditProfileWorker = () => {
                       <label htmlFor="to">Sampai Bulan/Tahun</label>
                       <input
                         type="text"
+                        name="to_month"
+                        value={experienceWorker.to_month}
+                        onChange={(e) => handleInputExperience(e)}
                         id="to"
                         className="bg-light border-1 p-2"
                         placeholder="Januari 2019"
@@ -192,6 +442,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="description">Deskripsi singkat</label>
                     <textarea
                       type="text"
+                      name="description"
+                      value={experienceWorker.description}
+                      onChange={(e) => handleInputExperience(e)}
                       id="description"
                       cols="30"
                       rows="10"
@@ -205,12 +458,69 @@ const EditProfileWorker = () => {
               </div>
               <div className="portofolio">
                 <h3 className="text-dark">Portofolio</h3>
+                {getPortofolio.isLoading ? (
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    size="lg"
+                    variant="light"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  getPortofolio.data?.data.map((portofolio, index) => (
+                    <div
+                      key={index}
+                      className="portofolioWorker d-flex justify-content-between mb-3"
+                    >
+                      <div className="informationPortfolio d-flex gap-2">
+                        {portofolio.photo ? (
+                          <img
+                            style={{ height: "100px", width: "150px" }}
+                            src={portofolio.photo}
+                            alt="porto"
+                          />
+                        ) : (
+                          <img
+                            style={{ height: "100px", width: "150px" }}
+                            src={porto}
+                            alt="porto"
+                          />
+                        )}
+                        <div className="text">
+                          <p>{portofolio.name}</p>
+                          <p>{portofolio.link_repo}</p>
+                        </div>
+                      </div>
+                      <div className="d-flex gap-2 h-25">
+                        <button
+                          onClick={() => getPortofolioId(portofolio.id)}
+                          className="bg-warning rounded p-2 text-light border-0 "
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => deleteMyPortofolio(portofolio.id)}
+                          className="bg-danger rounded p-2 text-light border-0"
+                        >
+                          X
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
                 <hr />
-                <form className="d-flex flex-column gap-2 mt-3">
+                <form
+                  onSubmit={handleSubmitPortofolio}
+                  className="d-flex flex-column gap-2 mt-3"
+                >
                   <div className="input d-flex flex-column w-100">
                     <label htmlFor="aplication">Nama aplikasi</label>
                     <input
                       type="text"
+                      name="name"
+                      value={portofolioWorker.name}
+                      onChange={(e) => handleInputPortofolio(e)}
                       id="aplication"
                       className="bg-light border-1 p-2"
                       placeholder="Masukan nama Aplikasi"
@@ -220,6 +530,9 @@ const EditProfileWorker = () => {
                     <label htmlFor="repository">Link repository</label>
                     <input
                       type="text"
+                      name="link_repo"
+                      value={portofolioWorker.link_repo}
+                      onChange={(e) => handleInputPortofolio(e)}
                       id="repository"
                       className="bg-light border-1 p-2"
                       placeholder="Masukan Link repository"
@@ -231,6 +544,10 @@ const EditProfileWorker = () => {
                       <div className="input d-flex gap-2 me-3 ">
                         <input
                           type="radio"
+                          name="type"
+                          value={"Aplikasi Mobile"}
+                          checked={portofolioWorker.type === "Aplikasi Mobile"}
+                          onChange={(e) => handleInputPortofolio(e)}
                           id="mobile"
                           className="bg-light border-1 p-2"
                         />
@@ -241,6 +558,10 @@ const EditProfileWorker = () => {
                       <div className="input d-flex gap-2">
                         <input
                           type="radio"
+                          name="type"
+                          value={"Aplikasi Website"}
+                          checked={portofolioWorker.type === "Aplikasi Website"}
+                          onChange={(e) => handleInputPortofolio(e)}
                           id="website"
                           className="bg-light border-1 p-2"
                         />
@@ -254,12 +575,16 @@ const EditProfileWorker = () => {
                     <label htmlFor="description">Upload gambar</label>
                     <label
                       htmlFor="file"
-                      style={{ height: "300px", borderStyle: "dashed" }}
+                      style={{
+                        height: "300px",
+                        borderStyle: "dashed",
+                        backgroundImage: `${portofolioWorker.photo_url}`,
+                      }}
                       className="d-flex flex-column rounded w-100 justify-content-center border-dash align-items-center "
                     >
                       <img
                         style={{ height: "100px", width: "100px" }}
-                        src={cloud}
+                        src={portofolioWorker.photo_url || cloud}
                         alt="cloud"
                       />
                       <p>Drag & Drop untuk Upload Gambar Aplikasi Mobile</p>
@@ -286,7 +611,12 @@ const EditProfileWorker = () => {
                           </p>
                         </div>
                       </div>
-                      <input type="file" className="d-none" id="file" />
+                      <input
+                        type="file"
+                        onChange={handleInputPhotoPortofolio}
+                        className="d-none"
+                        id="file"
+                      />
                     </label>
                   </div>
                   <button className="text-warning bg-light border p-2 border-warning">
@@ -299,6 +629,7 @@ const EditProfileWorker = () => {
         </div>
       </main>
       <Footer />
+      <ToastContainer />
     </>
   );
 };

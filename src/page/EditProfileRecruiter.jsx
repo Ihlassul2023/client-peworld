@@ -1,5 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateProfileRecruiter,
+  getMyProfile,
+} from "../redux/action/recruiter";
 import {
   Button,
   Card,
@@ -18,11 +23,43 @@ import Footer from "../component/Footer.jsx";
 import photo from "../assets/image/photo.png";
 import edit from "../assets/image/edit.svg";
 import map from "../assets/image/map-pin.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function EditProfileCompany() {
+export default function EditPorfileRecruiter() {
+  const dispatch = useDispatch();
+  const myProfileData = useSelector((state) => state.myProfileRecruiter.data);
+  // eslint-disable-next-line no-unused-vars
+  const updatedData = useSelector((state) => state.updateRecruiter.data);
   const [showModal, setShowModal] = useState(false);
   const [newPhoto, setNewPhoto] = useState(photo);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [editedData, setEditedData] = useState({
+    photo: "",
+    company_name: "",
+    sector: "",
+    province: "",
+    city: "",
+    description: "",
+    email: "",
+    email_corp: "",
+    phone: "",
+    linkedin: "",
+  });
 
+  useEffect(() => {
+    dispatch(getMyProfile());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (myProfileData) {
+      setEditedData(myProfileData);
+      if (myProfileData.photo) {
+        setNewPhoto(myProfileData.photo);
+      }
+    }
+  }, [myProfileData]);
+  console.log(myProfileData);
   const handleEditPhoto = () => {
     setShowModal(true);
   };
@@ -36,11 +73,48 @@ export default function EditProfileCompany() {
     if (newPhotoFile) {
       const newPhotoUrl = URL.createObjectURL(newPhotoFile);
       setNewPhoto(newPhotoUrl);
+      setEditedData((prevData) => ({
+        ...prevData,
+        photo: newPhotoFile,
+      }));
     }
     setShowModal(false);
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(`Updating ${name} to ${value}`);
+    setEditedData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdate = async () => {
+    try {
+      setIsUpdating(true);
+      let bodyFormData = new FormData();
+      bodyFormData.append("company_name", editedData.company_name);
+      bodyFormData.append("city", editedData.city);
+      bodyFormData.append("email", editedData.email);
+      bodyFormData.append("email_corp", editedData.email_corp);
+      bodyFormData.append("description", editedData.description);
+      bodyFormData.append("linkedin", editedData.linkedin);
+      bodyFormData.append("phone", editedData.phone);
+      bodyFormData.append("province", editedData.province);
+      bodyFormData.append("sector", editedData.sector);
+      bodyFormData.append("photo", editedData.photo);
+      dispatch(updateProfileRecruiter(bodyFormData));
+      setIsUpdating(false);
+    } catch (error) {
+      setIsUpdating(false);
+      console.error("Error updating data:", error);
+      toast.error("Error updating data. Please try again.");
+    }
+  };
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div className="purple-block"></div>
       <Container className="container-card-perusahaan">
@@ -59,15 +133,15 @@ export default function EditProfileCompany() {
                   </Button>
                 </div>
                 <div className="rounded-circle image-container-perusahaan ">
-                  <Card.Img src={newPhoto} />
+                  <Card.Img src={newPhoto || photo} />
                 </div>
               </Card.Body>
               <Card.Body className="d-flex flex-column align-items-start mx-2">
                 <Card.Title className="mt-3">
-                  <h3>PT. Martabat Jaya Abadi</h3>
+                  <h4>{editedData.company_name}</h4>
                 </Card.Title>
                 <Card.Title className="mt-1">
-                  <h6>Financial</h6>
+                  <h6>{editedData.sector}</h6>
                 </Card.Title>
                 <Card.Text className="d-flex">
                   <Row>
@@ -78,15 +152,22 @@ export default function EditProfileCompany() {
                       />
                     </Col>
                     <Col>
-                      <p className="ms-2">Purwokerto, Jawa Tengah</p>
+                      <p className="ms-2">
+                        {editedData.city}, {editedData.province}
+                      </p>
                     </Col>
                   </Row>
                 </Card.Text>
               </Card.Body>
             </Card>
             <div className="d-grid gap-2 mt-2">
-              <Button id="button-simpan-perusahaan" size="lg">
-                Simpan
+              <Button
+                id="button-simpan-perusahaan"
+                size="lg"
+                onClick={handleUpdate}
+                disabled={isUpdating}
+              >
+                {isUpdating ? "Updating..." : "Simpan"}
               </Button>
               <Button id="button-batal-perusahaan" size="lg">
                 Batal
@@ -100,13 +181,19 @@ export default function EditProfileCompany() {
                 <hr />
                 <Form>
                   <Form.Group className="mb-3" controlId="nama-perusahaan">
-                    <Form.Label className="ms-2">Nama Perusahaan</Form.Label>
+                    <Form.Label className="ms-2">Company Name</Form.Label>
                     <FloatingLabel
                       controlId="floatingNamaPerusahaan"
                       label="Masukkan Nama Perusahaan"
                       className="mb-2"
                     >
-                      <Form.Control type="text" placeholder="PT. Peworld" />
+                      <Form.Control
+                        type="text"
+                        placeholder="PT. Peworld"
+                        name="company_name"
+                        value={editedData.company_name}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
@@ -120,6 +207,9 @@ export default function EditProfileCompany() {
                       <Form.Control
                         type="text"
                         placeholder="Financial / Law / etc"
+                        name="sector"
+                        value={editedData.sector}
+                        onChange={handleInputChange}
                       />
                     </FloatingLabel>
                   </Form.Group>
@@ -130,11 +220,16 @@ export default function EditProfileCompany() {
                       controlId="floatingProvinsi"
                       label="Provinsi"
                     >
-                      <Form.Select aria-label="select-provinsi">
+                      <Form.Select
+                        aria-label="select-provinsi"
+                        name="province"
+                        value={editedData.province}
+                        onChange={handleInputChange}
+                      >
                         <option>Choose Province</option>
-                        <option value="1">Jawa Barat</option>
-                        <option value="2">Jawa Tengah</option>
-                        <option value="3">Jawa Timur</option>
+                        <option value="Jawa Barat">Jawa Barat</option>
+                        <option value="Jawa Tengah">Jawa Tengah</option>
+                        <option value="Jawa Timur">Jawa Timur</option>
                       </Form.Select>
                     </FloatingLabel>
                   </Form.Group>
@@ -142,11 +237,16 @@ export default function EditProfileCompany() {
                   <Form.Group className="mb-3" controlId="kota-perusahaan">
                     <Form.Label className="ms-2">City</Form.Label>
                     <FloatingLabel controlId="floatingCity" label="City">
-                      <Form.Select aria-label="select-city">
+                      <Form.Select
+                        aria-label="select-city"
+                        name="city"
+                        value={editedData.city}
+                        onChange={handleInputChange}
+                      >
                         <option>Choose City</option>
-                        <option value="1">Bandung</option>
-                        <option value="2">Yogyakarta</option>
-                        <option value="3">Surabaya</option>
+                        <option value="Bandung">Bandung</option>
+                        <option value="Ypgyakarta">Yogyakarta</option>
+                        <option value="Surabaya">Surabaya</option>
                       </Form.Select>
                     </FloatingLabel>
                   </Form.Group>
@@ -161,6 +261,9 @@ export default function EditProfileCompany() {
                         as="textarea"
                         placeholder="short-description"
                         style={{ height: "150px" }}
+                        name="description"
+                        value={editedData.description}
+                        onChange={handleInputChange}
                       />
                     </FloatingLabel>
                   </Form.Group>
@@ -175,6 +278,9 @@ export default function EditProfileCompany() {
                       <Form.Control
                         type="email"
                         placeholder="name@example.com"
+                        name="email"
+                        value={editedData.email}
+                        onChange={handleInputChange}
                       />
                     </FloatingLabel>
                   </Form.Group>
@@ -189,6 +295,9 @@ export default function EditProfileCompany() {
                       <Form.Control
                         type="email"
                         placeholder="name@example.com"
+                        name="email_corp"
+                        value={editedData.email_corp}
+                        onChange={handleInputChange}
                       />
                     </FloatingLabel>
                   </Form.Group>
@@ -201,6 +310,9 @@ export default function EditProfileCompany() {
                         placeholder=""
                         aria-label="nomor-telepon"
                         aria-describedby="basic-addon1"
+                        name="phone"
+                        value={editedData.phone}
+                        onChange={handleInputChange}
                       />
                     </InputGroup>
                   </Form.Group>
@@ -212,7 +324,13 @@ export default function EditProfileCompany() {
                       label="linkedin.com/in/xxx"
                       className="mb-2"
                     >
-                      <Form.Control type="text" placeholder="Your linkedIn" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Your linkedIn"
+                        name="linkedin"
+                        value={editedData.linkedin}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
                 </Form>
@@ -228,7 +346,7 @@ export default function EditProfileCompany() {
           <Modal.Title>Edit Photo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input type="file" onChange={handlePhotoChange} />
+          <input type="file" onChange={handlePhotoChange} accept="image/*" />
         </Modal.Body>
       </Modal>
     </>
