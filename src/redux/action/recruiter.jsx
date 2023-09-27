@@ -25,9 +25,11 @@ export const login = (data, navigate) => async (dispatch) => {
     localStorage.setItem("token_recruiter", result.data.data.token);
     localStorage.setItem("name_recruiter", result.data.data.name);
     localStorage.setItem("photo_recruiter", result.data.data.photo);
+    localStorage.setItem("id_recruiter", result.data.data.id);
     localStorage.removeItem("token_worker");
     localStorage.removeItem("name_worker");
     localStorage.removeItem("photo_worker");
+    localStorage.removeItem("id_worker");
     toast.success(result.data.message);
     setTimeout(() => {
       navigate("/home");
