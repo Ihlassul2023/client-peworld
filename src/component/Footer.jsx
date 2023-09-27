@@ -1,10 +1,13 @@
 import { Stack, Container, Row, Col } from "react-bootstrap";
-import logoWhite from "../../assets/image/logoWhite.png";
-import "./style.css";
+import logoWhite from "../assets/image/logoWhite.png";
+import "../assets/css/main.css";
 
 const Footer = () => {
   return (
-    <footer className="primaryContainer px-5 py-5" style={{ width: "100%" }}>
+    <footer
+      className="primaryContainer-footer px-5 py-5 mt-5"
+      style={{ width: "100%" }}
+    >
       <Container className="content">
         <Row>
           <Col>

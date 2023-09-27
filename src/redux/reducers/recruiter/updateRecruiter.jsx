@@ -6,29 +6,32 @@ const initialState = {
 };
 
 const updateRecruiter = (state = initialState, action) => {
-  if (action.type === "RECRUITER_UPDATE_PENDING") {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  } else if (action.type === "RECRUITER_UPDATE_SUCCESS") {
-    return {
-      ...state,
-      data: action.payload,
-      isLoading: false,
-      errorMessage: "",
-      isError: false,
-    };
-  } else if (action.type === "RECRUITER_UPDATE_FAILED") {
-    return {
-      ...state,
-      data: null,
-      errorMessage: action.payload,
-      isLoading: false,
-      isError: true,
-    };
-  } else {
-    return state;
+  switch (action.type) {
+    case "RECRUITER_UPDATE_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+        errorMessage: "",
+      };
+    case "RECRUITER_UPDATE_SUCCESS":
+      return {
+        ...state,
+        data: action.payload,
+        isLoading: false,
+        isError: false,
+        errorMessage: "",
+      };
+    case "RECRUITER_UPDATE_FAILED":
+      return {
+        ...state,
+        data: null,
+        isLoading: false,
+        isError: true,
+        errorMessage: action.payload,
+      };
+    default:
+      return state;
   }
 };
 

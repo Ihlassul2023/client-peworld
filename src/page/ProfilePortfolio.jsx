@@ -4,7 +4,7 @@ import NavigationBar from "../component/Navbar";
 import Footer from "../component/Footer";
 
 import "../assets/css/main.css";
-import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import { Col, Container, Row, Card, Button, Spinner } from "react-bootstrap";
 import CardPortfolio from "../component/CardPortfolio/CardPortfolio";
 
 import fakePhotoProfile from "../assets/image/photo.png";
@@ -12,7 +12,7 @@ import { getWorkerDetail } from "../redux/action/worker";
 import { getExperienceForRecruitAction } from "../redux/action/experience";
 import { getPortofolioForRecruitAction } from "../redux/action/portofolio";
 import { getSkillForRecruitAction } from "../redux/action/skill";
-import { Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 // import image
 import fakePorto1 from "../assets/image/fakePorto1.png";
 import fakePorto2 from "../assets/image/fakePorto2.png";
@@ -152,9 +152,9 @@ const ProfilePortfolio = () => {
                       </div>
                     </div>
                   </div>
-                  <Button onClick={() => navigate(`hire/${id}`)} className="py-2 mt-3 custom-button">
+                  <Link to={`/Hire/${id}`} className="py-2 mt-3 custom-button text-decoration-none text-center text-light">
                     Hire
-                  </Button>
+                  </Link>
                 </Card>
               )}
             </Col>

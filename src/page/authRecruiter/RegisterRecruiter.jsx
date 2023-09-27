@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/action/recruiter";
 
 import { ToastContainer } from "react-toastify";
@@ -14,6 +14,7 @@ import "../../assets/css/main.css";
 const RegisterRecruiter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoading, data } = useSelector((state) => state.registerRecruiter);
   const [inputData, setInputData] = useState({
     name: "",
     email: "",
@@ -23,6 +24,10 @@ const RegisterRecruiter = () => {
     password: "",
     confirm_password: "",
   });
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    !isLoading && data && setShow(true);
+  }, [isLoading]);
 
   const postDataRegister = async (e) => {
     e.preventDefault();
@@ -36,6 +41,26 @@ const RegisterRecruiter = () => {
 
   return (
     <div>
+      <Modal show={show} onHide={() => setShow(false)} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
+        {/* <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header> */}
+        <Modal.Body>
+          <div className="p-3 text-center">
+            <box-icon type="solid" name="message-rounded-check" size="lg" color="#5e50a1"></box-icon>
+            <h4 className="text-black">You're all set!</h4>
+            <p className="fw-light text-black">Please check your email account for verification</p>
+            <Button onClick={() => setShow(false)} className="custom-btn btn-sm py-2 px-3">
+              OK
+            </Button>
+          </div>
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer> */}
+      </Modal>
       <Container className="py-3">
         <Row className="">
           <Col md="6" className="">
