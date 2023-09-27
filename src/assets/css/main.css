@@ -65,6 +65,10 @@ main .background {
   position: absolute;
 }
 
+.pointer-cursor {
+  cursor: pointer;
+}
+
 .background {
   height: 300px;
   width: 100%;
