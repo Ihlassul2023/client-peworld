@@ -25,12 +25,7 @@ const NavBar = () => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">
-          <img
-            src={logoPurple}
-            alt=""
-            className=""
-            style={{ width: "100px" }}
-          />
+          <img src={logoPurple} alt="" className="" style={{ width: "100px" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -44,21 +39,14 @@ const NavBar = () => {
               </Nav.Link>
             )}
             <Nav.Link href="#home">
-              <img
-                src={bell}
-                alt=""
-                className="bell"
-                style={{ width: "23px" }}
-              />
+              <img src={bell} alt="" className="bell" style={{ width: "23px" }} />
             </Nav.Link>
             <Nav.Link href="#link">
-              <img
-                onClick={() => navigate("/chat")}
-                src={mail}
-                alt=""
-                className="mail"
-                style={{ width: "25px" }}
-              />
+              {localStorage.getItem("id_recruiter") ? (
+                <img onClick={() => navigate("/chat")} src={mail} alt="chat" className="mail" style={{ width: "25px" }} />
+              ) : (
+                <img onClick={() => navigate("/chat-worker")} src={mail} alt="chat" className="mail" style={{ width: "25px" }} />
+              )}
             </Nav.Link>
             <Nav.Link>
               {localStorage.getItem("photo_worker") ? (
@@ -68,10 +56,8 @@ const NavBar = () => {
                   className="profile rounded-circle"
                   style={{ width: "25px", height: "25px" }}
                   onClick={() => {
-                    localStorage.getItem("token_worker") &&
-                      navigate("/editProfileWorker");
-                    localStorage.getItem("token_recruiter") &&
-                      navigate("/editProfileRecruiter");
+                    localStorage.getItem("token_worker") && navigate("/editProfileWorker");
+                    localStorage.getItem("token_recruiter") && navigate("/editProfileRecruiter");
                   }}
                 />
               ) : (
@@ -81,17 +67,12 @@ const NavBar = () => {
                   className="profile rounded-circle"
                   style={{ width: "25px", height: "25px" }}
                   onClick={() => {
-                    localStorage.getItem("token_worker") &&
-                      navigate("/editProfileWorker");
-                    localStorage.getItem("token_recruiter") &&
-                      navigate("/editProfileRecruiter");
+                    localStorage.getItem("token_worker") && navigate("/editProfileWorker");
+                    localStorage.getItem("token_recruiter") && navigate("/editProfileRecruiter");
                   }}
                 />
               )}
-              <p className="ham-text">
-                {localStorage.getItem("name_worker") ||
-                  localStorage.getItem("name_recruiter")}
-              </p>
+              <p className="ham-text">{localStorage.getItem("name_worker") || localStorage.getItem("name_recruiter")}</p>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
