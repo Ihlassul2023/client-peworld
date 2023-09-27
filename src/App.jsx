@@ -14,6 +14,7 @@ import {
   Hire,
   LandingPage,
   Chat,
+  ChatWorker,
   EmailVerifyRecruiter,
   EmailVerifyWorker,
 } from "./page";
@@ -68,6 +69,7 @@ function App() {
             }
           />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/chat-worker" element={<ChatWorker />} />
           <Route
             path="/email-verify-recruiter/:id"
             element={<EmailVerifyRecruiter />}

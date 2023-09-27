@@ -9,6 +9,7 @@ import Home from "./Home";
 import Hire from "./Hire";
 import LandingPage from "./LandingPage";
 import Chat from "./Chat";
+import ChatWorker from "./ChatWorker";
 import EmailVerifyRecruiter from "./EmailVerifyRecruiter";
 import EmailVerifyWorker from "./EmailVerifyWorker";
 
@@ -24,6 +25,7 @@ export {
   Hire,
   LandingPage,
   Chat,
+  ChatWorker,
   EmailVerifyRecruiter,
   EmailVerifyWorker,
 };
