@@ -25,9 +25,11 @@ export const login = (data, navigate) => async (dispatch) => {
     localStorage.setItem("token_worker", result.data.data.token);
     localStorage.setItem("name_worker", result.data.data.name);
     localStorage.setItem("photo_worker", result.data.data.photo);
+    localStorage.setItem("id_worker", result.data.data.id);
     localStorage.removeItem("token_recruiter");
     localStorage.removeItem("name_recruiter");
     localStorage.removeItem("photo_recruiter");
+    localStorage.removeItem("id_recruiter");
     // localStorage.setItem("email", result.data.user.email);
     dispatch({ payload: result.data.data, type: "WORKER_LOGIN_SUCCESS" });
     toast.success(result.data.message);

@@ -77,6 +77,7 @@ export const updatePortofolio = (id, data) => async (dispatch) => {
 export const deletePortofolio = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_PORTOFOLIO_PENDING" });
+    console.log(id);
     const result = await instance.delete(url + `/portfolio/${id}`);
     console.log(result);
     toast.success(result.data.msg);
