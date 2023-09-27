@@ -64,6 +64,15 @@ main .background {
   background-color: rgba(94, 80, 161, 1);
   position: absolute;
 }
+
+.background {
+  height: 300px;
+  width: 100%;
+  background-color: rgba(94, 80, 161, 1);
+  position: absolute;
+  z-index: -5;
+}
+
 main .wrapProfile .wrapCardEdit {
   width: 30%;
   padding: 4rem 1rem;
