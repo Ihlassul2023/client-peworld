@@ -4,17 +4,17 @@
 <br />
 <div align="center">
   <a href="">
-    <img src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171078/portofolio/Hirejob/logo_ectiuy.png" alt="Logo" width="150px">
+    <img src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873714/hire-job/logo-peworld_qcolfj.png" alt="Logo PeWorld" width="200px">
   </a>
 
   <h3 align="center">Hire Job</h3>
 
   <p align="center">
-    <a href="https://fe-cafein.vercel.app/">View Demo</a>
-    ·
-    <a href="https://github.com/NisrinaNataraharja/FE-Cafein/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/NisrinaNataraharja/FE-Cafein/issues">Request Feature</a>
+    <a href="https://client-peworld.vercel.app/">Demo Web</a>
+    -
+    <a href="https://github.com/Ihlassul2023/client-peworld/issues">Report Bug</a>
+    -
+    <a href="https://github.com/Ihlassul2023/client-peworld/issues">Request Feature</a>
   </p>
 </div>
 
@@ -26,7 +26,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About Us</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -36,7 +36,6 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#setup-env-example">Setup .env example</a></li>
       </ul>
     </li>
     <li><a href="#screenshoots">Screenshots</a></li>
@@ -51,19 +50,21 @@
 
 ## About The Project
 
-**Hire Job** is a simple job website that can facilitating company to recruit talented programmer based on skills that company needed. It also provide programmer to show their portofolio so they can get recruited by some company.
+**PeWorld Hire Job** is a simple job website that can facilitating company to recruit talented programmer based on skills that company needed. It also provide programmer to show their portofolio so they can get recruited by some company.
 
 ### Built With
 
 This app was built with some technologies below:
 
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [Javascript](https://www.javascript.com/)
-- [React](https://reactjs.org/)
-- [Axios](https://axios-http.com/)
-- [React Redux](https://react-redux.js.org/introduction/getting-started)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+- [Bootstrap](https://getbootstrap.com/)
+- [React Bootstrap](https://react-bootstrap.netlify.app/)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Node JS](https://nodejs.org/en)
+- [Redux](https://redux.js.org/)
+- [React JS](https://legacy.reactjs.org/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Boxicon](https://boxicons.com/)
 
 <!-- GETTING STARTED -->
 
@@ -73,158 +74,203 @@ This app was built with some technologies below:
 
 Before going to the installation stage there are some software that must be installed first.
 
-- [NodeJs](https://nodejs.org/en/download/)
+- [NodeJs v18.00^](https://nodejs.org/en/download/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
-If you want to run this project locally, I recommend you to configure the [back-end](https://github.com/Candra-Julius/Cafein-BackEnd) first before configuring this repo front-end.
+If you want to run this project locally, I recommend you to configure the [back-end](https://github.com/Ihlassul2023/restApi-peworld) first before configuring this repo front-end.
 
 - Clone the repo
 
 ```
-git clone https://github.com/NisrinaNataraharja/FE-Cafein.git
+git clone https://github.com/Ihlassul2023/restApi-peworld.git
 ```
 
-- Go To Folder Repo
+- Go to repo
 
 ```
-cd FE-Cafein
+cd restApi-peworld
 ```
 
-- Install Module
+- Install module
 
 ```
 npm install
 ```
 
-- <a href="#setup-env">Setup .env</a>
-- Type ` npm run dev` To Start Website
-- Type ` npm run start` To Start Production
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-### Setup .env example
-
-Create .env file in your root project folder.
-
+- Setup .env
 ```
-REACT_APP_APP_NAME = [APP_NAME]
-REACT_APP_NODE_ENV = [NODE_ENV]
-REACT_APP_API_URL = [API_URL]
+VITE_BASE_URL=[URL_API]
 ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+- Type `npm run dev` To Start the local web
+
 
 ## Screenshoots
 
 <p align="center" display=flex>
-   
+<!-- table for register recruiter and register worker -->
 <table>
- 
-  <tr>
-    <td><image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695867134/hire-job/screencapture-react-bootstrap-netlify-app-2023-09-26-13_32_46_fdhtxf.png" alt="Login Page" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171977/portofolio/Hirejob/register_av7ren.png" width=100%/></td>
-  </tr>
-   <tr>
-    <td>Login Page</td>
-    <td>Register Page</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659172144/portofolio/Hirejob/Landing2_rsa3we.png" alt="landing" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171994/portofolio/Hirejob/home2_d9kgzc.png" alt="Home2" width=100%/></td>
-  </tr>
-  <tr>
-    <td>Landing Page</td>
-    <td>Home</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659362992/portofolio/Hirejob/Profile_qarrl3.png" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659174007/portofolio/Hirejob/edit_profile_eixzem.png" alt="Home2" width=100%/></td>
-  </tr>
-  <tr>
-    <td>Profile</td>
-    <td>Edit Profile</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171988/portofolio/Hirejob/Hiring_u1pfua.png" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659355457/portofolio/Hirejob/History_a8ksmv.png" alt="Home2" width=100%/></td>
-  </tr>
-  <tr>
-    <td>Hiring</td>
-    <td>History</td>
-  </tr>
+<tr>
+  <td align='center'><b>Register Recruiter</b></td>
+  <td align='center'><b>Register Worker</b></td>
+</tr>
+<tr>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873631/hire-job/register-recruiter_tmnmkg.png" alt="Register Page" width=100%>
+  </td>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873631/hire-job/register-worker_ntmfbe.png" alt="Register Page" width=100%>
+  </td>
+</tr>
 </table>
-      
-</p>
-<p align="right">(<a href="#top">back to top</a>)</p>
+  
+<!-- table for login recruiter and register worker -->
+<table>
+<tr>
+  <td align='center'><b>Login Recruiter</b></td>
+  <td align='center'><b>Login Worker</b></td>
+</tr>
+<tr>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873630/hire-job/login-recruiter_xnruzu.png" alt="Login Page" width=100%>
+  </td>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873629/hire-job/login-worker_nsineu.png" alt="Login Page" width=100%>
+  </td>
+</tr>
+</table>
+
+<!-- table for landing page and edit profile worker -->
+<table>
+<tr>
+  <td align='center'><b>Landing Page</b></td>
+  <td align='center'><b>Edit Profile Worker</b></td>
+</tr>
+<tr>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873634/hire-job/landing_page_lyrocu.png" alt="Landing Page" width=100%>
+  </td>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873628/hire-job/edit-profile-worker_dsszui.png" alt="Edit Profile Worker" width=100%>
+  </td>
+</tr>
+</table>
+
+<!-- table for home recruiter and hire talent -->
+<table>
+<tr>
+  <td align='center'><b>Home Recruiter</b></td>
+  <td align='center'><b>Hire Talent</b></td>
+</tr>
+<tr>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873627/hire-job/home-recruiter_cnhllx.png" alt="Hire Talent Page" width=100%>
+  </td>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873627/hire-job/hire-talent_jyrujd.png" alt="Detail Talent Page" width=100%>
+  </td>
+</tr>
+</table>
+
+<!-- table for hire talent and detail talent -->
+<table>
+<tr>
+  <td align='center'><b>Detail Talent</b></td>
+  <td align='center'><b>Chat</b></td>
+</tr>
+<tr>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873628/hire-job/detail-talent_g65dcy.png" alt="Detail Talent Page" width=100%>
+  </td>
+  <td>
+    <image src="https://res.cloudinary.com/dmx0spvee/image/upload/v1695873627/hire-job/chat-talent_h5mety.png" alt="Hire Talent Page" width=100%>
+  </td>
+</tr>
+</table>
+
+<!-- end screenshoots -->
 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
+3. Add your Changes (`git add .`)
+4. Commit your Changes (`git commit -m 'Add some NewFeature'`)
+5. Push to the Branch (`git push origin feature/NewFeature`)
+6. Open a Pull Request on Github
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
 
-:rocket: [`Backend Hire Job`](https://github.com/Candra-Julius/Cafein-BackEnd)
+:books: [`Backend PEWORLD Hire Job`](https://github.com/Ihlassul2023/restApi-peworld)
 
-:rocket: [`Frontend Hire Job`](https://github.com/NisrinaNataraharja/FE-Cafein)
+:books: [`Frontend PEWORLD Hire Job`](https://github.com/Ihlassul2023/client-peworld)
 
-:rocket: [`Web Service`](https://hire-job-app.herokuapp.com)
+:globe_with_meridians: [`Web Service`](https://pwd.codeinsomnia.com)
 
-:rocket: [`Demo Hire Job`](https://fe-cafein.vercel.app/)
+:computer: [`Demo Hire Job`](https://client-peworld.vercel.app/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Our Team
 
-<center>
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/fandipras7">
-          <img width="100" src="https://avatars.githubusercontent.com/u/103250624?s=400&u=f875f1e92e184d49228f1767f6362b10c56b88a4&v=4" alt="Fandi"><br/>
-          <sub><b>Fandi Prasetyo</b></sub> <br/>
-          <sub>Project Manager | Front End Web Developer</sub>
+<table>
+  <tr>
+    <td align="left">
+      <a href="https://github.com/Ihlassul2023">
+          <img width="100" src="https://avatars.githubusercontent.com/u/138352540?v=4" alt="Ihlas"><br/>
+          <sub><b>Ihlas Sul Akbar</b></sub> <br/>
+          <sub>Team Leader | Fullstack Web Developer</sub>
         </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/NisrinaNataraharja">
-          <img width="100" src="https://avatars.githubusercontent.com/u/98700935?v=4" alt="Nisrina Hasna"><br/>
-          <sub><b>Nisrina Hasna Nataraharja</b></sub> <br/>
-          <sub>Front End Web Developer</sub>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/Candra-Julius">
-          <img width="100" src="https://avatars.githubusercontent.com/u/102232190?v=4" alt="Candra"><br/>
-          <sub><b>Candra Julius</b></sub> <br/>
-          <sub>Back End Web Developer</sub>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/irfan43a">
-          <img width="100" src="https://avatars.githubusercontent.com/u/98889949?v=4" alt="Irfan Abidin"><br/>
-          <sub><b>Irfan Abidin</b></sub> <br/>
-          <sub>Back End Web Developer</sub>
-        </a>
-      </td>
-    </tr>
-  </table>
-</center>
+    </td>
+  </tr>
+</table>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<table>
+  <tr >
+    <td align="left">
+      <a href="https://github.com/matfaisall">
+          <img width="100" src="https://avatars.githubusercontent.com/u/88364541?v=4" alt="Nisrina Hasna"> <br/>
+          <sub><b>Muhammad Faisal</b></sub> <br/>
+          <sub>Lead Frontend | Frontend Web Developer</sub>
+        </a>
+    </td>
+    <td align="left">
+      <a href="https://github.com/farhanrizqi">
+          <img width="100" src="https://avatars.githubusercontent.com/u/129353480?v=4" alt="Farhan Rizki"> <br/>
+          <sub><b>Farhan Rizqi A</b></sub> <br/>
+          <sub>Frontend Web Developer</sub>
+        </a>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr >
+    <td align="left">
+      <a href="https://github.com/mahardhikap">
+          <img width="100" src="https://avatars.githubusercontent.com/u/21145156?v=4" alt="Mahardhika Pratama"> <br/>
+          <sub><b>Mahardhika Putra Pratama</b></sub> <br/>
+          <sub>Lead Backend | Backend Web Developer</sub>
+        </a>
+    </td>
+    <td align="left">
+      <a href="https://github.com/myfadil">
+          <img width="100" src="https://avatars.githubusercontent.com/u/137017147?v=4" alt="Yasin Fadillah"> <br/>
+          <sub><b>Mohamad Yasin Fadillah</b></sub> <br/>
+          <sub>Backend Web Developer</sub>
+        </a>
+    </td>
+  </tr>
+</table>
+
+<sub style="color: red;">* This is just a title, frontend or backend. Actually, backend and frontend members support each other.</sub>
 
 ## License
 
 Distributed under the [MIT](/LICENSE) License.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to Top</a>)</p>
