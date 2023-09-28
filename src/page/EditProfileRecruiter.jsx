@@ -1,8 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfileRecruiter, getMyProfile } from "../redux/action/recruiter";
-import { Button, Card, Row, Col, Container, Form, FloatingLabel, InputGroup, Modal, Image } from "react-bootstrap";
+import {
+  updateProfileRecruiter,
+  getMyProfile,
+} from "../redux/action/recruiter";
+import {
+  Button,
+  Card,
+  Row,
+  Col,
+  Container,
+  Form,
+  FloatingLabel,
+  InputGroup,
+  Modal,
+  Image,
+} from "react-bootstrap";
 import "../assets/css/main.css";
 import Navbar from "../component/Navbar.jsx";
 import Footer from "../component/Footer.jsx";
@@ -110,7 +124,11 @@ export default function EditPorfileRecruiter() {
               <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                 <div className="edit-utility d-flex align-items-center mt-3">
                   <Image src={edit} style={{ width: "1rem" }} />
-                  <Button variant="secondary" className="edit-button-perusahaan bg-transparent border-0 text-secondary" onClick={handleEditPhoto}>
+                  <Button
+                    variant="secondary"
+                    className="edit-button-perusahaan bg-transparent border-0 text-secondary"
+                    onClick={handleEditPhoto}
+                  >
                     Edit
                   </Button>
                 </div>
@@ -128,7 +146,10 @@ export default function EditPorfileRecruiter() {
                 <Card.Text className="d-flex">
                   <Row>
                     <Col lg={1}>
-                      <Image src={map} style={{ width: "1rem", height: "1rem" }} />
+                      <Image
+                        src={map}
+                        style={{ width: "1rem", height: "1rem" }}
+                      />
                     </Col>
                     <Col>
                       <p className="ms-2">
@@ -140,7 +161,12 @@ export default function EditPorfileRecruiter() {
               </Card.Body>
             </Card>
             <div className="d-grid gap-2 mt-2">
-              <Button id="button-simpan-perusahaan" size="lg" onClick={handleUpdate} disabled={isUpdating}>
+              <Button
+                id="button-simpan-perusahaan"
+                size="lg"
+                onClick={handleUpdate}
+                disabled={isUpdating}
+              >
                 {isUpdating ? "Updating..." : "Simpan"}
               </Button>
               <Button id="button-batal-perusahaan" size="lg">
@@ -156,22 +182,50 @@ export default function EditPorfileRecruiter() {
                 <Form>
                   <Form.Group className="mb-3" controlId="nama-perusahaan">
                     <Form.Label className="ms-2">Company Name</Form.Label>
-                    <FloatingLabel controlId="floatingNamaPerusahaan" label="Masukkan Nama Perusahaan" className="mb-2">
-                      <Form.Control type="text" placeholder="PT. Peworld" name="company_name" value={editedData.company_name} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingNamaPerusahaan"
+                      label="Masukkan Nama Perusahaan"
+                      className="mb-2"
+                    >
+                      <Form.Control
+                        type="text"
+                        placeholder="PT. Peworld"
+                        name="company_name"
+                        value={editedData.company_name}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="bidang-perusahaan">
                     <Form.Label className="ms-2">Bidang</Form.Label>
-                    <FloatingLabel controlId="floatingBidangPerusahaan" label="Masukkan bidang perusahaan ex: Financial" className="mb-2">
-                      <Form.Control type="text" placeholder="Financial / Law / etc" name="sector" value={editedData.sector} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingBidangPerusahaan"
+                      label="Masukkan bidang perusahaan ex: Financial"
+                      className="mb-2"
+                    >
+                      <Form.Control
+                        type="text"
+                        placeholder="Financial / Law / etc"
+                        name="sector"
+                        value={editedData.sector}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="provinsi-perusahaan">
                     <Form.Label className="ms-2">Province</Form.Label>
-                    <FloatingLabel controlId="floatingProvinsi" label="Provinsi">
-                      <Form.Select aria-label="select-provinsi" name="province" value={editedData.province} onChange={handleInputChange}>
+                    <FloatingLabel
+                      controlId="floatingProvinsi"
+                      label="Provinsi"
+                    >
+                      <Form.Select
+                        aria-label="select-provinsi"
+                        name="province"
+                        value={editedData.province}
+                        onChange={handleInputChange}
+                      >
                         <option>Choose Province</option>
                         <option value="Jawa Barat">Jawa Barat</option>
                         <option value="Jawa Tengah">Jawa Tengah</option>
@@ -183,7 +237,12 @@ export default function EditPorfileRecruiter() {
                   <Form.Group className="mb-3" controlId="kota-perusahaan">
                     <Form.Label className="ms-2">City</Form.Label>
                     <FloatingLabel controlId="floatingCity" label="City">
-                      <Form.Select aria-label="select-city" name="city" value={editedData.city} onChange={handleInputChange}>
+                      <Form.Select
+                        aria-label="select-city"
+                        name="city"
+                        value={editedData.city}
+                        onChange={handleInputChange}
+                      >
                         <option>Choose City</option>
                         <option value="Bandung">Bandung</option>
                         <option value="Ypgyakarta">Yogyakarta</option>
@@ -194,22 +253,52 @@ export default function EditPorfileRecruiter() {
 
                   <Form.Group className="mb-3" controlId="desc-perusahaan">
                     <Form.Label className="ms-2">Short Description</Form.Label>
-                    <FloatingLabel controlId="floatingDescPerusahaan" label="Give a short description about your company">
-                      <Form.Control as="textarea" placeholder="short-description" style={{ height: "150px" }} name="description" value={editedData.description} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingDescPerusahaan"
+                      label="Give a short description about your company"
+                    >
+                      <Form.Control
+                        as="textarea"
+                        placeholder="short-description"
+                        style={{ height: "150px" }}
+                        name="description"
+                        value={editedData.description}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="email-recruiter">
                     <Form.Label className="ms-2">Email</Form.Label>
-                    <FloatingLabel controlId="floatingEmailRecruiter" label="Email address" className="mb-3">
-                      <Form.Control type="email" placeholder="name@example.com" name="email" value={editedData.email} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingEmailRecruiter"
+                      label="Email address"
+                      className="mb-3"
+                    >
+                      <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                        name="email"
+                        value={editedData.email}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="email-perusahaan">
                     <Form.Label className="ms-2">Company Email</Form.Label>
-                    <FloatingLabel controlId="floatingEmailPerusahaan" label="Company Email address" className="mb-3">
-                      <Form.Control type="email" placeholder="name@example.com" name="email_corp" value={editedData.email_corp} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingEmailPerusahaan"
+                      label="Company Email address"
+                      className="mb-3"
+                    >
+                      <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                        name="email_corp"
+                        value={editedData.email_corp}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
 
@@ -217,14 +306,31 @@ export default function EditPorfileRecruiter() {
                     <Form.Label className="ms-2">Phone Number</Form.Label>
                     <InputGroup className="mb-3">
                       <InputGroup.Text id="basic-addon1">+62</InputGroup.Text>
-                      <Form.Control placeholder="" aria-label="nomor-telepon" aria-describedby="basic-addon1" name="phone" value={editedData.phone} onChange={handleInputChange} />
+                      <Form.Control
+                        placeholder=""
+                        aria-label="nomor-telepon"
+                        aria-describedby="basic-addon1"
+                        name="phone"
+                        value={editedData.phone}
+                        onChange={handleInputChange}
+                      />
                     </InputGroup>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="linkedIn">
                     <Form.Label className="ms-2">Bidang</Form.Label>
-                    <FloatingLabel controlId="floatingLinkedIn" label="linkedin.com/in/xxx" className="mb-2">
-                      <Form.Control type="text" placeholder="Your linkedIn" name="linkedin" value={editedData.linkedin} onChange={handleInputChange} />
+                    <FloatingLabel
+                      controlId="floatingLinkedIn"
+                      label="linkedin.com/in/xxx"
+                      className="mb-2"
+                    >
+                      <Form.Control
+                        type="text"
+                        placeholder="Your linkedIn"
+                        name="linkedin"
+                        value={editedData.linkedin}
+                        onChange={handleInputChange}
+                      />
                     </FloatingLabel>
                   </Form.Group>
                 </Form>

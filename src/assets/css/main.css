@@ -9,10 +9,12 @@
   --text-secondary: #46505c;
   --text-third: #9ea0a5;
   --text-fourth: #e2e5ed;
+  --text-fifth: #5e50a1;
 
   /* background-color */
   --bg-primary: #f6f7f8;
   --bg-secondary: #ffffff;
+  --bg-third: #c9c9c9;
 }
 
 * {
@@ -116,11 +118,13 @@ textarea {
 
 /* ! navbar start */
 .mail:hover {
-  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
 }
 
 .bell:hover {
-  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+    brightness(95%) contrast(93%);
 }
 
 .ham-text {
@@ -143,6 +147,22 @@ textarea {
 }
 
 /* ! footer end */
+
+/* ! ChatWorker Start */
+.user-message {
+  color: white;
+  border-radius: 15px;
+  padding: 8px 12px;
+}
+
+.other-message {
+  color: black;
+  border-radius: 15px;
+  padding: 8px 12px;
+}
+
+/* ! ChatWorker End */
+
 /* ! Edit Recruiter Profile start */
 .purple-block {
   height: 300px;
@@ -185,6 +205,12 @@ textarea {
   border: 2px solid rgba(94, 80, 161, 1);
 }
 
+#dropdown-messages {
+  background-color: #5e50a1;
+  color: #fff;
+  border: 2px solid rgba(94, 80, 161, 1);
+}
+
 /* ! Edit Recruiter Profile end */
 @media (max-width: 768px) {
   main .wrapProfile {
@@ -208,6 +234,12 @@ textarea {
     margin-top: 2rem;
   }
   /* ! edit-profile-company end */
+
+  /* chat-worker start */
+  .dropdown-messages {
+    display: none; /* Sembunyikan dropdown pada layar >= 768px */
+  }
+  /* chat-worker end */
 }
 @media (max-width: 992px) {
   /* ! edit-profile-company start */
@@ -215,6 +247,12 @@ textarea {
     margin-top: 1rem;
   }
   /* ! edit-profile-company end */
+
+  /* chat-worker start */
+  .dropdown-messages {
+    display: none; /* Sembunyikan dropdown pada layar >= 768px */
+  }
+  /* chat-worker end */
 }
 
 @media (max-width: 576px) {
@@ -244,7 +282,8 @@ textarea {
     display: inline-block;
   }
   .ham-text:hover {
-    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
+    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
+      brightness(95%) contrast(93%);
   }
   /* ! navbar end */
 
@@ -253,6 +292,18 @@ textarea {
     margin-top: 1rem;
   }
   /* ! edit-profile-company end */
+
+  /* chat-worker start */
+  .dropdown-messages {
+    display: block; /* Tampilkan dropdown pada layar < 768px */
+  }
+  #left-side-chat {
+    display: none;
+  }
+  #right-side-chat {
+    margin-top: 1rem;
+  }
+  /* chat-worker end */
 }
 
 /* Styling for Home page */

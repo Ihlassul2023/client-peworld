@@ -42,7 +42,11 @@ const NavBar = () => {
               <img src={bell} alt="" className="bell" style={{ width: "23px" }} />
             </Nav.Link>
             <Nav.Link href="#link">
-              <img onClick={() => navigate("/chat")} src={mail} alt="" className="mail" style={{ width: "25px" }} />
+              {localStorage.getItem("id_recruiter") ? (
+                <img onClick={() => navigate("/chat")} src={mail} alt="chat" className="mail" style={{ width: "25px" }} />
+              ) : (
+                <img onClick={() => navigate("/chat-worker")} src={mail} alt="chat" className="mail" style={{ width: "25px" }} />
+              )}
             </Nav.Link>
             <Nav.Link>
               {localStorage.getItem("photo_worker") ? (
