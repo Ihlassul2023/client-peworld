@@ -25,6 +25,8 @@ import tokoPediaImg from "../assets/image/tokopedia.png";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
+import fakePhoto from "../assets/image/photo.png";
+
 const ProfilePortfolio = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -103,7 +105,7 @@ const ProfilePortfolio = () => {
               ) : (
                 <Card className="p-3 pt-5 border-0">
                   <div className="d-flex justify-content-center">
-                    <img src={profileWorker.photo} alt="photo" className="rounded-circle" style={{ width: 100, height: 100 }} />
+                    <img src={profileWorker.photo || fakePhoto} alt="photo" className="rounded-circle" style={{ width: 100, height: 100 }} />
                   </div>
                   <div className="mt-4">
                     <h5 className="text-black">{profileWorker.name}</h5>

@@ -26,13 +26,13 @@ const Home = () => {
   const { data } = useSelector((state) => state.getSearchSort);
 
   const searchSort = () => {
-    console.log("Current searchby:", searchby);
+    // console.log("Current searchby:", searchby);
     dispatch(getSearchSort(search, searchby, limit, page, sort, sortby));
   };
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -68,8 +68,8 @@ const Home = () => {
 
       {/* Card */}
       <div>
-        {data?.data?.map((item) => {
-          return <Cards id={item.id} image={item.photo || fakePhoto} name={item.name} jobdesk={item.jobdesk || "Jobdesk not found"} address={item.address || "Address not found"} skill={item.skill_name.split(",")} />;
+        {data?.data?.map((item, index) => {
+          return <Cards key={index} id={item.id} image={item.photo || fakePhoto} name={item.name} jobdesk={item.jobdesk || "Jobdesk not found"} address={item.address || "Address not found"} skill={item.skill_name.split(",")} />;
         })}
       </div>
       <ReactPaginate

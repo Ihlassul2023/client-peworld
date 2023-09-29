@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 const Cards = (props) => {
   const navigate = useNavigate();
-  console.log(props.id);
+  // console.log(props.id);
   return (
     <>
       <Container>
@@ -24,7 +24,7 @@ const Cards = (props) => {
                 </div>
                 <div className="d-flex gap-2 flew-wrap flex-grow-1">
                   {props.skill.map((skill, index) => (
-                    <Button variant="warning" className="btn-sm px-3 text-white">
+                    <Button variant="warning" className="btn-sm px-3 text-white" key={index}>
                       {skill}
                     </Button>
                   ))}
