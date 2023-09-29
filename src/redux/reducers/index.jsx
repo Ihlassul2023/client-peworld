@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { registerRecruiter, loginRecruiter, updateRecruiter, deleteRecruiter, myProfileRecruiter } from "./recruiter";
+import { registerRecruiter, loginRecruiter, updateRecruiter, deleteRecruiter, myProfileRecruiter, chatHire, getContactChat, getChatMessage, chatRecruiter } from "./recruiter";
 import { registerWorker, loginWorker, updateWorker, myProfileWorker, detail_worker, worker, delete_worker } from "./worker";
 import { postSkill, getSkill, getSkillForRecruit } from "./skill";
 import { postExperience, getDetailExperience, getExperience, getExperienceForRecruit, updateExperience, deleteExperience } from "./experience";
@@ -34,6 +34,10 @@ const rootReducers = combineReducers({
   updateExperience,
   deleteExperience,
   getSearchSort,
+  chatHire,
+  getContactChat,
+  getChatMessage,
+  chatRecruiter,
 });
 
 export default rootReducers;
