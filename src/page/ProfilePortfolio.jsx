@@ -136,7 +136,7 @@ const ProfilePortfolio = () => {
                     <div className="mt-5">
                       <div className="d-flex">
                         <box-icon name="envelope" color="gray" animation="tada"></box-icon>
-                        <p className="ms-3">Louistommo@gmail.com</p>
+                        <p className="ms-3">{profileWorker.email}</p>
                       </div>
                       <div className="d-flex">
                         <box-icon name="instagram" type="logo" color="gray" animation="tada"></box-icon>

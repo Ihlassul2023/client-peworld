@@ -19,14 +19,13 @@ const Hire = () => {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
   let url = import.meta.env.VITE_BASE_URL;
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [inputData, setInputData] = useState({
-    user_1: `${localStorage.getItem('id_recruiter')}`,
+    user_1: `${localStorage.getItem("id_recruiter")}`,
     user_2: `${id}`,
-    message: ''
-  })
-
+    message: "",
+  });
 
   const getData = () => {
     axios
@@ -63,15 +62,15 @@ const Hire = () => {
   const postHireChat = (e) => {
     e.preventDefault();
     let bodyFormData = new FormData();
-    bodyFormData.append('user_1', inputData.user_1);
-    bodyFormData.append('user_2', inputData.user_2);
-    bodyFormData.append('message', inputData.message);
+    bodyFormData.append("user_1", inputData.user_1);
+    bodyFormData.append("user_2", inputData.user_2);
+    bodyFormData.append("message", inputData.message);
     console.log(bodyFormData);
-    dispatch(chatHire(bodyFormData, navigate))
-  }
+    dispatch(chatHire(bodyFormData, navigate));
+  };
 
   const onChangeChat = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
 
@@ -107,9 +106,7 @@ const Hire = () => {
                   {data2?.skill_name.split(",").map((skill, index) => {
                     return (
                       <div className="d-flex flex-wrap gap-3 mb-3" key={index}>
-                        <button className="btn btn-sm btn-warning text-white px-3">
-                          {skill.trim()}
-                        </button>
+                        <button className="btn btn-sm btn-warning text-white px-3">{skill.trim()}</button>
                       </div>
                     );
                   })}
@@ -125,7 +122,7 @@ const Hire = () => {
             <Col md="7">
               <div className="border-0 p-3">
                 <div>
-                  <h4 className="text-black fw-semibold">Hubungi Louis Tomlinson</h4>
+                  <h4 className="text-black fw-semibold">Hubungi {data1?.name}</h4>
                   <p className="text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
                   <Form className="mt-5" onSubmit={postHireChat}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -149,7 +146,7 @@ const Hire = () => {
           </Row>
         </Container>
       </main>
-      <ToastContainer/>
+      <ToastContainer />
       <Footer />
     </>
   );
