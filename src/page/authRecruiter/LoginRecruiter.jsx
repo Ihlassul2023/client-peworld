@@ -39,7 +39,14 @@ const LoginRecruiter = () => {
               </div>
               <div className="card-img-overlay">
                 <div className="ps-4 mt-3">
-                  <img src={Logo1} alt="" className="" style={{ width: 100 }} />
+                  <Link to={"/"}>
+                    <img
+                      src={Logo1}
+                      alt=""
+                      className=""
+                      style={{ width: 100 }}
+                    />
+                  </Link>
                 </div>
                 <div className="h-75 d-flex align-items-center">
                   <div className="ms-4">
@@ -56,8 +63,8 @@ const LoginRecruiter = () => {
             <div className="mt-3 mt-md-5 ps-0 ps-md-4">
               <h3>Halo, Pewpeople</h3>
               <p className="text-desc fw-lighter">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Login sebagai Recruiter dan temukan talent yang cocok dengan
+                perusahaan Anda.
               </p>
 
               <Form onSubmit={postDataLogin}>

@@ -17,8 +17,9 @@ const Footer = () => {
         <Row>
           <Col lg={6} md={6}>
             <p className="text-white mt-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Id cum
-              nostrum voluptate, nobis nemo fuga.
+              Peworld menyederhanakan proses prekrutan. mengobrol secara
+              langsung dengan kandidat yang telah terverifikasi, memastikan
+              pengalaman perekrutan yang sederhana, cepat dan efektif.
             </p>
           </Col>
         </Row>
