@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "../assets/css/main.css";
 import { Container, Card, Row, Col, Button, Form, InputGroup } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { chatHire } from "../redux/action/chatHire";
+import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router";
 
 import NavigationBar from "../component/Navbar";
 import Footer from "../component/Footer";
@@ -11,10 +15,19 @@ import fakePhotoProfile from "../assets/image/photo.png";
 
 const Hire = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
   let url = import.meta.env.VITE_BASE_URL;
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [inputData, setInputData] = useState({
+    user_1: `${localStorage.getItem('id_recruiter')}`,
+    user_2: `${id}`,
+    message: ''
+  })
+
+
   const getData = () => {
     axios
       .get(`${url}/list-worker/${id}`, {
@@ -47,6 +60,23 @@ const Hire = () => {
       });
   };
 
+  const postHireChat = (e) => {
+    e.preventDefault();
+    let bodyFormData = new FormData();
+    bodyFormData.append('user_1', inputData.user_1);
+    bodyFormData.append('user_2', inputData.user_2);
+    bodyFormData.append('message', inputData.message);
+    console.log(bodyFormData);
+    dispatch(chatHire(bodyFormData, navigate))
+  }
+
+  const onChangeChat = (e) => {
+    e.preventDefault()
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+
+  console.log(inputData);
+
   useEffect(() => {
     getSkill();
     getData();
@@ -76,8 +106,8 @@ const Hire = () => {
                   <h5 className="text-black mb-3">Skill</h5>
                   {data2?.skill_name.split(",").map((skill, index) => {
                     return (
-                      <div className="d-flex flex-wrap gap-3 mb-3">
-                        <button className="btn btn-sm btn-warning text-white px-3" key={index}>
+                      <div className="d-flex flex-wrap gap-3 mb-3" key={index}>
+                        <button className="btn btn-sm btn-warning text-white px-3">
                           {skill.trim()}
                         </button>
                       </div>
@@ -97,15 +127,15 @@ const Hire = () => {
                 <div>
                   <h4 className="text-black fw-semibold">Hubungi Louis Tomlinson</h4>
                   <p className="text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
-                  <Form className="mt-5">
+                  <Form className="mt-5" onSubmit={postHireChat}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label className="fw-light">Untuk Posisi</Form.Label>
-                      <Form.Control type="text" className="py-2" placeholder="Fulltime Frontend Developer" />
+                      <Form.Control type="text" className="py-2" defaultValue={data1?.jobdesk} />
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label className="fw-light">Deskripsi</Form.Label>
-                      <Form.Control as="textarea" aria-label="With textarea" rows="6" />
+                      <Form.Control name="message" onChange={onChangeChat} defaultValue={inputData.message} as="textarea" aria-label="With textarea" rows="6" />
                     </Form.Group>
                     <div className="mt-4">
                       <Button type="submit" className="d-block w-100 py-2 bg-warning border-0">
@@ -119,6 +149,7 @@ const Hire = () => {
           </Row>
         </Container>
       </main>
+      <ToastContainer/>
       <Footer />
     </>
   );

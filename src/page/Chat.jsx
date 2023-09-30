@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import {
+  getContactChat,
+  getChatMessage,
+  chatRecruiter,
+} from '../redux/action/chatHire';
 
-import NavigationBar from "../component/Navbar";
-import Footer from "../component/Footer";
+import NavigationBar from '../component/Navbar';
+import Footer from '../component/Footer';
 import {
   Card,
   Col,
@@ -13,58 +20,93 @@ import {
   Form,
   DropdownButton,
   Dropdown,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import fakeImage from "../assets/image/photo.png";
-import fakeImage2 from "../assets/image/profile5.png";
+import fakeImage from '../assets/image/photo.png';
+import fakeImage2 from '../assets/image/profile5.png';
 
-const ChatWorker = () => {
-  const [chatrooms, setChatrooms] = useState([
-    {
-      id: 1,
-      name: "PT SoftHouse",
-      position: "Fulltime Frontend Developer",
-      isActive: true,
-      messages: [
-        {
-          id: 1,
-          text: "Membuat fitur dan maintenance untuk dashboard admin dan posisi remote",
-          isSentByUser: false,
-        },
-        {
-          id: 2,
-          text: "Membuat fitur dan maintenance untuk dashboard admin dan siang, saya tertarik",
-          isSentByUser: true,
-        },
-        {
-          id: 3,
-          text: "Akan saya hubungi besok untuk interview",
-          isSentByUser: false,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "PT Sea",
-      position: "Fulltime Frontend Developer",
-      isActive: false,
-      messages: [
-        {
-          id: 1,
-          text: "Halo Perkenalkan saya Dandy",
-          isSentByUser: false,
-        },
-        {
-          id: 2,
-          text: "Halo salam kenal, perkenalkan saya Randy",
-          isSentByUser: true,
-        },
-      ],
-    },
-  ]);
+const ChatRecruiter = () => {
+  const [activeChatroom, setActiveChatroom] = useState('');
+  const dispatch = useDispatch();
+  const { data: contactChatData } = useSelector(
+    (state) => state.getContactChat
+  );
+  const { data: chatMessageData } = useSelector(
+    (state) => state.getChatMessage
+  );
+  const [codeChat, setCodeChat] = useState('');
+  const [getUser2, setGetUser2] = useState('')
+  const [inputData, setInputData] = useState({
+    user_1: `${localStorage.getItem('id_recruiter')}`,
+    user_2: '',
+    message: '',
+  });
 
-  const [activeChatroom, setActiveChatroom] = useState(chatrooms[0]);
+  const getMyContact = () => {
+    dispatch(getContactChat());
+  };
+
+  const getMyChat = () => {
+    dispatch(getChatMessage(codeChat));
+  };
+  console.log('ini active', activeChatroom);
+
+  const postRecruiterMessage = () => {
+    // e.preventDefault()
+    let bodyFormData = new FormData();
+    bodyFormData.append('user_1', inputData.user_1);
+    bodyFormData.append('user_2', inputData.user_2);
+    bodyFormData.append('message', inputData.message);
+    console.log(bodyFormData);
+    dispatch(chatRecruiter(bodyFormData))
+      .then(() => {
+        setTimeout(() => {
+          getMyChat();
+        }, 1000);
+      })
+      .catch((error) => {
+        console.error('Error posting message:', error);
+      });
+  };
+
+  const handleGetUser = (id) => {
+    setInputData({
+      ...inputData,
+      user_2: id,
+    });
+    const user2ChangeEvent = {
+      target: {
+        name: 'user_2',
+        value: id,
+      },
+    };
+    onChangeChat(user2ChangeEvent);
+  }
+
+  const onChangeChat = (e) => {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+  console.log(inputData);
+
+  useEffect(() => {
+    getMyContact();
+  }, []);
+
+  useEffect(() => {
+    if (codeChat) {
+      getMyChat();
+    }
+  }, [codeChat]);
+
+  const handleChatroomClick = (chatroom, index) => {
+    setCodeChat(chatroom);
+    setActiveChatroom(index);
+  };
+  console.log('chatMessageData?.data[0]?.id:', chatMessageData?.data[0]?.id);
 
   return (
     <>
@@ -77,11 +119,11 @@ const ChatWorker = () => {
               title="Messages"
               className="d-md-none" // Hanya tampil pada layar < md
             >
-              <Card className="py-2 px-3 border-0" style={{ height: "80vh" }}>
+              <Card className="py-2 px-3 border-0" style={{ height: '80vh' }}>
                 <Nav className="border-bottom">
                   <div
                     className="d-flex align-items-center "
-                    style={{ height: "50px" }}
+                    style={{ height: '50px' }}
                   >
                     <h5 className="mb-0 text-black">Messages</h5>
                   </div>
@@ -90,194 +132,218 @@ const ChatWorker = () => {
                   className="py-3 position-relative"
                   data-mdb-perfect-scrollbar="true"
                 >
-                  {chatrooms.map((chatroom) => (
-                    <div
-                      key={chatroom.id}
-                      className={`d-flex align-items-center p-1 mb-2 rounded-2  ${
-                        chatroom === activeChatroom ? "bg-warning" : ""
-                      }`}
-                      style={{ cursor: "pointer" }}
-                      onClick={() => setActiveChatroom(chatroom)}
-                    >
-                      <div>
-                        <img src={fakeImage} alt="" style={{ width: 38 }} />
-                      </div>
-                      <div className="ms-2">
-                        <h6
-                          className={`mb-0 text-black ${
-                            chatroom === activeChatroom ? "text-white" : ""
+                  {contactChatData &&
+                    contactChatData.map((chatroom, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`d-flex align-items-center p-1 mb-2 rounded-2  ${
+                            activeChatroom === index ? 'bg-warning' : 'bg-white'
                           }`}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            handleChatroomClick(chatroom.chat_code, index)
+                          }
                         >
-                          {chatroom.name}
-                        </h6>
-                        <p
-                          className={`mb-0 ${
-                            chatroom === activeChatroom ? "text-white" : ""
-                          } fw-light`}
-                        >
-                          {chatroom.position}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                          <div>
+                            <img
+                              src={chatroom?.photo || fakeImage}
+                              alt=""
+                              style={{ width: 38, borderRadius: '75%' }}
+                            />
+                          </div>
+                          <div className="ms-2">
+                            <h6
+                              className={`mb-0 text-black ${
+                                chatroom === activeChatroom ? 'text-white' : ''
+                              }`}
+                            >
+                              {chatroom.name}
+                            </h6>
+                            <p
+                              className={`mb-0 ${
+                                chatroom === activeChatroom ? 'text-white' : ''
+                              } fw-light`}
+                            >
+                              {chatroom.position || 'Worker Talent'}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </Card>
             </DropdownButton>
             <Col id="left-side-chat" md="5" lg="4">
-              <Card className="py-2 px-3 border-0" style={{ height: "80vh" }}>
+              <Card className="py-2 px-3 border-0" style={{ height: '80vh' }}>
                 <Nav className="border-bottom">
                   <div
                     className="d-flex align-items-center "
-                    style={{ height: "50px" }}
+                    style={{ height: '50px' }}
                   >
-                    <h5 className="mb-0 text-black">Messages</h5>
+                    <h5 className="mb-0 text-black">Message</h5>
                   </div>
                 </Nav>
                 <div
                   className="py-3 position-relative"
                   data-mdb-perfect-scrollbar="true"
                 >
-                  {chatrooms.map((chatroom) => (
-                    <div
-                      key={chatroom.id}
-                      className={`d-flex align-items-center p-1 mb-2 rounded-2  ${
-                        chatroom === activeChatroom ? "bg-warning" : ""
-                      }`}
-                      style={{ cursor: "pointer" }}
-                      onClick={() => setActiveChatroom(chatroom)}
-                    >
-                      <div>
-                        <img src={fakeImage} alt="" style={{ width: 38 }} />
-                      </div>
-                      <div className="ms-2">
-                        <h6
-                          className={`mb-0 text-black ${
-                            chatroom === activeChatroom ? "text-white" : ""
+                  {contactChatData &&
+                    contactChatData?.map((chatroom, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`d-flex align-items-center p-1 mb-2 rounded-2  ${
+                            activeChatroom === index ? 'bg-warning' : 'bg-white'
                           }`}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            handleChatroomClick(chatroom.chat_code, index)
+                          }
                         >
-                          {chatroom.name}
-                        </h6>
-                        <p
-                          className={`mb-0 ${
-                            chatroom === activeChatroom ? "text-white" : ""
-                          } fw-light`}
-                        >
-                          {chatroom.position}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                          <div>
+                            <img
+                              src={chatroom?.photo || fakeImage}
+                              alt=""
+                              style={{ width: 38, borderRadius: '75%' }}
+                            />
+                          </div>
+                          <div className="ms-2">
+                            <h6
+                              className={`mb-0 text-black ${
+                                chatroom === activeChatroom ? 'text-white' : ''
+                              }`}
+                            >
+                              {chatroom.name}
+                            </h6>
+                            <p
+                              className={`mb-0 ${
+                                chatroom === activeChatroom ? 'text-white' : ''
+                              } fw-light`}
+                            >
+                              {chatroom.position || 'Worker Talent'}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </Card>
             </Col>
             <Col id="right-side-chat" md="7" lg="8">
-              <Card className="py-2 px-3 border-0" style={{ height: "80vh" }}>
+              <Card className="py-2 px-3 border-0" style={{ height: '80vh' }}>
                 <div className="border-bottom">
                   <div
                     className="d-flex justify-content-between align-items-center"
-                    style={{ height: "50px" }}
+                    style={{ height: '50px' }}
                   >
-                    <div className="d-flex align-items-center">
-                      <div>
-                        <img src={fakeImage} alt="" style={{ width: 38 }} />
+                    <div>
+                      <div className="d-flex align-items-center justify-content-center gap-2">
+                        <img
+                          src={
+                            (chatMessageData &&
+                              chatMessageData?.profile?.photo) ||
+                            fakeImage
+                          }
+                          alt=""
+                          style={{ width: 38, borderRadius: '75%' }}
+                        />
+                        <p>{chatMessageData?.profile?.name}</p>
                       </div>
-                      <h6 className="ms-2 mb-0 text-black">
-                        {activeChatroom.name}
-                      </h6>
                     </div>
-                    <h6 className="d-none d-lg-block mb-0">
-                      {activeChatroom.position}
-                    </h6>
-                    <Link to="#" style={{ textDecoration: "none" }}>
+                    <Link to="#" style={{ textDecoration: 'none' }}>
                       <h6
                         style={{
-                          color: "var(--text-fifth)",
-                          fontWeight: "bold",
+                          color: 'var(--text-fifth)',
+                          fontWeight: 'bold',
                         }}
                         className="text-bold"
                       >
-                        Detail Profile
+                        Detail
                       </h6>
                     </Link>
                   </div>
                 </div>
 
                 <div
-                  className="py-3"
+                  className="py-3 position-relative"
+                  data-mdb-perfect-scrollbar="true"
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: activeChatroom.messages.slice(-1)[0]
-                      .isSentByUser
-                      ? "flex-end"
-                      : "flex-start",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    maxHeight: '700px',
+                    overflowY: 'auto',
                   }}
                 >
-                  {activeChatroom.messages.map((message) => (
-                    <div
-                      key={message.id}
-                      className={`message-container ${
-                        message.isSentByUser
-                          ? "user-message text-end"
-                          : "other-message text-start"
-                      }`}
-                      style={{
-                        display: "flex",
-                        justifyContent: message.isSentByUser
-                          ? "flex-end"
-                          : "flex-start",
-                        marginBottom: "10px",
-                        width: "100%",
-                      }}
-                    >
-                      <p
-                        className={`message-container ${
-                          message.isSentByUser
-                            ? "user-message "
-                            : "other-message"
-                        }`}
+                  {chatMessageData?.data?.map((chat, index) => {
+                    return (
+                      <div
+                        key={index}
                         style={{
-                          backgroundColor: message.isSentByUser
-                            ? "var(--primary-color)"
-                            : "var(--secondary-color)",
-                          color: "#ffffff",
+                          display: 'flex',
+                          justifyContent:
+                            chat.user_id == localStorage.getItem('id_recruiter')
+                              ? 'flex-end'
+                              : 'flex-start',
+                          marginBottom: '10px',
+                          width: '100%',
                         }}
                       >
-                        {message.text}
-                      </p>
-                    </div>
-                  ))}
+                        <p
+                          style={{
+                            backgroundColor:
+                              chat.user_id ==
+                              localStorage.getItem('id_recruiter')
+                                ? '#5E50A1'
+                                : 'gray',
+                            padding: '5px',
+                            color: 'white',
+                            borderRadius: '10px',
+                          }}
+                        >
+                          {chat.message}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
 
-                <div className="d-flex align-items-end h-100">
-                  <InputGroup className="mb-3 gap-2" style={{ bottom: 0 }}>
-                    <Form.Control
-                      placeholder="Messages"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                      className="rounded-5"
-                    />
-                    <div
-                      className="rounded-circle d-flex justify-content-center align-items-center"
-                      style={{
-                        width: 40,
-                        height: 40,
-                        cursor: "pointer",
-                        backgroundColor: "var(--primary-color",
-                      }}
-                    >
-                      <box-icon name="paper-plane" color="white"></box-icon>
-                    </div>
-                  </InputGroup>
-                </div>
+                <Form onClick={()=>handleGetUser(chatMessageData?.profile?.id)}>
+                  <div className="d-flex align-items-end h-100">
+                    <InputGroup className="mb-3 gap-2" style={{ bottom: 0 }}>
+                      <Form.Control
+                        placeholder="Messages"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        className="rounded-5"
+                        name="message"
+                        onChange={onChangeChat}
+                        defaultValue={inputData.message}
+                      />
+                      <div
+                        className="rounded-circle d-flex justify-content-center align-items-center"
+                        style={{
+                          width: 40,
+                          height: 40,
+                          cursor: 'pointer',
+                          backgroundColor: 'var(--primary-color',
+                        }}
+                        onClick={() => postRecruiterMessage()}
+                      >
+                        <box-icon name="paper-plane" color="white"></box-icon>
+                      </div>
+                    </InputGroup>
+                  </div>
+                </Form>
               </Card>
             </Col>
           </Row>
         </Container>
       </div>
       <Footer />
+      <ToastContainer />
     </>
   );
 };
 
-export default ChatWorker;
+export default ChatRecruiter;
