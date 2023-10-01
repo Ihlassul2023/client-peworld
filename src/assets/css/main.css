@@ -118,13 +118,11 @@ textarea {
 
 /* ! navbar start */
 .mail:hover {
-  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
-    brightness(95%) contrast(93%);
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
 }
 
 .bell:hover {
-  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
-    brightness(95%) contrast(93%);
+  filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
 }
 
 .ham-text {
@@ -228,6 +226,9 @@ textarea {
   main .wrapProfile .wrapMainEdit .experience .workInformation {
     flex-direction: column !important;
   }
+  #buttonPorto {
+    display: block !important;
+  }
 
   /* ! edit-profile-company start */
   .card-edit-company {
@@ -256,6 +257,10 @@ textarea {
 }
 
 @media (max-width: 576px) {
+  #buttonPorto {
+    display: block !important;
+    gap: 2;
+  }
   /* ! Footer start */
   .footer-stack {
     flex-direction: column;
@@ -282,8 +287,7 @@ textarea {
     display: inline-block;
   }
   .ham-text:hover {
-    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg)
-      brightness(95%) contrast(93%);
+    filter: invert(34%) sepia(22%) saturate(1396%) hue-rotate(210deg) brightness(95%) contrast(93%);
   }
   /* ! navbar end */
 
