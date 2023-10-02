@@ -233,7 +233,7 @@ Contributions are what make the open source community such an amazing place to b
   <tr >
     <td align="left">
       <a href="https://github.com/matfaisall">
-          <img width="100" src="https://avatars.githubusercontent.com/u/88364541?v=4" alt="Nisrina Hasna"> <br/>
+          <img width="100" src="https://avatars.githubusercontent.com/u/88364541?v=4" alt="Muhammad Faisal"> <br/>
           <sub><b>Muhammad Faisal</b></sub> <br/>
           <sub>Lead Frontend | Frontend Web Developer</sub>
         </a>
