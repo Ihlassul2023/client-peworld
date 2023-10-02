@@ -238,21 +238,26 @@ const EditProfileWorker = () => {
               </div>
 
               {/* form data skill */}
-              <div className="bg-white rounded p-3 shadow-lg mb-3">
+              <div className="skill bg-white rounded p-3 shadow-lg mb-3">
+                <h3 className="text-dark">Skill</h3>
+                <hr />
+                <form onSubmit={handleSubmitSkill} className="d-flex gap-2 mt-3">
+                  <input value={skillWorker.skill_name} name="skill_name" onChange={(e) => handleInputSkill(e)} className="bg-light w-100 border-1 p-2" placeholder="Javascript, Html, css" type="text" />
+                  <button className="bg-warning border-0 text-light p-2">Simpan</button>
+                </form>
+              </div>
+              {/* <div className="bg-white rounded p-3 shadow-lg mb-3">
                 <h4 className="text-dark">Skill</h4>
                 <hr />
                 <Form onSubmit={handleSubmitSkill}>
-                  <Form.Group className="mb-3" htmlFor="skill">
-                    <Form.Label>Tempat Kerja</Form.Label>
-                    <div className="d-flex gap-2">
-                      <Form.Control type="text" name="skill_name" id="skill" value={skillWorker.skill_name} onChange={(e) => handleInputSkill(e)} className="py-3 w-100" placeholder="Javascript, Html, css" />
-                      <Button variant="warning" className="px-4 text-white fw-semibold">
-                        Simpan
-                      </Button>
-                    </div>
+                  <Form.Group className="mb-3 d-flex gap-2" htmlFor="skill">
+                    <Form.Control type="text" name="skill_name" id="skill" value={skillWorker.skill_name} onChange={(e) => handleInputSkill(e)} className="py-3 w-100" placeholder="Javascript, Html, css" />
+                    <Button variant="warning" className="px-4 text-white fw-semibold">
+                      Simpan
+                    </Button>
                   </Form.Group>
                 </Form>
-              </div>
+              </div> */}
 
               {/* Work Experience */}
               <div className="bg-white rounded p-3 shadow-lg mb-3">
@@ -339,7 +344,11 @@ const EditProfileWorker = () => {
                 {getPortofolio.data?.data.map((portofolio, index) => (
                   <div className="d-md-flex mb-3" key={index}>
                     <div className="d-flex gap-3">
-                      {portofolio.photo !== 'undefined' ? <img style={{ height: "100px", width: "100px", objectFit: 'cover'}} src={portofolio.photo} alt="porto1" /> : <img style={{ height: "100px", width: "100px", objectFit: 'cover'}} src={porto} alt="porto2" />}
+                      {portofolio.photo !== "undefined" ? (
+                        <img style={{ height: "100px", width: "100px", objectFit: "cover" }} src={portofolio.photo} alt="porto1" />
+                      ) : (
+                        <img style={{ height: "100px", width: "100px", objectFit: "cover" }} src={porto} alt="porto2" />
+                      )}
                       <div>
                         <h6 className="text-dark">{portofolio.name}</h6>
                         <p className="mb-0">{portofolio.link_repo}</p>
@@ -398,7 +407,7 @@ const EditProfileWorker = () => {
                       }}
                       className="d-flex flex-column rounded w-100 justify-content-center border-dash align-items-center "
                     >
-                      <img style={{ height: "120px", width: "200px", objectFit: 'cover'}} src={portofolioWorker.photo_url || cloud} alt="cloud" />
+                      <img style={{ height: "120px", width: "200px", objectFit: "cover" }} src={portofolioWorker.photo_url || cloud} alt="cloud" />
                       <p>Drag & Drop untuk Upload Gambar Aplikasi Mobile</p>
                       <p>Atau cari untuk mengupload file dari direktorimu.</p>
                       <div className="d-flex gap-3">
