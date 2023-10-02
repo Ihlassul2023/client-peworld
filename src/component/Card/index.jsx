@@ -22,7 +22,7 @@ const Cards = (props) => {
                   <box-icon name="map" color="gray" animation="tada"></box-icon>
                   <p className="ps-1">{props.address}</p>
                 </div>
-                <div className="d-flex gap-2 flew-wrap flex-grow-1">
+                <div className="d-flex gap-2 flex-wrap flex-grow-1">
                   {props.skill.map((skill, index) => (
                     <Button variant="warning" className="btn-sm px-3 text-white" key={index}>
                       {skill}
