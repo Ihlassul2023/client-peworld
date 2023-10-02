@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import {
@@ -40,6 +40,16 @@ const ChatWorker = () => {
     user_2: `${localStorage.getItem('id_worker')}`,
     message: '',
   });
+
+  const chatContainerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMessageData?.data]);
 
   const getMyContact = () => {
     dispatch(getWorkerContact());
@@ -272,6 +282,7 @@ const ChatWorker = () => {
                     maxHeight: '700px',
                     overflowY: 'auto',
                   }}
+                  ref={chatContainerRef} 
                 >
                   {chatMessageData?.data?.map((chat, index) => {
                     return (
