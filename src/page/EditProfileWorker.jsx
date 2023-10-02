@@ -339,7 +339,7 @@ const EditProfileWorker = () => {
                 {getPortofolio.data?.data.map((portofolio, index) => (
                   <div className="d-md-flex mb-3" key={index}>
                     <div className="d-flex gap-3">
-                      {portofolio.photo !== 'undefined' ? <img style={{ height: "100px", width: "100px" }} src={portofolio.photo} alt="porto1" /> : <img style={{ height: "100px", width: "100px" }} src={porto} alt="porto2" />}
+                      {portofolio.photo !== 'undefined' ? <img style={{ height: "100px", width: "100px", objectFit: 'cover'}} src={portofolio.photo} alt="porto1" /> : <img style={{ height: "100px", width: "100px", objectFit: 'cover'}} src={porto} alt="porto2" />}
                       <div>
                         <h6 className="text-dark">{portofolio.name}</h6>
                         <p className="mb-0">{portofolio.link_repo}</p>
@@ -398,7 +398,7 @@ const EditProfileWorker = () => {
                       }}
                       className="d-flex flex-column rounded w-100 justify-content-center border-dash align-items-center "
                     >
-                      <img style={{ height: "100px", width: "100px" }} src={portofolioWorker.photo_url || cloud} alt="cloud" />
+                      <img style={{ height: "120px", width: "200px", objectFit: 'cover'}} src={portofolioWorker.photo_url || cloud} alt="cloud" />
                       <p>Drag & Drop untuk Upload Gambar Aplikasi Mobile</p>
                       <p>Atau cari untuk mengupload file dari direktorimu.</p>
                       <div className="d-flex gap-3">
