@@ -36,6 +36,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#tryapps">Try This Application</a></li>
       </ul>
     </li>
     <li><a href="#screenshoots">Screenshots</a></li>
@@ -105,6 +106,23 @@ VITE_BASE_URL=[URL_API]
 ```
 
 - Type `npm run dev` To Start the local web
+
+## Try Our Web Application
+<a href="https://client-peworld.vercel.app/">Launch to our App</a>
+
+If you want to try our web application, you can use the following account :
+
+Login as Worker
+```
+email     : bivode6308@alvisani.com
+password  : biv
+```
+
+Login as Recruiter
+```
+email     : ihlascamp@gmail.com
+password  : 123
+```
 
 
 ## Screenshoots
