@@ -337,17 +337,17 @@ const EditProfileWorker = () => {
                 <hr />
                 {/* section for showing your portfolio */}
                 {getPortofolio.data?.data.map((portofolio, index) => (
-                  <div className="d-flex justify-content-between mb-3" key={index}>
+                  <div className="d-md-flex mb-3" key={index}>
                     <div className="d-flex gap-3">
-                      {portofolio.photo ? <img style={{ height: "100px", width: "150px" }} src={portofolio.photo} alt="porto" /> : <img style={{ height: "100px", width: "150px" }} src={porto} alt="porto" />}
+                      {portofolio.photo !== 'undefined' ? <img style={{ height: "100px", width: "100px" }} src={portofolio.photo} alt="porto1" /> : <img style={{ height: "100px", width: "100px" }} src={porto} alt="porto2" />}
                       <div>
                         <h6 className="text-dark">{portofolio.name}</h6>
                         <p className="mb-0">{portofolio.link_repo}</p>
                       </div>
                     </div>
-                    <div id="buttonPorto" className="d-flex flex-sm-column flex-lg-row gap-2">
+                    <div className="d-flex flex-row gap-2 justify-content-center ms-sm-auto py-2">
                       <div>
-                        <Button onClick={() => getPortofolioId(portofolio.id)} variant="warning" className="d-flex justify-content-center align-items-center mb-4">
+                        <Button onClick={() => getPortofolioId(portofolio.id)} variant="warning" className="d-flex justify-content-center align-items-center">
                           <box-icon type="solid" name="edit" color="white" size="sm"></box-icon>
                         </Button>
                       </div>
