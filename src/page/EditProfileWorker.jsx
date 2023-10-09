@@ -13,6 +13,7 @@ import cloud from "../assets/image/cloud.png";
 import upload1 from "../assets/image/upload1.png";
 import upload2 from "../assets/image/upload2.png";
 import porto from "../assets/image/fakePorto4.png";
+import close from "../assets/image/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfileWorker, getMyProfile } from "../redux/action/worker";
 import { postSkillAction, getSkillAction } from "../redux/action/skill";
@@ -298,7 +299,20 @@ const EditProfileWorker = () => {
                 <div className="mt-3">
                   <form onSubmit={handleSubmitExperience}>
                     <Form.Group className="mb-3" htmlFor="position">
-                      <Form.Label>Posisi</Form.Label>
+                      <div className="d-flex justify-content-between">
+                        <Form.Label>Posisi</Form.Label>
+                        {localStorage.getItem("idExperience") && (
+                          <img
+                            onClick={() => {
+                              localStorage.removeItem("idExperience");
+                              setExperienceWorker({ position: "", company_name: "", from_month: "", to_month: "", description: "" });
+                            }}
+                            style={{ height: "20px", width: "20px", cursor: "pointer" }}
+                            src={close}
+                            alt="close"
+                          />
+                        )}
+                      </div>
                       <Form.Control type="text" name="position" value={experienceWorker.position} onChange={(e) => handleInputExperience(e)} id="position" className="py-3" placeholder="Web Developer" />
                     </Form.Group>
                     {/* form for company name and date */}
@@ -372,7 +386,21 @@ const EditProfileWorker = () => {
                 {/* form for input portfolio */}
                 <form onSubmit={handleSubmitPortofolio}>
                   <Form.Group className="mb-3" htmlFor="application">
-                    <Form.Label>Nama Aplikasi</Form.Label>
+                    <div className="d-flex justify-content-between">
+                      <Form.Label>Nama Aplikasi</Form.Label>
+                      {localStorage.getItem("idPortofolio") && (
+                        <img
+                          onClick={() => {
+                            localStorage.removeItem("idPortofolio");
+                            setPortofolioWorker({ name: "", type: "", link_repo: "", photo_url: "" });
+                            setPhotoPortofolio(null);
+                          }}
+                          style={{ height: "20px", width: "20px", cursor: "pointer" }}
+                          src={close}
+                          alt="close"
+                        />
+                      )}
+                    </div>
                     <Form.Control type="text" name="name" value={portofolioWorker.name} onChange={(e) => handleInputPortofolio(e)} id="application" className="py-3" placeholder="Masukkan Nama Aplikasi" />
                   </Form.Group>
                   <Form.Group className="mb-3" htmlFor="repository">
